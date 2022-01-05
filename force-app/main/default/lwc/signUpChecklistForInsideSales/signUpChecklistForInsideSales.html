@@ -1,0 +1,104 @@
+<template>
+  <lightning-card title="Signup Checklist" icon-name="standard:record">
+    <template if:false={openHistoryEventcheck}>
+      <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+        <h2>A contact ticket should be opened
+        </h2>
+      </div>
+    </template>
+    <lightning-record-edit-form record-id={recordId} object-api-name="Lead" fields={fields} onload={handleOnLoad}
+      onsuccess={handleSuccess}>
+      <div class="slds-grid slds-wrap slds-gutters_x-small slds-m-top_medium">
+        <div class="slds-col slds-size_1-of-2">
+          <lightning-messages>
+          </lightning-messages>
+          <lightning-card title="First Name" icon-name={changeFirstNameIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="FirstName"
+                variant="label-hidden" onchange={handleFieldChange}
+                required="true"></lightning-input-field>
+            </p>
+          </lightning-card>
+
+          <lightning-card title="Last Name" icon-name={changeLastNameIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field label="Last Name" field-name="LastName" variant="label-hidden"
+                onchange={handleFieldChange} required="true"></lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Email" icon-name={changeEmailIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Email" variant="label-hidden" class="Email"
+                onchange={handleFieldChange}>
+              </lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Phone" icon-name={changePhoneIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Phone" variant="label-hidden" class="Phone"
+                onchange={handleFieldChange}>
+              </lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Pilot" icon-name={changePilot__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Pilot__c"
+                disabled={isHistoryEvent}
+                variant="label-hidden" onchange={handleFieldChange}>
+              </lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Customer consents to 3rd Party delivery" icon-name={changeCustomer_Consent_to_3rd_Party_Delivery__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Customer_Consent_to_3rd_Party_Delivery__c" variant="label-hidden"
+                disabled={isHistoryEvent}
+                onchange={handleFieldChange}></lightning-input-field>
+            </p>
+          </lightning-card>
+        </div>
+
+        <div class="slds-col slds-size_1-of-2">
+          <lightning-card title="Campaign" icon-name={changeCampaign__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Campaign__c" variant="label-hidden" onchange={handleFieldChange}
+                disabled={isHistoryEvent}
+                required="true"></lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Sign-up Insights" icon-name={changeSign_up_Insights__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Sign_up_Insights__c" variant="label-hidden" class="signUpInsights"
+                disabled={isHistoryEvent}
+                onchange={handleFieldChange}></lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Objection Reason" icon-name={changeObjection_Reason__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Objection_Reason__c" variant="label-hidden" class="objectionReason"
+                disabled={isHistoryEvent}
+                onchange={handleFieldChange}></lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Interaction Log" icon-name={changeInteraction_Notes__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Interaction_Notes__c"
+                disabled={isHistoryEvent}
+                variant="label-hidden" onchange={handleFieldChange}>
+              </lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Third Party delivery" icon-name={changeThird_Party_Delivery__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Third_Party_Delivery__c" variant="label-hidden"
+                disabled={isHistoryEvent}
+                onchange={handleFieldChange}></lightning-input-field>
+            </p>
+          </lightning-card>
+        </div>
+      </div>
+      <div class="slds-m-top_medium slds-align_absolute-center">
+        <lightning-button label="Save" title="Save" onclick={onSave}></lightning-button>
+      </div>
+    </lightning-record-edit-form>
+  </lightning-card>
+</template>

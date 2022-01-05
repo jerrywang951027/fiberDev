@@ -1,0 +1,21 @@
+<template>
+  <div class="radio-group-label">Contact Tickets Available
+  </div>
+  <div if:true={isTicketView}>
+      <lightning-radio-group
+         options={options}
+         value={value}
+         onchange={handleChange}
+         label="">
+      </lightning-radio-group>
+  </div>
+  <div class="slds-float_right slds-m-top_large">
+      <button
+        title="Save"
+        type="button"
+        onclick={save}
+        class={nextButtonClass}>Save
+    </button>
+  </div>
+  <div class="slds-m-top_large" if-true={errorMessage}>{errorMessage}</div>
+</template>

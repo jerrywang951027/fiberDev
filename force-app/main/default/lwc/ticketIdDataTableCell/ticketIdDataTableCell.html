@@ -1,0 +1,5 @@
+<template>
+  <div if:true={cellData} class="tableRowCell">
+    <lightning-button variant="base" label={cellData.value} title={cellData.value} class="slds-m-bottom_x-small" onclick={loadTicketDetails} style="width: 100%;"></lightning-button>
+  </div>
+</template>

@@ -1,0 +1,35 @@
+projectPath: ./vlocity
+autoUpdatesettings: true 
+ignoreLWCActivationOS: true 
+ignoreLWCActivationCards: truesfdx
+queries:
+- VlocityDataPackType: SObject
+  query: SELECT Id, GlobalKey__c FROM Google_Product_Supplemental_Object__c
+- VlocityDataPackType: SObject
+  query: SELECT Id, GlobalKey__c FROM Google_Product_Feature_Object__c 
+- VlocityDataPackType: SObject
+  query: SELECT Id, GlobalKey__c FROM Google_Product_Option_Object__c 
+- VlocityDataPackType: SObject
+  query: SELECT Id, Product_Rate_Plan_Code__c FROM Google_Product_Rate_Plan_Object__c 
+OverrideSettings:
+  SObjects:
+    Google_Product_Supplemental_Object__c:
+      SourceKeyDefinition:
+      - GlobalKey__c
+      FolderName: 
+      - GlobalKey__c
+    Google_Product_Feature_Object__c:
+      SourceKeyDefinition:
+      - GlobalKey__c
+      FolderName: 
+      - GlobalKey__c
+    Google_Product_Option_Object__c:
+      SourceKeyDefinition:
+      - GlobalKey__c
+      FolderName: 
+      - GlobalKey__c
+    Google_Product_Rate_Plan_Object__c:
+      SourceKeyDefinition:
+      - Product_Rate_Plan_Code__c
+      FolderName: 
+      - GlobalKey__c

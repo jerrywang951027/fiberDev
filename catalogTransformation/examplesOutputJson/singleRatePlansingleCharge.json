@@ -1,0 +1,42 @@
+{
+    "Family__c":"Internet",
+    "Criteria__c":"",
+    "Fiber_Market__c":"Atlanta, GA;Austin, TX;Charlotte, NC;Huntsville, AL;Kansas City, KS;Kansas City, MO;Louisville, KY;Nashville, TN;Orange County;Provo, UT;Salt Lake City, UT;San Antonio, TX;The Triangle;San Jose, CA;Stanford, CA;West Des Moines, IA",
+    "Product_Code__c":"Internet",
+    "Component__c":true,
+    "Product_Line__c":"Internet Service",
+    "Product_Sub_Line__c":"Gigabit",
+    "IsActive__c":true,
+    "Cms_Lineup_Id__c":"",
+    "GFiber_Cost__c":"",
+    "GFiber_Device_Model__c":"",
+    "Gfiber_Device_Type__c":"",
+    "GFiber_Min_Pv4_Subnet_Prefix__c":"",
+    "GFiber_Min_IPv6_Subnet_Prefix__c":"",
+    "Product_Rate_Plan":[
+        {
+            "Name":"fiber_1000",
+            "Criteria__c":"address.isResidential && !address.isFiberInside && !address.isAffordableHousing && !address.courtesyInfo.courtesyInternet",
+            "Fiber_Market__c":"Atlanta, GA;Austin, TX;Charlotte, NC;Huntsville, AL;Kansas City, KS;Kansas City, MO;Louisville, KY;Nashville, TN;Orange County;Provo, UT;Salt Lake City, UT;San Antonio, TX;The Triangle;San Jose, CA;Stanford, CA;West Des Moines, IA",
+            "Product_Rate_Plan_Code__c":"prp_fiber_1000",
+            "Product__c":"12345566",
+            "Product_Rate_Plan_Charge":[
+                {
+                    "Name":"fiber_1000",
+                    "Charge_Model__c":"Flat Fee",
+                    "Charge_Type__c":"Recurring",
+                    "Product_Rate_Plan_Charge_Tier":[
+                        {
+                            "Name":"fiber_1000",
+                            "Price__c":"fiber_1000",
+                            "Starting_Unit__c":1,
+                            "Ending_Unit__c":999
+
+
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

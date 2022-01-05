@@ -1,0 +1,129 @@
+{
+    "account": {
+      "metadata": {
+        "creationTimeMs": "1432761048089",
+        "lastUpdateTimeMs": "1636651919226"
+      },
+      "accountId": "1340160000",
+      "accountState": "ACTIVE",
+      "addressId": "AD2760021504",
+      "servicePlan": {
+        "internetService": {
+          "type": "GIGABIT",
+          "pricePlan": {
+            "monthlyFee": [{
+              "perMonthPretaxInCents": 7000,
+              "isProratable": true
+            }]
+          },
+          "activationInfo": {
+            "activationTimeInMs": "1437604770628",
+            "billingStartTimeInMs": "1437604770578"
+          }
+        },
+        "device": [{
+          "serialNo": "GSAFSJ1234E1340",
+          "deviceType": "NETWORK_BOX",
+          "deviceModel": "GFRG210",
+          "pricePlan": {
+            "upfrontFee": {
+              "totalAmountPretaxInCents": 30000,
+              "waivedFee": {
+                "totalAmountPretaxInCents": 30000
+              }
+            },
+            "feeWaiverReason": "INCLUDED_IN_BUNDLE"
+          },
+          "termsAndConditions": {
+            "ownership": "OWNED_BY_GOOGLE_FIBER",
+            "bundling": "BUNDLED_DEVICE"
+          },
+          "installationStatus": "INSTALLED",
+          "deviceInstallationTimeMs": "1433979707093",
+          "associatedGaiaId": "837160362255",
+          "role": ["NETWORK_BOX", "STORAGE_BOX"],
+          "activationInfo": {
+            "activationTimeInMs": "1433979707093",
+            "billingStartTimeInMs": "1435734000000"
+          }
+        }],
+        "signupFeeType": "REGISTRATION_SIGNUP_FEE_TYPE",
+        "constructionFee": {
+          "pricePlan": {
+            "monthlyFee": [{
+              "perMonthPretaxInCents": 2500,
+              "durationInMonths": 12,
+              "waivedFee": {
+                "perMonthPretaxInCents": 2500,
+                "durationInMonths": 12
+              },
+              "isProratable": false
+            }]
+          }
+        },
+        "registrationFee": {
+          "pricePlan": {
+            "upfrontFee": {
+              "totalAmountPretaxInCents": 1000
+            }
+          },
+          "isCreditableOnFirstBill": true
+        },
+        "internalName": "gigabit",
+        "name": "1 Gig",
+        "hasPendingServicePlanChanges": false,
+        "byorDeviceModel": "GFRG100",
+        "byorDeviceMake": "TV_BOX"
+      },
+      "billing3Info": {
+        "billingState": "NOT_BILLABLE",
+        "orderlineKeyPrefix": "1",
+        "gaiaId": "447166183589",
+        "billing3Pcid": {
+          "billing3PacId": {
+            "billableServiceId": "70018",
+            "accountKey": "1_1340160000",
+            "orderLineKeyPrefix": 1
+          },
+          "orderLineKey": "1_1340160000",
+          "orderLineKeyPrefix": 1
+        },
+        "attemptedCreationTimeMs": "1432761048114"
+      },
+      "user": [{
+        "gaiaId": "447166183589",
+        "isPrimaryAccountHolder": true
+      }],
+      "eventQueue": {
+      },
+      "fiberSystemEnvs": {
+        "spicerackEnvironmentId": "SPICERACK_ENG1"
+      },
+      "activationInfo": {
+        "activationTimeInMs": "1433979513663",
+        "billingStartTimeInMs": "1435734000000"
+      },
+      "servicePlanRemovals": [{
+        "removalTimeInMs": "1437604770578",
+        "interalPlanName": "free",
+        "internetService": {
+          "type": "FREE",
+          "pricePlan": {
+            "monthlyFee": [{
+              "perMonthPretaxInCents": 0,
+              "isProratable": false
+            }]
+          },
+          "activationInfo": {
+            "activationTimeInMs": "1433979513663",
+            "billingStartTimeInMs": "1435734000000"
+          }
+        }
+      }],
+      "secondaryUserMaxAllowedCount": "9",
+      "dma": "SLCUT",
+      "hasNumberPortInProgress": false,
+      "migrationState": "NOT_MIGRATED",
+      "globalAddressId": "849ded80-429e-44cd-9c10-4887c9324d03"
+    }
+  }

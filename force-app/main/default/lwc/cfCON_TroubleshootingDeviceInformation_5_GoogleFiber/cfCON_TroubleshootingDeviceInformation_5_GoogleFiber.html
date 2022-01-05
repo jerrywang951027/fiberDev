@@ -1,0 +1,292 @@
+<template>
+            <div class="slds-grid slds-wrap slds-is-relative">
+            <div if:false={cardLoaded} class="slds-is-absolute vloc-loader_override" style="height: 100%; width: 100%; min-height:50px; background: white; z-index: 99;">
+  <div>
+   <vlocity_cmt-spinner
+      variant="brand"
+      alternative-text="Loading content..."
+      size="medium"
+      theme="slds"
+      ></vlocity_cmt-spinner>
+  </div>
+</div>
+            <template if:false={hasPermission}>
+              You don't have required permissions to view this card.
+            </template>
+            <template if:true={hasPermission}>
+              <template if:true={hasRecords}>
+                        <template for:each={_records} for:item="record" for:index="rindex">
+                            <vlocity_cmt-flex-card-state key={record.uniqueKey} data-recordid={record.Id} record={record} data-statue="true"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 "  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-border_top slds-border_bottom slds-border_right slds-border_left slds-m-around_x-small " style="     border-top: #cccccc 1px solid;border-bottom: #cccccc 1px solid;border-right: #cccccc 1px solid;border-left: #cccccc 1px solid; 
+    border-radius:5px 5px 5px 5px;     ">
+          <div class="slds-col    slds-size_12-of-12  " style="     : #f3f2f2 1px solid; 
+    border-radius:5px;     box-shadow: 0 8px 6px -6px lightgrey;">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="background-color:#fafaf9;     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-0","field":"type","operator":"==","value":"ONT","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:lightning_extension"  size="small"  extraclass="slds-icon_container slds-icon__svg--default"  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-9","field":"type","operator":"==","value":"Router","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:events"  size="small"  extraclass="slds-icon_container slds-icon__svg--default"  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-18","field":"type","operator":"==","value":"Voice Box","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:desktop_and_phone"  size="small"  extraclass="slds-icon_container slds-icon__svg--default "  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-27","field":"type","operator":"==","value":"Power Adapter","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:apex_plugin"  size="small"  extraclass="slds-icon_container slds-icon__svg--default "  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-36","field":"type","operator":"==","value":"Extender","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:broadcast"  size="small"  extraclass="slds-icon_container slds-icon__svg--default "  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-left_small  slds-size_9-of-12  " style="     : #ccc 1px solid; 
+         "><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cstrong%3E%3Cspan%20style=%22font-size:%2018pt;%22%3E%3Cspan%20class=%22slds-text-heading_small%22%3E%7Blocation%7D%3C/span%3E%3C/span%3E%3C/strong%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-text-align_right slds-p-right_xxx-small  slds-size_1-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-flex-menu  onupdateos={updateOmniscript} onsetvalue={updateAction}   card={card}  record={record}  type="action"  size="xx-small"  variant=""  icon-name="utility:down"  overflow="true"  menu-items='\[{"name":"menu-item-1634902868023-0","label":"Action 1","iconName":"","actionData":{"stateObj":"{record}","card":"{card}","stateAction":{"id":"flex-action-1634903695687","type":"Flyout","displayName":"Action 1","vlocityIcon":"","openUrlIn":"Current Window","flyoutType":"customLwc","openFlyoutIn":"Modal","flyoutLwc":"devInProgress","parent":"menu","menuFlyoutId":"menuItemFlyout0"}}},{"name":"menu-item-1634903014262-0","label":"Action 2","iconName":"","actionData":{"stateObj":"{record}","card":"{card}","stateAction":{"id":"flex-action-1634903705352","type":"Flyout","displayName":"Action 2","vlocityIcon":"","openUrlIn":"Current Window","flyoutType":"customLwc","openFlyoutIn":"Modal","flyoutLwc":"devInProgress","parent":"menu","menuFlyoutId":"menuItemFlyout1"}},"status":""}]'  label=""  icon-size="small"  position="right"  flyout-obj='\{"menuItemFlyout0":{"id":"menuItemFlyout0","flyoutType":"customLwc","flyoutLwc":"devInProgress"},"menuItemFlyout1":{"id":"menuItemFlyout1","flyoutType":"customLwc","flyoutLwc":"devInProgress"}}'  icon-position="left"  theme="slds"><div slot="flyout">  <c-dev-in-progress   style='display:none'  data-id=menuItemFlyout0 ></c-dev-in-progress> <c-dev-in-progress   style='display:none'  data-id=menuItemFlyout1 ></c-dev-in-progress></div></vlocity_cmt-flex-menu>
+    </div><div class="slds-col  slds-m-top_xx-small  slds-size_1-of-12  " style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:new_window"  size="small"  extraclass="slds-icon_container slds-icon__svg--default  slds-text-link_reset"  variant="default"  imgsrc=""  action='\{"name":"","label":"Action","iconName":"standard-default","eventType":"onclick","actionData":{"stateObj":"{record}","card":"{card}","stateAction":{"id":"flex-action-1640958324358","type":"Flyout","displayName":"Action","vlocityIcon":"standard-default","openUrlIn":"Current Window","flyoutType":"childCard","openFlyoutIn":"Modal","cardName":"CON_TroubleshootingDeviceDetailedInformation","flyoutLwc":"CON_TroubleshootingDeviceDetailedInformation","cardNode":"","hasExtraParams":true,"flyoutParams":{"accountId":"{accountId}","serialNumber":"{serialNumber}"},"property":{"recordId":"{recordId}","parentAttribute":{"accountId":"{accountId}","serialNumber":"{serialNumber}"},"parentRecord":"{record}","records":"{_records}"}}}}'  theme="slds" onclick={executeAction} data-action-index="index0" ></vlocity_cmt-flex-icon>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3ESerial%20Number%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7BserialNumber%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  condition-element" style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[]}'  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3ELast%20ACS%20Checkin%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12  " style="     : #ccc 1px solid; 
+        color:#FF0000; "><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7BlastAcsCheckInTime%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3EModel%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7Bmodel%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3ECircuit%20Id%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7BcircuitId%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state><vlocity_cmt-flex-card-state key={record.uniqueKey} data-recordid={record.Id} record={record} data-statue="true"  data-index="1" data-rindex={rindex} class="cf-vlocity-state-1 cf-vlocity-state slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 "  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-border_top slds-border_bottom slds-border_right slds-border_left slds-m-around_x-small " style="     border-top: #cccccc 1px solid;border-bottom: #cccccc 1px solid;border-right: #cccccc 1px solid;border-left: #cccccc 1px solid; 
+    border-radius:5px 5px 5px 5px;     ">
+          <div class="slds-col    slds-size_12-of-12  " style="     : #f3f2f2 1px solid; 
+    border-radius:5px;     box-shadow: 0 8px 6px -6px lightgrey;">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="background-color:#fafaf9;     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-0","field":"type","operator":"==","value":"ONT","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:lightning_extension"  size="small"  extraclass="slds-icon_container slds-icon__svg--default"  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-9","field":"type","operator":"==","value":"Router","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:events"  size="small"  extraclass="slds-icon_container slds-icon__svg--default"  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-18","field":"type","operator":"==","value":"Voice Box","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:desktop_and_phone"  size="small"  extraclass="slds-icon_container slds-icon__svg--default "  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-27","field":"type","operator":"==","value":"Power Adapter","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:apex_plugin"  size="small"  extraclass="slds-icon_container slds-icon__svg--default "  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-36","field":"type","operator":"==","value":"Extender","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:broadcast"  size="small"  extraclass="slds-icon_container slds-icon__svg--default "  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-left_small  slds-size_10-of-12  " style="     : #ccc 1px solid; 
+         "><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cstrong%3E%3Cspan%20style=%22font-size:%2018pt;%22%3E%3Cspan%20class=%22slds-text-heading_small%22%3E%7Blocation%7D%3C/span%3E%3C/span%3E%3C/strong%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-text-align_right slds-p-right_xxx-small  slds-size_1-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-flex-menu  onupdateos={updateOmniscript} onsetvalue={updateAction}   card={card}  record={record}  type="action"  size="xx-small"  variant=""  icon-name="utility:down"  overflow="true"  menu-items='\[{"name":"menu-item-1634902868023-0","label":"Action 1","iconName":"","actionData":{"stateObj":"{record}","card":"{card}","stateAction":{"id":"flex-action-1634903695687","type":"Flyout","displayName":"Action 1","vlocityIcon":"","openUrlIn":"Current Window","flyoutType":"customLwc","openFlyoutIn":"Modal","flyoutLwc":"devInProgress","parent":"menu","menuFlyoutId":"menuItemFlyout0"}}},{"name":"menu-item-1634903014262-0","label":"Action 2","iconName":"","actionData":{"stateObj":"{record}","card":"{card}","stateAction":{"id":"flex-action-1634903705352","type":"Flyout","displayName":"Action 2","vlocityIcon":"","openUrlIn":"Current Window","flyoutType":"customLwc","openFlyoutIn":"Modal","flyoutLwc":"devInProgress","parent":"menu","menuFlyoutId":"menuItemFlyout1"}},"status":""}]'  label=""  icon-size="small"  position="right"  flyout-obj='\{"menuItemFlyout0":{"id":"menuItemFlyout0","flyoutType":"customLwc","flyoutLwc":"devInProgress"},"menuItemFlyout1":{"id":"menuItemFlyout1","flyoutType":"customLwc","flyoutLwc":"devInProgress"}}'  icon-position="left"  theme="slds"><div slot="flyout">  <c-dev-in-progress   style='display:none'  data-id=menuItemFlyout0 ></c-dev-in-progress> <c-dev-in-progress   style='display:none'  data-id=menuItemFlyout1 ></c-dev-in-progress></div></vlocity_cmt-flex-menu>
+    </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3ESerial%20Number%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7BserialNumber%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col    slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         "><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2012pt;%22%3E%3Cstrong%20class=%22slds-text-color_error%22%3EThis%20device%20does%20not%20support%20Diagnostics%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3EModel%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7Bmodel%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3ECircuit%20Id%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7BcircuitId%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                        </template>
+                      </template>
+                      <template if:false={hasRecords}>
+                            <vlocity_cmt-flex-card-state  record={record} data-statue="false"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 "  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-border_top slds-border_bottom slds-border_right slds-border_left slds-m-around_x-small " style="     border-top: #cccccc 1px solid;border-bottom: #cccccc 1px solid;border-right: #cccccc 1px solid;border-left: #cccccc 1px solid; 
+    border-radius:5px 5px 5px 5px;     ">
+          <div class="slds-col    slds-size_12-of-12  " style="     : #f3f2f2 1px solid; 
+    border-radius:5px;     box-shadow: 0 8px 6px -6px lightgrey;">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="background-color:#fafaf9;     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-0","field":"type","operator":"==","value":"ONT","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:lightning_extension"  size="small"  extraclass="slds-icon_container slds-icon__svg--default"  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-9","field":"type","operator":"==","value":"Router","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:events"  size="small"  extraclass="slds-icon_container slds-icon__svg--default"  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-18","field":"type","operator":"==","value":"Voice Box","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:desktop_and_phone"  size="small"  extraclass="slds-icon_container slds-icon__svg--default "  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-27","field":"type","operator":"==","value":"Power Adapter","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:apex_plugin"  size="small"  extraclass="slds-icon_container slds-icon__svg--default "  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-36","field":"type","operator":"==","value":"Extender","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:broadcast"  size="small"  extraclass="slds-icon_container slds-icon__svg--default "  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-left_small  slds-size_9-of-12  " style="     : #ccc 1px solid; 
+         "><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cstrong%3E%3Cspan%20style=%22font-size:%2018pt;%22%3E%3Cspan%20class=%22slds-text-heading_small%22%3E%7Blocation%7D%3C/span%3E%3C/span%3E%3C/strong%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-text-align_right slds-p-right_xxx-small  slds-size_1-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-flex-menu  onupdateos={updateOmniscript} onsetvalue={updateAction}   card={card}  record={record}  type="action"  size="xx-small"  variant=""  icon-name="utility:down"  overflow="true"  menu-items='\[{"name":"menu-item-1634902868023-0","label":"Action 1","iconName":"","actionData":{"stateObj":"{record}","card":"{card}","stateAction":{"id":"flex-action-1634903695687","type":"Flyout","displayName":"Action 1","vlocityIcon":"","openUrlIn":"Current Window","flyoutType":"customLwc","openFlyoutIn":"Modal","flyoutLwc":"devInProgress","parent":"menu","menuFlyoutId":"menuItemFlyout0"}}},{"name":"menu-item-1634903014262-0","label":"Action 2","iconName":"","actionData":{"stateObj":"{record}","card":"{card}","stateAction":{"id":"flex-action-1634903705352","type":"Flyout","displayName":"Action 2","vlocityIcon":"","openUrlIn":"Current Window","flyoutType":"customLwc","openFlyoutIn":"Modal","flyoutLwc":"devInProgress","parent":"menu","menuFlyoutId":"menuItemFlyout1"}},"status":""}]'  label=""  icon-size="small"  position="right"  flyout-obj='\{"menuItemFlyout0":{"id":"menuItemFlyout0","flyoutType":"customLwc","flyoutLwc":"devInProgress"},"menuItemFlyout1":{"id":"menuItemFlyout1","flyoutType":"customLwc","flyoutLwc":"devInProgress"}}'  icon-position="left"  theme="slds"><div slot="flyout">  <c-dev-in-progress   style='display:none'  data-id=menuItemFlyout0 ></c-dev-in-progress> <c-dev-in-progress   style='display:none'  data-id=menuItemFlyout1 ></c-dev-in-progress></div></vlocity_cmt-flex-menu>
+    </div><div class="slds-col  slds-m-top_xx-small  slds-size_1-of-12  " style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:new_window"  size="small"  extraclass="slds-icon_container slds-icon__svg--default  slds-text-link_reset"  variant="default"  imgsrc=""  action='\{"name":"","label":"Action","iconName":"standard-default","eventType":"onclick","actionData":{"stateObj":"{record}","card":"{card}","stateAction":{"id":"flex-action-1640958324358","type":"Flyout","displayName":"Action","vlocityIcon":"standard-default","openUrlIn":"Current Window","flyoutType":"childCard","openFlyoutIn":"Modal","cardName":"CON_TroubleshootingDeviceDetailedInformation","flyoutLwc":"CON_TroubleshootingDeviceDetailedInformation","cardNode":"","hasExtraParams":true,"flyoutParams":{"accountId":"{accountId}","serialNumber":"{serialNumber}"},"property":{"recordId":"{recordId}","parentAttribute":{"accountId":"{accountId}","serialNumber":"{serialNumber}"},"parentRecord":"{record}","records":"{_records}"}}}}'  theme="slds" onclick={executeAction} data-action-index="index1" ></vlocity_cmt-flex-icon>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3ESerial%20Number%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7BserialNumber%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  condition-element" style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[]}'  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3ELast%20ACS%20Checkin%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12  " style="     : #ccc 1px solid; 
+        color:#FF0000; "><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7BlastAcsCheckInTime%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3EModel%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7Bmodel%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3ECircuit%20Id%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7BcircuitId%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state><vlocity_cmt-flex-card-state  record={record} data-statue="false"  data-index="1" data-rindex={rindex} class="cf-vlocity-state-1 cf-vlocity-state slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 "  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-border_top slds-border_bottom slds-border_right slds-border_left slds-m-around_x-small " style="     border-top: #cccccc 1px solid;border-bottom: #cccccc 1px solid;border-right: #cccccc 1px solid;border-left: #cccccc 1px solid; 
+    border-radius:5px 5px 5px 5px;     ">
+          <div class="slds-col    slds-size_12-of-12  " style="     : #f3f2f2 1px solid; 
+    border-radius:5px;     box-shadow: 0 8px 6px -6px lightgrey;">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="background-color:#fafaf9;     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-0","field":"type","operator":"==","value":"ONT","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:lightning_extension"  size="small"  extraclass="slds-icon_container slds-icon__svg--default"  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-9","field":"type","operator":"==","value":"Router","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:events"  size="small"  extraclass="slds-icon_container slds-icon__svg--default"  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-18","field":"type","operator":"==","value":"Voice Box","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:desktop_and_phone"  size="small"  extraclass="slds-icon_container slds-icon__svg--default "  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-27","field":"type","operator":"==","value":"Power Adapter","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:apex_plugin"  size="small"  extraclass="slds-icon_container slds-icon__svg--default "  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-vertical_xx-small  slds-size_1-of-12  condition-element" style="     : #ccc 1px solid; 
+         "><vlocity_cmt-flex-icon     record={record}  data-conditions='\{"id":"state-condition-object","isParent":true,"group":[{"id":"state-new-condition-36","field":"type","operator":"==","value":"Extender","type":"custom"}]}'  color="#0176d3"  icon-type="Salesforce SVG"  icon-name="utility:broadcast"  size="small"  extraclass="slds-icon_container slds-icon__svg--default "  variant="default"  imgsrc=""  theme="slds"  ></vlocity_cmt-flex-icon>
+      </div><div class="slds-col  slds-p-left_small  slds-size_10-of-12  " style="     : #ccc 1px solid; 
+         "><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cstrong%3E%3Cspan%20style=%22font-size:%2018pt;%22%3E%3Cspan%20class=%22slds-text-heading_small%22%3E%7Blocation%7D%3C/span%3E%3C/span%3E%3C/strong%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-text-align_right slds-p-right_xxx-small  slds-size_1-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-flex-menu  onupdateos={updateOmniscript} onsetvalue={updateAction}   card={card}  record={record}  type="action"  size="xx-small"  variant=""  icon-name="utility:down"  overflow="true"  menu-items='\[{"name":"menu-item-1634902868023-0","label":"Action 1","iconName":"","actionData":{"stateObj":"{record}","card":"{card}","stateAction":{"id":"flex-action-1634903695687","type":"Flyout","displayName":"Action 1","vlocityIcon":"","openUrlIn":"Current Window","flyoutType":"customLwc","openFlyoutIn":"Modal","flyoutLwc":"devInProgress","parent":"menu","menuFlyoutId":"menuItemFlyout0"}}},{"name":"menu-item-1634903014262-0","label":"Action 2","iconName":"","actionData":{"stateObj":"{record}","card":"{card}","stateAction":{"id":"flex-action-1634903705352","type":"Flyout","displayName":"Action 2","vlocityIcon":"","openUrlIn":"Current Window","flyoutType":"customLwc","openFlyoutIn":"Modal","flyoutLwc":"devInProgress","parent":"menu","menuFlyoutId":"menuItemFlyout1"}},"status":""}]'  label=""  icon-size="small"  position="right"  flyout-obj='\{"menuItemFlyout0":{"id":"menuItemFlyout0","flyoutType":"customLwc","flyoutLwc":"devInProgress"},"menuItemFlyout1":{"id":"menuItemFlyout1","flyoutType":"customLwc","flyoutLwc":"devInProgress"}}'  icon-position="left"  theme="slds"><div slot="flyout">  <c-dev-in-progress   style='display:none'  data-id=menuItemFlyout0 ></c-dev-in-progress> <c-dev-in-progress   style='display:none'  data-id=menuItemFlyout1 ></c-dev-in-progress></div></vlocity_cmt-flex-menu>
+    </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3ESerial%20Number%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7BserialNumber%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col    slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         "><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2012pt;%22%3E%3Cstrong%20class=%22slds-text-color_error%22%3EThis%20device%20does%20not%20support%20Diagnostics%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3EModel%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7Bmodel%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small  slds-size_6-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%3Cstrong%3ECircuit%20Id%3C/strong%3E%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2010pt;%22%3E%7BcircuitId%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                      </template>
+            </template>
+            <template if:true={hasError}>
+            {error}
+            </template>
+            
+      <vlocity_cmt-action action-wrapperclass="slds-hide" re-render-flyout class="action-trigger slds-col" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+      
+      </vlocity_cmt-action>
+  
+            <vlocity_cmt-action class="execute-action" re-render-flyout action-wrapperclass="slds-hide" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+            <div slot="flyout" if:true={action.index0}> <c-cf-c-o-n_-troubleshooting-device-detailed-information   records={_records}  parent-record={record}  record-id={recordId}  parent-attribute='\{"accountId":"{accountId}","serialNumber":"{serialNumber}"}'   ></c-cf-c-o-n_-troubleshooting-device-detailed-information></div><div slot="flyout" if:true={action.index1}> <c-cf-c-o-n_-troubleshooting-device-detailed-information   records={_records}  parent-record={record}  record-id={recordId}  parent-attribute='\{"accountId":"{accountId}","serialNumber":"{serialNumber}"}'   ></c-cf-c-o-n_-troubleshooting-device-detailed-information></div>
+            </vlocity_cmt-action>
+            </div>
+          </template>

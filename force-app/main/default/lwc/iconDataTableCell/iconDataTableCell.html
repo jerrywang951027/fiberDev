@@ -1,0 +1,9 @@
+<template>
+  <div if:true={cellData} class="tableRowCell" >
+    <lightning-icon icon-name={cellData.value}
+        alternative-text="Approved"
+        title={rowData.eventType}
+        size={size}>
+    </lightning-icon>
+  </div>
+</template>

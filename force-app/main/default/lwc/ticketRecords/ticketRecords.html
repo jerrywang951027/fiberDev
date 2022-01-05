@@ -1,0 +1,28 @@
+<template>
+  <div class="radio-group-label">Create Issue or Link existing issue
+  </div>
+  <div if:true={isTicketView}>
+      <lightning-radio-group
+         options={options}
+         value={value}
+         onchange={handleChange}
+         label="">
+      </lightning-radio-group>
+  </div>
+  <div class="slds-float_right slds-m-top_large">
+    <button
+        title="Create new issue"
+        type="button"
+        onclick={createNewIssue}
+        class="slds-button slds-button_neutral slds-m-right_medium navigation-button-container"
+            >Create new issue
+    </button>
+    <button
+        title="Next"
+        type="button"
+        onclick={navigateToIssue}
+        class={nextButtonClass}>Next
+    </button>
+  </div>
+  <div class="slds-m-top_large" if-true={errorMessage}>{errorMessage}</div>
+</template>

@@ -1,0 +1,50 @@
+<template>
+   <div if:true={showLoading} class="demo-only" style="height:6rem;position:relative">
+      <div class="slds-spinner_container">
+         <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+            <span class="slds-assistive-text">Loading</span>
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+         </div>
+      </div>
+   </div>
+   <lightning-card if:false={showLoading}
+      title="Worklog Template"
+      icon-name="custom:custom6"
+      >
+      <div class="slds-grid slds-wrap">
+         <lightning-combobox
+            name="progress"
+            label="Select Template"
+            value={type}
+            options={options}
+            onchange={changeWorklog}
+            class="slds-col slds-size_6-of-12">
+         </lightning-combobox>
+      </div>
+      <template if:true={worklogRecords}>
+         <template for:each={worklogRecords} for:item="worklog">
+            <lightning-layout vertical-align="center"
+               key={worklog.masterLabel}
+               class="slds-grid slds-wrap">
+               <lightning-textarea
+                  value={worklog.template}
+                  class="slds-col slds-size_12-of-12">
+               </lightning-textarea>
+            </lightning-layout>
+         </template>
+         <div class="slds-m-top_medium slds-m-bottom_large" style="display: flow-root;">
+            <lightning-button label="Save" variant="brand" class="slds-float_right"
+               onclick={saveUpdateWorklog}>
+            </lightning-button>
+         </div>
+      </template>
+      <div if:true={addCommentToTicketIP}>
+         <vlocity_cmt-datasource-integrationprocedure
+            methodname="TCK_UpdateOperationTicketComments"
+            inputmap={ipInput}
+            channel="addCommentToTicket">
+         </vlocity_cmt-datasource-integrationprocedure>
+      </div>
+   </lightning-card>
+</template>

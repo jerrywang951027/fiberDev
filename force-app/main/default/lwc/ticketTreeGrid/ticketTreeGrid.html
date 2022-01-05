@@ -1,0 +1,835 @@
+<template> 
+  <lightning-card variant="Narrow" title="Customer History" icon-name="standard:social">
+    <div slot="actions">
+      <c-multi-select-drop-down options={types} label="Types" data-id="filterMultiSelect" onvaluechange={onMultiSelectChange}></c-multi-select-drop-down>
+      <br />
+      <lightning-button label="Filter" onclick={filterByTypes} variant="brand" style="float: right;"></lightning-button>
+    </div>
+    <lightning-spinner if:true={showSpinner} alternative-text="Loading" size="small"></lightning-spinner>
+    <div class="slds-p-around_medium lgc-bg" style="height: 400px;">
+      <lightning-tree-grid columns={gridColumns} data={gridData} key-field="uniqueId" onrowselection={handleRowSelection} selected-rows={selectedRows}></lightning-tree-grid>
+    </div>
+    <div>
+      <a if:true={oldResult} onclick={onPreviousClick}>Previous</a>
+      <a if:true={nextPageToken} onclick={onNextClick} style="float: right;">Next</a>
+    </div>
+    <lightning-card if:true={selectedItem} variant="Narrow" title="Details" icon-name="standard:form">
+      <!--isBuganizerTicket-->
+      <div if:true={isBuganizerTicket} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Status</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.status} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Assigned Group</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.assigneeGroup} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Assignee</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.assignee} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Created Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.createdTime} </div>
+              </div>
+            </div>
+          </div>
+          <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Signup Timestamp</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {timeStamp} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Signup Plan Type</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {planType} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--isBuganizerTicket-->
+      <!-- isIssue -->
+      <div if:true={isIssue} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Type</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.type} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Status</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.status} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Created Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.createdTime} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Assignee</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.assignee} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Modified Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.modifiedTime} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Assigned Group</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.assigneeGroup} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Latest worklog</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {latestCommentObj.comment} </div>
+              </div>
+            </div>
+          </div>
+          <div if:false={isInternalIssue} class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Resolution Code</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.resolutionCode} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- isIssue -->
+      <!--isOrderTicket-->
+      <div if:true={isOrderTicket} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Order Type</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {orderObj.orderType} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Order Status</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {orderObj.orderStatus} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Sub Type</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {orderObj.subType} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Reason</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {orderObj.reason} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Row2-->
+        <!--Row3-->
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Request Date</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {orderObj.requestDate} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Request Start Date</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {orderObj.requestedStartDate} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Row3-->
+      </div>
+      <!--isOrderTicket-->
+      <!-- isEventServiceVisit -->
+      <div if:true={isEventServiceVisit} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Escalation trigger</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {historyEventObj.escalationTrigger} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Modified Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {historyEventObj.modifiedTime} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Cancellation Reason</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {historyEventObj.cancellationReason} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- isEventServiceVisit -->
+      <!--isParentEmail-->
+      <div if:true={isParentEmail} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div if:true={historyEventObj.emailSentTo}> class="slds-form__item" role="listitem" style="min-width: 180px;"> <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Email Recipient</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {historyEventObj.emailSentTo} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div if:true={historyEventObj.emailCampaign}> class="slds-form__item" role="listitem" style="min-width: 180px;"> <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Email Campaign</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {historyEventObj.emailCampaign} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Created Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {historyEventObj.dateAndTime} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Signup Plan Type</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {planType} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Signup Timestamp</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {timeStamp} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--isParentEmail-->
+      <!-- isCustomerSignUp -->
+      <div class="slds-form" role="list" if:true={isCustomerSignUp}>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Sign Up Insights</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {signUpInsights} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Pilot</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {pilot} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Lead Objection</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {leadObjection} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+              <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                <span class="slds-form-element__label">Interaction Result</span>
+                <div class="slds-form-element__control">
+                  <div class="slds-form-element__static"> {interactionResult} </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Third Party Delivery</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  <lightning-formatted-rich-text value={thirdPartyDelivery}></lightning-formatted-rich-text>
+                </div>
+              </div>
+            </div>
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label"> Customer consents to 3rd Party delivery</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  <lightning-formatted-rich-text value={thirdPartyDelivery}></lightning-formatted-rich-text>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+            <span class="slds-form-element__label"> Campaign</span>
+            <div class="slds-form-element__control">
+              <div class="slds-form-element__static">
+                <lightning-formatted-rich-text value={campaign}></lightning-formatted-rich-text>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- isCustomerSignUp -->
+      <!--isChildEmail-->
+      <div if:true={isChildEmail} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Email Recipient</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {historyEventObj.emailSentTo} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Created Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {historyEventObj.createdTime} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+              <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                <span class="slds-form-element__label">Timestamp</span>
+                <div class="slds-form-element__control">
+                  <div class="slds-form-element__static"> {emailTimeStamp} </div>
+                </div>
+              </div>
+            </div>
+            <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+              <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                <span class="slds-form-element__label">Email Campaign</span>
+                <div class="slds-form-element__control">
+                  <div class="slds-form-element__static"> {historyEventObj.emailCampaignId} </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__row">
+            <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+              <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                <span class="slds-form-element__label">Email Body</span>
+                <div class="slds-form-element__control">
+                  <div class="slds-form-element__static">
+                    <lightning-formatted-rich-text value={historyEventObj.emailBody}></lightning-formatted-rich-text>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--isChildEmail-->
+      <!--isKnownIssue-->
+      <div if:true={isKnownIssue} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Assignee</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.assignee} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Assigned Group</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.assigneeGroup} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Resolution Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.resolutionTime} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--isKnownIssue-->
+      <!--isOutageIssue-->
+      <div if:true={isOutageIssue} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Event End Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.eventEndTime} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Event Start Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.eventStartTime} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Status</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.status} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--isOutageIssue-->
+      <!--isNIUInstallation-->
+      <div if:true={isNIUInstallation} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Type</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.type} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Status</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.status} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Created Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.createdTime} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Assignee</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.assignee} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Modified Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.modifiedTime} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Resolution Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.resolutionTime} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Child Tickets</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.childTickets} </div>
+              </div>
+            </div>
+          </div>
+          <div if:false={isInternalIssue} class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Category</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.category} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--isNIUInstallation-->
+      <!--isBuganizerServiceVisit-->
+      <div if:true={isBuganizerServiceVisit} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Assignee</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.assignee} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Assigned Group</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.assigneeGroup} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Resolution Time</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {buganizerTicketObj.resolutionTime} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--isBuganizerServiceVisit-->
+      <!-- isD2D -->
+      <div if:true={isD2D} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Event Date</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {eventDate} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Event End Date</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {eventEndDate} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Direction</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {direction} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Door Open</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {doorOpen} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- isD2D -->
+      <!-- isMove -->
+      <div if:true={isMove} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Time Stamp</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {moveCreatedDate} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Old Address</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {moveOldAddress} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">New Address</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {moveNewAddress} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- isMove -->
+      <!-- isPlanChange -->
+      <div if:true={isPlanChange} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Time Stamp</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {moveCreatedDate} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Old Plan</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {oldPlan} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">New Plan</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {newPlan} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- isPlanChange -->
+      <!-- isNewInstall -->
+      <div if:true={isNewInstall} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Time Stamp</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {moveCreatedDate} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- isNewInstall -->
+      <!-- isPause -->
+      <div if:true={isPause} class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Time Stamp</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {pauseStartDate} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">End Date</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {pauseEndDate} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Cause</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {reason} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- isPause -->
+
+       <!-- isDisconnect -->
+       <div if:true={isDisconnect} class="slds-form" role="list">
+       <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Created Date</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {moveCreatedDate} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Disconnect Date</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {disconnectDate} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <!-- isDisconnect --> 
+
+       <!-- isBillingEvent -->
+       <div if:true={isBillingEvent} class="slds-form" role="list">
+       <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Completed Transactions</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {completedTransaction} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Future Dated Transactions</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {futureDatedTransaction} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+         <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Created Date</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {createdDate} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div onclick={updateWorklogFlag}><span if:false={showWorklog} class="clickable-link">more...</span><span if:true={showWorklog}  class="clickable-link">less...</span></div>
+		  <div if:true={showWorklog}>
+		    <div if:true={isIssue} class="slds-form" role="list">
+		      <lightning-card title="Worklog History" icon-name="standard:contact">
+		        <div>
+		          <lightning-datatable
+						key-field="Id"
+						columns={COLUMNS_WORKLOG}
+						data={allCommentsList}
+						hide-checkbox-column="true"
+						enable-infinite-loading="true">
+					 </lightning-datatable>
+				  </div>
+		      </lightning-card>
+		    </div>
+		  </div>
+       <!-- isBillingEvent --> 
+       
+         <!-- isAccountTransfer -->
+       <div if:true={isAccountTransfer} class="slds-form" role="list">
+       <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Created Date</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {moveCreatedDate} </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Old Account Number</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {oldAccountNumber} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="slds-form__item" role="listitem" style="min-width: 180px;">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">New Account Number</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static"> {newAccountNumber} </div>
+              </div>
+            </div>
+          </div>
+      </div>
+       <!-- isAccountTransfer --> 
+       
+       
+    </lightning-card>
+  </lightning-card>
+</template>

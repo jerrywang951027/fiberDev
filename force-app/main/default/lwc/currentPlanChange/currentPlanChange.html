@@ -1,0 +1,163 @@
+<template>
+  <lightning-layout multiple-rows="true">
+    <lightning-layout-item size="6" padding="horizontal-small" if:true={isShowCurrentPlan}>
+        <div class="slds-box">
+          <h3 class="slds-text-heading_small slds-m-bottom_medium slds-p-bottom_xx-small
+              slds-border_bottom">Current State</h3>
+          <table class="slds-table">
+            <thead>
+              <tr>
+                <td colspan="2" class="slds-text-align_right">
+                  <strong>Recurring Charge</strong>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Plan: </strong>{getCurrentPlan}</td>
+                <td class="slds-text-align_right">{getCurrentPlanPrice}</td>
+              </tr>
+              <tr>
+                <td><strong>Additional Storage: </strong>{getCurrentAdditionalStorage}</td>
+                <td class="slds-text-align_right">{getCurrentAdditionalStoragePrice}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="slds-table" if:true={isShowCurrentPlanEquipment}>
+            <thead>
+              <tr>
+                <td><strong>Equipment:</strong></td>
+              </tr>
+           </thead>
+            <tbody>
+              <template if:true={getCurrentPlanDevicesToReturn}>
+                <template for:each={getCurrentPlanDevicesToReturn} for:item="device">
+                  <tr key={device.id}>
+                    <td>&nbsp;&nbsp;{device.name}</td>
+                    <td class="slds-text-align_right">&nbsp;&nbsp;{device.price}</td>
+                  </tr>
+                </template>
+              </template>
+              <template if:true={getCurrentPlanDevicesToKeep}>
+                <template for:each={getCurrentPlanDevicesToKeep} for:item="device">
+                  <tr key={device.id}>
+                    <td>&nbsp;&nbsp;{device.name}</td>
+                    <td class="slds-text-align_right">&nbsp;&nbsp;{device.price}</td>
+                  </tr>
+                </template>
+              </template>
+            </tbody>
+          </table>
+        </div>
+    </lightning-layout-item>
+    <lightning-layout-item size="6" padding="horizontal-small">
+        <div class="slds-box">
+          <h3 if:true={isShowCurrentPlan} class="slds-text-heading_small slds-m-bottom_medium
+              slds-p-bottom_xx-small slds-border_bottom">Future State</h3>
+          <table class="slds-table">
+            <thead>
+              <tr>
+                <td colspan="2" class="slds-text-align_right"><strong>Recurring Charge</strong></td>
+                <td class="slds-text-align_right"><strong>One-time Charge</strong></td>
+              </tr>
+              <tr>
+                <td colspan="3"><strong>Plan:</strong></td>
+              </tr>
+            </thead>
+            <tbody>
+              <template if:true={getFuturePlan}>
+                <template for:each={getFuturePlan} for:item="plan">
+                  <tr key={plan.id}>
+                    <td width="40%">&nbsp;&nbsp;{plan.name}</td>
+                    <td class="slds-text-align_right">&nbsp;&nbsp;{plan.price}</td>
+                    <td width="30%" class="slds-text-align_right">&nbsp;&nbsp;{plan.oneTimePrice}</td>
+                  </tr>
+                </template>
+                </template>
+              <tr>
+                <td width="40%"><strong>Additional Storage: </strong>{getFutureAdditionalStorage}</td>
+                <td width="30%" class="slds-text-align_right">{getFutureAdditionalStoragePrice}</td>
+                <td width="30%" class="slds-text-align_right">{getFutureAdditionalStorageOneTimePrice}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="slds-table">
+            <thead if:true={isShowFuturePlanEquipment}></thead>>
+              <tr>
+                <td colspan="3"><strong>Equipment:</strong></td>
+              </tr>
+            </thead>
+            <tbody>
+              <template if:true={getFuturePlanDevicesToReturn}>
+                <template for:each={getFuturePlanDevicesToReturn} for:item="device">
+                  <tr key={device.id}>
+                    <td width="40%">&nbsp;&nbsp;{device.name}</td>
+                    <td class="slds-text-align_right">&nbsp;&nbsp;{device.price}</td>
+                    <td width="30%" class="slds-text-align_right">&nbsp;&nbsp;{device.oneTimePrice}</td>
+                  </tr>
+                </template>
+              </template>
+              <template if:true={getFuturePlanDevicesToKeep}>
+                <template for:each={getFuturePlanDevicesToKeep} for:item="device">
+                  <tr key={device.id}>
+                    <td width="40%">&nbsp;&nbsp;{device.name}</td>
+                    <td class="slds-text-align_right">&nbsp;&nbsp;{device.price}</td>
+                    <td width="30%" class="slds-text-align_right">&nbsp;&nbsp;{device.oneTimePrice}</td>
+                  </tr>
+                </template>
+              </template>
+              <tr><td>&nbsp;</td></tr>
+              <tr>
+                <td><strong>Recurring Charges</strong></td>
+                <td class="slds-text-align_right"><strong>{getRecurringCharges}</strong></td>
+              </tr>
+              <tr>
+                <td><strong>One-time Charges</strong></td>
+                <td colspan="2" class="slds-text-align_right"><strong>{getOneTimeCharges}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </lightning-layout-item>
+    </lightning-layout>
+    <br/>
+    <lightning-layout>
+      <lightning-layout-item size="12" padding="horizontal-small" if:true={isShowCurrentPlan}>
+        <template if:true={isShowCurrentPlanEquipment}>
+        <div class="slds-box">
+          <h3 class="slds-text-heading_small slds-m-bottom_medium slds-p-bottom_xx-small
+              slds-border_bottom">Equipment</h3>
+          <table class="slds-table">
+            <thead>
+              <tr>
+                <td class="slds-text-align_left"><strong>Equipment</strong></td>
+                <td class="slds-text-align_right"><strong>Return By Date</strong></td>
+                <td class="slds-text-align_right"><strong>Fee if Equipment not Returned</strong></td>
+              </tr>
+            </thead>
+            <tbody>
+              <template if:true={getCurrentPlanDevicesToReturn}>
+                <template for:each={getCurrentPlanDevicesToReturn} for:item="device">
+                  <tr key={device.id}>
+                    <td>{device.name}</td>
+                     <td class="slds-text-align_right">{device.returnByDate}</td>
+                    <td class="slds-text-align_right">{device.deviceFee}</td>
+                  </tr>
+                </template>
+              </template>
+              <template if:true={getCurrentPlanDevicesToKeep}>
+                <template for:each={getCurrentPlanDevicesToKeep} for:item="device">
+                  <tr key={device.id}>
+                    <td>{device.name}</td>
+                    <td class="slds-text-align_right">{device.returnByDate}</td>
+                    <td class="slds-text-align_right">{device.deviceFee}</td>
+                  </tr>
+                </template>
+              </template>
+            </tbody>
+          </table>
+        </div>
+        </template>
+      </lightning-layout-item>
+    </lightning-layout>
+</template>

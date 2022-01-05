@@ -1,0 +1,285 @@
+<template>
+  <lightning-spinner if:true={isSpinnerLoaded}
+      alternative-text="Loading"
+      size="small"
+      variant="brand"></lightning-spinner>
+  <div class="slds-border_left slds-border_right slds-border_top slds-border_bottom
+      slds-m-bottom_x-large"
+      if:true={orderDetails}>
+    <lightning-card icon-name={orderDetails.icon} title={orderDetails.title}>
+      <div class="slds-m-horizontal_medium">
+        <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+          <dt class="slds-item_label slds-text-color_weak"
+              title="Order Number">Order Number</dt>
+          <dd class="slds-item_detail slds-text-align_right"
+              title={orderDetails.order.orderNumber}>
+            <lightning-formatted-text value={orderDetails.order.orderNumber}>
+            </lightning-formatted-text>
+          </dd>
+        </dl>
+        <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+          <dt class="slds-item_label slds-text-color_weak"
+              title="Order Creation Date">Creation Date</dt>
+          <dd class="slds-item_detail slds-text-align_right"
+              title={orderDetails.order.creationDate}>
+            <lightning-formatted-text value={orderDetails.order.creationDate}>
+            </lightning-formatted-text>
+          </dd>
+        </dl>
+        <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+          <dt class="slds-item_label slds-text-color_weak"
+              title="Order Type">Order Type</dt>
+          <dd class="slds-item_detail slds-text-align_right"
+              title={orderDetails.order.type}>
+            <lightning-formatted-text value={orderDetails.order.type}>
+            </lightning-formatted-text>
+            <span if:true={orderDetails.order.subType}> -- </span>
+            <lightning-formatted-text if:true={orderDetails.order.subType}
+                value={orderDetails.order.subType}>
+            </lightning-formatted-text>
+          </dd>
+        </dl>
+        <div if:true={orderDetails.isCustomerPickUp}>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Pick Up Status">Picked Up?</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.pickUpStatus}>
+              <lightning-formatted-text value={orderDetails.pickUpStatus}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Pick Up Date">Pick Up Date</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.pickUpDate}>
+              <lightning-formatted-text value={orderDetails.pickUpDate}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+        </div>
+        <div if:true={orderDetails.isDisconnect}>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Due Date">Requested Due Date</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.order.requestedDueDate}>
+              <lightning-formatted-text value={orderDetails.order.requestedDueDate}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Equipment to be Returned by">Equipment to be Returned by</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.order.returnByDate}>
+              <lightning-formatted-text value={orderDetails.returnByDate}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <table if:true={orderDetails.orderItems} class="slds-m-vertical_x-small">
+            <thead>
+              <tr>
+                <th colspan="3">Equipment to be Returned</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template for:each={orderDetails.orderItems} for:item="orderItem">
+                <tr key={orderItem.id}>
+                  <td>{orderItem.name}</td>
+                  <td>{orderItem.serialNumber}</td>
+                  <td>{orderItem.status}</td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+          <table if:false={orderDetails.orderItems} class="slds-m-vertical_x-small">
+            <thead>
+              <tr>
+                <th colspan="3">Equipment to be Returned</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="3">
+                  <lightning-formatted-text value={noOrderItemsError}></lightning-formatted-text>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div if:true={orderDetails.isProInstall}>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Ticket ID">Ticket ID</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.appointmentId}>
+              <lightning-button
+                  variant="base"
+                  label={orderDetails.appointmentId}
+                  title={orderDetails.appointmentId}
+                  value={orderDetails.operationTicketId}
+                  onclick={loadRecord}></lightning-button>
+            </dd>
+          </dl>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Appointment Status">Appointment Status</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.appointmentStatus}>
+              <lightning-formatted-text value={orderDetails.appointmentStatus}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Appointment Type">Appointment Type</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.appointmentType}>
+              <lightning-formatted-text value={orderDetails.appointmentType}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Appointment Date/Time">Appointment Date/Time</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.appointmentDateTime}>
+              <lightning-formatted-date-time value={orderDetails.appointmentDateTime}
+                  year="numeric"
+                  month="long"
+                  day="2-digit"
+                  hour="numeric"
+                  minute="2-digit"
+                  time-zone={orderDetails.timeZone}></lightning-formatted-date-time>
+            </dd>
+          </dl>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Technician">Technician</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.technician}>
+              <lightning-formatted-text value={orderDetails.technician}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Dispatch Vendor">Dispatch Vendor</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.vendor}>
+              <lightning-formatted-text value={orderDetails.vendor}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+        </div>
+        <div if:true={orderDetails.isShippedToCustomer}>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Tracking Number">Tracking Number</dt>
+            <dd class="slds-item_detail slds-text-align_right">
+              <lightning-formatted-url
+                  label={orderDetails.trackingNumber}
+                  target="_blank"
+                  tooltip={orderDetails.trackingUrl}
+                  value={orderDetails.trackingUrl}></lightning-formatted-url>
+            </dd>
+          </dl>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Status">Status</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.status}>
+              <lightning-formatted-text value={orderDetails.status}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <dl if:true={orderDetails.trackingNumber}
+              class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Arrive By Date">Arrive By Date</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.arriveByDate}>
+              <lightning-formatted-text value={orderDetails.arriveByDate}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <dl if:false={orderDetails.trackingNumber}
+              class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Expected Date">Expected Date</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.expectedDate}>
+              <lightning-formatted-text value={orderDetails.expectedDate}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Shipping Address">Shipping Address</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.order.shippingAddress}>
+              <lightning-formatted-text value={orderDetails.order.shippingAddress}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Signature Required">Signature Required</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.signatureRequired}>
+              <lightning-formatted-text value={orderDetails.signatureRequired}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+        </div>
+        <div if:true={orderDetails.isPauseResume}>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Pause Start Date">Pause Start Date</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.pauseStartDate}>
+              <lightning-formatted-text value={orderDetails.pauseStartDate}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <dl if:true={isShowExpectedResumeDate}
+              class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Expected Resume Date">Expected Resume Date</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.expectedResumeDate}>
+              <lightning-formatted-text value={orderDetails.expectedResumeDate}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <dl if:true={orderDetails.actualResumeDate}
+              class="slds-list_horizontal slds-wrap slds-p-vertical_x-small slds-border_bottom">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Actual Resume Date">Actual Resume Date</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.actualResumeDate}>
+              <lightning-formatted-text value={orderDetails.actualResumeDate}>
+              </lightning-formatted-text>
+            </dd>
+          </dl>
+          <dl class="slds-list_horizontal slds-wrap slds-p-vertical_x-small">
+            <dt class="slds-item_label slds-text-color_weak"
+                title="Pause Days Consumed in Order">Pause Days Consumed in Order</dt>
+            <dd class="slds-item_detail slds-text-align_right"
+                title={orderDetails.pauseDaysConsumed}>
+              <lightning-formatted-number value={orderDetails.pauseDaysConsumed}>
+              </lightning-formatted-number>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </lightning-card>
+  </div>
+  <div if:true={error}
+      class="slds-box slds-border_left slds-border_right slds-border_top slds-border_bottom
+      slds-m-bottom_x-large slds-m-horizontal_medium slds-p-vertical_x-small">
+    <lightning-formatted-text value={error}></lightning-formatted-text>
+  </div>
+</template>

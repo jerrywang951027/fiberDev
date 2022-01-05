@@ -1,0 +1,48 @@
+<template>
+  <div class="slds-grid">
+    <span class="slds-size_4-of-12 slds-form-element__label">Device</span>
+    <span class="slds-size_4-of-12 slds-form-element__label">Serial Number</span>
+    <span class="slds-size_2-of-12 slds-form-element__label slds-align_absolute-center">
+        Return</span>
+    <span class="slds-size_2-of-12 slds-form-element__label slds-align_absolute-center">
+        Block Charges</span>
+  </div>
+  <template for:each={orderItems} for:item="orderItem" for:index="index">
+    <div class="slds-grid" key={orderItem.orderItemId}>
+      <div class="slds-size_4-of-12 slds-var-p-right_small">
+        <lightning-input
+            name="deviceName"
+            value={orderItem.deviceName}
+            disabled></lightning-input>
+      </div>
+      <div class="slds-size_4-of-12 slds-var-p-right_small">
+        <lightning-input
+            name="serialNumber"
+            value={orderItem.serialNumber}
+            disabled></lightning-input>
+      </div>
+      <div class="slds-size_2-of-12 slds-var-p-right_small slds-var-p-top_small
+          slds-var-p-left_small slds-align_absolute-center">
+        <lightning-input
+            name="return"
+            type="checkbox"
+            data-key={orderItem.orderItemId}
+            data-index={index}
+            checked={orderItem.equipmentReturned}
+            disabled={orderItem.equipmentReturned}
+            onchange={updateEquipmentReturn}></lightning-input>
+      </div>
+      <div class="slds-size_2-of-12 slds-var-p-right_small slds-var-p-top_small
+          slds-var-p-left_small slds-align_absolute-center">
+        <lightning-input
+            name="blockCharges"
+            type="checkbox"
+            data-key={orderItem.orderItemId}
+            data-index={index}
+            checked={orderItem.returnChargesBlocked}
+            disabled={orderItem.returnChargesBlocked}
+            onchange={updateBlockedCharges}></lightning-input>
+      </div>
+    </div>
+  </template>
+</template>

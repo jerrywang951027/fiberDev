@@ -1,0 +1,8 @@
+div.slds-grid.slds-wrap.slds-card {
+    padding: 0;
+}
+vlocity_cmt-flex-icon, svg.slds-icon.slds-icon_container {
+    background: white !important;
+    border-radius: 10px !important;
+    padding: 1px 2px !important;
+}

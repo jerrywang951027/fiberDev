@@ -1,0 +1,12 @@
+<template>
+  <vlocity_cmt-modal size="medium" class="return-flyout">
+    <div slot="content">
+      <template if:true={isOrderLineItem}>
+        <c-c-o-n-return-device-english prefill={deviceDetails}></c-c-o-n-return-device-english>
+      </template>
+      <template if:false={isOrderLineItem}>
+        <c-c-o-n-order-return-device-english prefill={deviceDetails}></c-c-o-n-order-return-device-english>
+      </template>
+    </div>
+  </vlocity_cmt-modal>
+</template>

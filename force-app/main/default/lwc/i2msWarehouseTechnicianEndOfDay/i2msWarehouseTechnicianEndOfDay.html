@@ -1,0 +1,247 @@
+<template>
+    <!--Device Notifications-->
+    <div if:true={showDeviceSuccessAlert} class="slds-notify slds-notify_alert"
+        style="background-color: #dff0d8;color:#3c763d;background-image:none" role="alert">
+        <h2>{successAlertMessage}</h2>
+    </div>
+
+    <div if:true={showDeviceWarningAlert} class="slds-notify slds-notify_alert"
+        style="background-color: #fcf8e3; color:#8a6d3b;background-image:none" role="alert">
+        <h2>{warningAlertMessage}</h2>
+    </div>
+
+    <lightning-card>
+        <div style="margin:0px;padding:0px">
+            <!-- This Layout is for USer to enter Technician Name to search -->
+            <lightning-layout vertical-align="end" style="padding-bottom:18px">
+                <lightning-layout-item size="4" padding="around-none" alignment-bump="left">
+                    <div class="slds-form-element slds-p-around-none">
+                        <div class="slds-form-element__control">
+                            <lightning-input data-my-id="technicianSearchBox" name="technician" type="text"
+                                style="width:98%; margin:left" placeholder="Please Enter A Tech Username" value=""
+                                onkeypress={handleKeypress}>
+                            </lightning-input>
+                        </div>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-none" alignment-bump="right">
+                    <lightning-button label="Select Tech" variant="Neutral" style="background-color: #f5f5f5;
+                    color: rgb(133, 133, 133);" onclick={handleSearch}></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+
+    <lightning-card if:true={NotisNoRecord}>
+        <div>No Records Found</div>
+    </lightning-card>
+
+    <lightning-card if:false={isNoRecord}>
+
+        <lightning-layout multiple-rows="true" vertical-align="end"
+            style="margin:20px;padding:10px;background:#f1f1f1;margin-top:0px">
+            <lightning-layout-item size="8" padding="around-none" alignment-bump="left">
+                <div class="slds-form-element slds-p-around-none">
+                    <label class="slds-form-element__label" for="form-element-01">Receive devices from
+                        {techNameValue}</label>
+                    <div class="slds-form-element__control">
+                        <input data-my-id="deviceSerialNumberInput" name="deviceSerialNumber" type="text"
+                            placeholder="Please Enter scan in a serial number" class="slds-input" value=""
+                            onkeypress={handleDeviceReceiveKeyPress} />
+                    </div>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-none" alignment-bump="right">
+                <lightning-button label="Receive" variant="neutral" onclick={handleDeviceReceiveClick}>
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <!--Device Table Start-->
+        <div style="padding:20px;padding-top:0">
+            <lightning-card class="" title={tableHeader}>
+
+                <table aria-describedby="device list for technician" class="slds-table slds-table_bordered">
+                    <!--Header of the table-->
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="slds-size_1-of-20" scope="col">
+                                <div class="slds-truncate " title=""></div>
+                            </th>
+                            <th class="slds-size_1-of-20" scope="col" onclick={sortTable}>
+                                <div class="slds-truncate " title="Serial Number" id='serialNumber'>Serial Number</div>
+                            </th>
+                            <th class="slds-size_1-of-20" scope="col" onclick={sortTable}>
+                                <div class="slds-truncate" title="GPN" id='gpn'>GPN</div>
+                            </th>
+                            <th class="slds-size_1-of-20" scope="col" onclick={sortTable}>
+                                <div class="slds-truncate" title="Description" id='description'>Description</div>
+                            </th>
+                            <th class="slds-size_1-of-20" scope="col" onclick={sortTable}>
+                                <div class="slds-truncate" title="Status" id='status'>Status</div>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr for:each={deviceTableDataToShow} for:item="item" key={item.serialKey.serialNumber}
+                            class="slds-hint-parent">
+                            <td class="slds-size_1-of-20">
+                                <div>
+                                    <input type="checkbox" value={item.serialKey.serialNumber} name="deviceCheckbox"
+                                        checked={item.selected} onchange={updateSelectedDevicesList}
+                                        class="checkbox"></input>
+                                </div>
+                            </td>
+                            <td class="slds-size_1-of-20">
+                                <div>{item.serialKey.serialNumber}</div>
+                            </td>
+                            <td class="slds-size_1-of-20">
+                                <div>{item.serialKey.gpn}</div>
+                            </td>
+                            <td class="slds-size_1-of-20">
+                                <div>{item.description}</div>
+                            </td>
+                            <td class="slds-size_1-of-20">
+                                <div>{item.deviceOwnership.currentAttribute.ownershipStatus}</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="display: inline-block;padding:10px">
+                    <a onclick={gotoMyDeviceTablePreviousPage}>previous</a>
+                    <span style="margin-left: 10px; margin-right: 10px">Page {selectedDeviceTablePageNumber} of
+                        {totalDeviceTablePages}</span>
+                    <a onclick={gotoMyDeviceTableNextPage}>next</a>
+                </div>
+
+            </lightning-card>
+        </div>
+        <!--Device Table END-->
+
+        <lightning-layout class="slds-p-left_medium" multiple-rows="true" vertical-align="end">
+            <lightning-layout-item size="2" padding="around-none" alignment-bump="left">
+                <div>
+
+                </div>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="2" padding="around-none" alignment-bump="left">
+                <div>
+                    <lightning-button label="Report DOA" variant="Neutral" onclick={showModal1}> </lightning-button>
+                </div>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="2" padding="around-none" alignment-bump="left">
+                <div>
+                    <lightning-button label="Report Lost" variant="Neutral" onclick={showModal2}> </lightning-button>
+                </div>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="2" padding="around-none" alignment-bump="left">
+                <div>
+                    <lightning-button label="Report Surplus" variant="Neutral" onclick={reportSurplus}>
+                    </lightning-button>
+                </div>
+            </lightning-layout-item>
+
+            <lightning-layout-item size="2" padding="around-none" alignment-bump="left">
+                <div>
+
+                </div>
+            </lightning-layout-item>
+
+        </lightning-layout>
+
+    </lightning-card>
+
+    <!-- MODAL 1 TEMPLATE FOR REPORT DOA -->
+    <template if:true={openModal1}>
+
+        <div class="slds-modal slds-fade-in-open slds-backdrop">
+            <div class="slds-modal__container">
+
+                <!--HEADER Section -->
+                <div class="slds-modal__header">
+                    <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"
+                        variant="bare-inverse" onclick={closeModal1} class="slds-modal__close">
+                    </lightning-button-icon>
+                    <h2>Report DOA</h2>
+                </div>
+
+                <!--Body Section-->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="slds-m-around--xx-large">
+                        <div class="container-fluid">
+                            <div class="form-group">
+                                <lightning-combobox label="Status" value={selectedDOALEDStatus}
+                                    placeholder="--- Select ---" options={doaLedStatusList}
+                                    onchange={handleDoaLedStatusChange} required="true">
+                                </lightning-combobox>
+                            </div>
+
+                            <br /><br />
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <lightning-combobox name="progress" label="Reason Code"
+                                        value={selectedDOAReasonCode} placeholder="--- Select ---"
+                                        options={doaReasonCodeList} onchange={handleReasonCodeChange} required="true">
+                                    </lightning-combobox>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="form-group">
+                                <lightning-textarea name="doareasondesc" label="Reason Description" required="true">
+                                </lightning-textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--Footer Section-->
+                <div class="slds-modal__footer">
+                    <lightning-button label="Report DOA" variant="neutral" onclick={reportDOA}></lightning-button>
+                    &nbsp;&nbsp;
+                    <lightning-button label="Close" variant="neutral" onclick={closeModal1}> </lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- MODAL 2 TEMPLATE FOR REPORT LOST -->
+    <template if:true={openModal2}>
+        <div class="slds-modal slds-fade-in-open slds-backdrop">
+            <div class="slds-modal__container">
+                <!--HEADER Section-->
+                <div class="slds-modal__header">
+                    <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"
+                        variant="bare-inverse" onclick={closeModal2} class="slds-modal__close">
+                    </lightning-button-icon>
+                    <h2>Report LOST</h2>
+                </div>
+                <!--Body Section-->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="slds-m-around--xx-large">
+                        <div class="container-fluid">
+                            <div class="form-group">
+                                <lightning-textarea name="reasondeslost" label="Reason Description" required="true">
+                                </lightning-textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--Footer Section-->
+                <div class="slds-modal__footer">
+                    <lightning-button label="Report Lost" variant="neutral" onclick={reportLost}></lightning-button>
+                    &nbsp;&nbsp;
+                    <lightning-button label="Close" variant="neutral" onclick={closeModal2}> </lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!--Footer End-->
+
+</template>

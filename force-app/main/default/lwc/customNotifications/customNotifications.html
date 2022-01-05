@@ -1,0 +1,58 @@
+<template>
+  <lightning-spinner
+      if:true={isSpinner}
+      variant="brand"
+      alternative-text="Loading"
+      size="small"></lightning-spinner>
+  <template if:true={allNotifications}>
+    <div if:false={isCreateNotificationForm} class="slds-m-bottom_medium slds-scrollable_y"
+        style={tableHeight}>
+      <table class="slds-table slds-table_bordered slds-m-bottom_medium">
+        <tbody>
+          <template for:each={allNotifications} for:item="notification" for:index="i">
+            <tr key={notification.id}>
+              <td style="white-space: normal;">
+                <lightning-formatted-rich-text
+                    value={notification.notificationMessage}></lightning-formatted-rich-text>
+              </td>
+              <td>
+                <lightning-formatted-text
+                    value={notification.userName}></lightning-formatted-text>
+              </td>
+              <td class="slds-text-align_right">
+                <template if:false={notification.isDisabled}>
+                  <lightning-input
+                      type="checkbox"
+                      label="Disabled"
+                      name={i}
+                      onchange={updateNotification}></lightning-input>
+                </template>
+                <template if:true={notification.isDisabled}>
+                  <lightning-input
+                      type="checkbox"
+                      label="Disabled"
+                      name={i}
+                      checked
+                      onchange={updateNotification}></lightning-input>
+                </template>
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </template>
+  <div if:false={allNotifications} class="slds-m-bottom_medium">
+    <vlocity_cmt-alert
+        theme="slds"
+        icon="utility:info"
+        variation="info"
+        message={notificationErrorMessage}
+        dismissible="true"></vlocity_cmt-alert>
+  </div>
+  <lightning-button
+      variant="brand"
+      label="Add New Notification"
+      value={isCreateNotificationForm}
+      onclick={showCreateNotificationForm}></lightning-button>
+</template>

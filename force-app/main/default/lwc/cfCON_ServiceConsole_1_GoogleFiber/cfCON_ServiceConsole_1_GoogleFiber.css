@@ -1,0 +1,9 @@
+.width-50 {
+    width: 49%;
+}
+.width-50 {
+    padding-left: 1%;
+}
+.width-50:first-child {
+    padding-right: 1%;
+}

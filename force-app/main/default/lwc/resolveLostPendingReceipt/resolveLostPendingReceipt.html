@@ -1,0 +1,91 @@
+<template>
+  <div class="slds-form-element slds-align_absolute-center">
+     <div class="slds-form-element__control">
+        <div class="slds-grid">
+           <div class="slds-col" style="width:400px">
+              <input type="text" id="text-search"
+                 placeholder="Please select tech username" class="slds-input" onkeypress={handleKeypress} />
+           </div>
+           <div class="slds-col ">
+              <button class="slds-button slds-button_neutral" title="Select Tech"
+                 onclick={handleSearch}>Select Tech</button>
+           </div>
+        </div>
+     </div>
+  </div>
+  <template if:true={showError}>
+     <div class="slds-p-around_small">
+      <b>User({techNameValue}) is not a member of Technician Group</b>
+     </div>
+  </template>
+  <div class="slds-p-top_x-large">
+     <div class="slds-grid slds-grid_vertical">
+        <div class="slds-col slds-col--padded slds-size_12-of-12 slds-p-around_medium lgc-bg">
+           <h4>
+              <strong>Resolve Pending Receipt</strong>
+           </h4>
+        </div>
+        <template if:true={isNoRecord}>
+           <div class="slds-col slds-col--padded slds-size_12-of-12 slds-p-around_medium" style="background:white">
+              <p> No results </p>
+           </div>
+        </template>
+        <table aria-describedby="technician-list" class="slds-table  slds-table_bordered ">
+           <thead>
+              <tr class="slds-line-height_reset">
+                 <th class="slds-size_1-of-10 " scope="col">
+                  <lightning-input type="checkbox" data-id="checkbox" label="checkbox" variant="label-hidden" 
+                  name="checkbox" onchange={handleSelectAll} checked={checked} class="checkbox"></lightning-input>
+                 </th>
+                 <th class="slds-size_1-of-4 " scope="col">
+                    <div class="slds-truncate " title="Owner">Owner</div>
+                 </th>
+                 <th class="slds-size_1-of-4 " scope="col">
+                    <div class="slds-truncate " title="Serial Number">Serial Number</div>
+                 </th>
+                 <th class="slds-size_1-of-4 " scope="col">
+                    <div class="slds-truncate " title="Description">Description</div>
+                 </th>
+                 <th class="slds-size_1-of-4" scope="col">
+                    <div class="slds-truncate " title="GPN">GPN </div>
+                 </th>
+              </tr>
+           </thead>
+              <template if:false={isNoRecord}>
+                 <tbody>
+                    <template for:each={jsonList} for:item="item" for:index="indexVar">
+                       <tr key={item.serialKey.serialNumber} class="slds-hint-parent">
+                          <td class="slds-size_1-of-10">
+                             <div>
+                                <lightning-input type="checkbox" data-id="checkbox" value={item.serialKey.serialNumber} label="checkbox"
+                                   variant="label-hidden" name="checkbox"
+                                   onchange={handleCheckboxClick}  checked={checked}
+                                   class="checkbox"></lightning-input>
+                             </div>
+                          </td>
+                          <td class="slds-size_1-of-4">
+                             <div> {item.deviceOwnership.currentAttribute.currentOwner} </div>
+                          </td>
+                          <td class="slds-size_1-of-4">
+                             <div> {item.serialKey.serialNumber} </div>
+                          </td>
+                          <td class="slds-size_1-of-4">
+                             <div> {item.description} </div>
+                          </td>
+                          <td class="slds-size_1-of-4">
+                             <div> {item.deviceOwnership.serialKey.gpn} </div>
+                          </td>
+                       </tr>
+                    </template>
+                 </tbody>
+              </template>
+        </table>
+     </div>
+  </div>
+  <div class="slds-p-top_medium">
+     <button class="slds-button slds-button_neutral" title="confirmLost"
+        onclick={handleConfirmLost}>Confirm Lost</button>
+  </div>
+</template>
+</div>
+</template>

@@ -1,0 +1,40 @@
+.device-return {
+  width: 100%;
+  align-items: center;
+}
+.device-return-status-active {
+  color: #478150;
+  --sds-c-icon-color-foreground-default: #478150;
+}
+.device-return-status-new {
+  color: #ef855b;
+  --sds-c-icon-color-foreground-default: #ef855b;
+}
+.device-return-status-deleted {
+  color:  #706e6b;
+  --sds-c-icon-color-foreground-default: #706e6b;
+}
+.device-return-status-suspended {
+  color: #9e2017;
+  --sds-c-icon-color-foreground-default: #9e2017;
+}
+.device-return-text-bold {
+  font-weight: bold;
+}
+.device-return-button-alignment {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.device-return-button-height {
+  --sds-c-button-line-height : 1.5rem
+}
+.device-return-font-size {
+  font-size : 13px;
+}
+.device-return-icon-color {
+  --sds-c-icon-color-foreground-default: #2e77cc;
+}
+.menu-item .slds-button_neutral {
+  padding: 0!important;
+}

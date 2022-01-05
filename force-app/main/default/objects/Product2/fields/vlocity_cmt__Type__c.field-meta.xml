@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>vlocity_cmt__Type__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Product Type can be used to drive eligibility/compatibility/recommendations/other implementations.</description>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Add On</fullName>
+                <default>false</default>
+                <label>Add On</label>
+            </value>
+            <value>
+                <fullName>Equipment</fullName>
+                <default>false</default>
+                <label>Equipment</label>
+            </value>
+            <value>
+                <fullName>Equipment Group</fullName>
+                <default>false</default>
+                <label>Equipment Group</label>
+            </value>
+            <value>
+                <fullName>Fee</fullName>
+                <default>false</default>
+                <label>Fee</label>
+            </value>
+            <value>
+                <fullName>Handset</fullName>
+                <default>false</default>
+                <label>Handset</label>
+            </value>
+            <value>
+                <fullName>Installation</fullName>
+                <default>false</default>
+                <label>Installation</label>
+            </value>
+            <value>
+                <fullName>Internet</fullName>
+                <default>false</default>
+                <label>Internet</label>
+            </value>
+            <value>
+                <fullName>None</fullName>
+                <default>true</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Phone</fullName>
+                <default>false</default>
+                <label>Phone</label>
+            </value>
+            <value>
+                <fullName>Phone PortIn</fullName>
+                <default>false</default>
+                <label>Phone PortIn</label>
+            </value>
+            <value>
+                <fullName>Phone User</fullName>
+                <default>false</default>
+                <label>Phone User</label>
+            </value>
+            <value>
+                <fullName>Plan</fullName>
+                <default>false</default>
+                <label>Plan</label>
+            </value>
+            <value>
+                <fullName>Service</fullName>
+                <default>false</default>
+                <label>Service</label>
+            </value>
+            <value>
+                <fullName>SIM Card</fullName>
+                <default>false</default>
+                <label>SIM Card</label>
+            </value>
+            <value>
+                <fullName>Top Up</fullName>
+                <default>false</default>
+                <label>Top Up</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

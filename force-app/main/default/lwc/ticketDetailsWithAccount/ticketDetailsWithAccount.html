@@ -1,0 +1,410 @@
+<template>
+  <div class="slds-section slds-is-open">
+    <h3 class="slds-section__title slds-theme_shade">
+      <lightning-button
+        variant="base"
+        label="Ticket Details"
+        title="Ticket Details"
+        icon-name={ticketDetailsHeaderIcon}
+        class="blackTxtColorForBtn"
+        onclick={onTicketDetailsHeaderClick}></lightning-button>
+    </h3>
+    <div if:false={ticketDetailsCollapsed} class="slds-section__content">
+      <div class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Bugafiber Ticket Id</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.issueId}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Status</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.customerIssueStatus}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Type</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.type}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Group</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.assigneeGroup}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Row2-->
+        <!--Row3-->
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Sub Type</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.subType}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Ticket Created Date</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.createdTime}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Row3-->
+        <!--Row4-->
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Sympton</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.symptom}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Severity Level</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.severity}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Row4-->
+        <!-- Row 5 -->
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent" >
+              <span class="slds-form-element__label">Resolution Code</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.resolutionCode}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent" >
+              <span class="slds-form-element__label">Ticket Update Date</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.modifiedTime}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Row 5 -->
+        <!--Row6-->
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Assignee</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.assignee}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Follow Up</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.requestedFollowUp}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Row 6 -->
+        <!--Row 7 -->
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Estimated Resolution</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.estimatedResolution}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Escalation Reason</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.escalationJustification}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Row 7 -->
+      </div>
+    </div>
+  </div>
+  <!--Account-->
+  <div if:true={booleanFlags.isAccount} class="slds-section slds-is-open">
+    <h3 class="slds-section__title slds-theme_shade">
+      <lightning-button
+        variant="base"
+        label="Related Account"
+        title="Related Account"
+        icon-name={accountDetailsHeaderIcon}
+        class="blackTxtColorForBtn"
+        onclick={onAccountDetailsHeaderClick}></lightning-button>
+    </h3>
+    <div if:false={accountDetailsCollapsed} class="slds-section__content">
+      <div class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Customer Id</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {relatedDetails.ticketId}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Customer Name</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {relatedDetails.accountName}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Contact</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {relatedDetails.accountPhone}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Address</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {relatedDetails.accountAddress}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Account-->
+  <!--Lead-->
+  <div if:true={booleanFlags.isLead} class="slds-section slds-is-open">
+    <h3 class="slds-section__title slds-theme_shade">
+      <lightning-button
+        variant="base"
+        label="Related Lead"
+        title="Related Lead"
+        icon-name={leadDetailsHeaderIcon}
+        class="blackTxtColorForBtn"
+        onclick={onLeadDetailsHeaderClick}></lightning-button>
+    </h3>
+    <div if:false={leadDetailsCollapsed} class="slds-section__content">
+      <div class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Address Id</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {relatedDetails.ticketId}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Lead Name</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {relatedDetails.leadName}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Contact</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {relatedDetails.leadContact}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Address</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {relatedDetails.leadAddress}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Lead-->
+  <!--Construction Details-->
+  <div if:true={booleanFlags.isConstructionComplaintGroup} class="slds-section slds-is-open">
+    <h3 class="slds-section__title slds-theme_shade">
+      <lightning-button
+        variant="base"
+        label="Construction Details"
+        title="Construction Details"
+        icon-name={constructionDetailsHeaderIcon}
+        class="blackTxtColorForBtn"
+        onclick={onConstructionDetailsHeaderClick}></lightning-button>
+    </h3>
+    <div if:false={constructionDetailsCollapsed} class="slds-section__content">
+      <div class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Company Name of Damaged Facility</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {constructionDetails.companyName}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Size of Damaged Facility</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {constructionDetails.sizeOfDamage}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">New Issue</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {constructionDetails.newIssue}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Vendor</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {constructionDetails.vendor}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Metro</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {constructionDetails.metro}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Work Type</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {constructionDetails.workType}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Held Up By</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {constructionDetails.heldUpBy}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Attachment Links</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {constructionDetails.attachments}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Construction Details-->
+</template>

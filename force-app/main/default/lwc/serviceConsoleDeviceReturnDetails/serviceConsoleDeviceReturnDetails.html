@@ -1,0 +1,75 @@
+<template>
+  <vlocity_cmt-modal size="small">
+    <div slot="header">
+      <div class="slds-text-align_left">
+        <lightning-icon icon-name="standard:return_order" size="small"
+          alternative-text="Return Details">
+        </lightning-icon>
+        <lightning-formatted-text value="Return Details"
+          class="slds-text-heading_medium slds-text-title_bold slds-var-m-left_x-small">
+        </lightning-formatted-text>
+      </div>
+    </div>
+    <div slot="content">
+      <div class="slds-grid slds-gutters slds-var-p-around_medium">
+        <div class="slds-size_6-of-12 slds-var-p-right_medium">
+          <div>
+            <span>Remorse Return Expiration:</span>
+            <span class="slds-float_right device-return-text-bold">
+              <lightning-formatted-date-time value={deviceDetails.remorseReturnExpiration}
+                month="numeric" day="numeric" year="numeric">
+              </lightning-formatted-date-time>
+            </span>
+          </div>
+          <div>
+            <span>Unreturned Equipment Charge:</span>
+            <span class="slds-float_right device-return-text-bold">
+              {deviceDetails.unreturnedEquipmentFee}
+            </span>
+          </div>
+          <div>
+            <span>Unreturned Equipment Charges Blocked:</span>
+            <span class="slds-float_right device-return-text-bold">
+              <template if:true={deviceDetails.returnDeviceCharges}>Yes</template>
+              <template if:false={deviceDetails.returnDeviceCharges}>No</template>
+            </span>
+          </div>
+          <div>
+            <span>Equipment Return Status:</span>
+            <span class="slds-float_right device-return-text-bold">
+              {deviceDetails.returnStatus}
+            </span>
+          </div>
+        </div>
+        <div class="slds-col slds-size_6-of-12">
+          <div>
+            <span>Warrenty Expiration Date:</span>
+            <span class="slds-float_right device-return-text-bold">
+              <lightning-formatted-date-time value={deviceDetails.warrantyExpirationDate}
+                year="numeric" month="numeric" day="numeric">
+              </lightning-formatted-date-time>
+            </span>
+          </div>
+          <div>
+            <span>Deadline to Return Equipment
+              <span class="slds-show">Without Incurring Charges:</span>
+            </span>
+            <span class="slds-float_right device-return-text-bold">
+              <lightning-formatted-date-time value={deviceDetails.returnDateWithoutCharges}
+                year="numeric" month="numeric" day="numeric">
+              </lightning-formatted-date-time>
+            </span>
+          </div>
+          <div>
+            <span>Final Date to Return Equipment:</span>
+            <span class="slds-float_right device-return-text-bold">
+              <lightning-formatted-date-time value={deviceDetails.finalReturnDate}
+                year="numeric" month="numeric" day="numeric">
+              </lightning-formatted-date-time>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </vlocity_cmt-modal>
+</template>

@@ -1,0 +1,9 @@
+/*appointmentDetails.css*/
+.radio-group-container {
+    padding: 10px;
+    border: 1px solid #ececec;
+    border-radius: 5px;
+    width: 50%;
+    height: 200px;
+    overflow: auto;
+}

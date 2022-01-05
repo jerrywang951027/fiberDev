@@ -1,0 +1,14 @@
+<template>
+  <!-- {cellData.value} -->
+  <div if:true={cellData} class="tableRowCell">
+    <lightning-accordion
+        active-section-name=""
+        allow-multiple-sections-open class="accordionClass">
+      <lightning-accordion-section name={cellData.value} label={cellData.value}>
+        <div class="slds-p-horizontal_medium">
+          <lightning-formatted-rich-text value = {rowData.summaryData} ></lightning-formatted-rich-text>
+        </div>
+      </lightning-accordion-section>
+    </lightning-accordion>
+  </div>
+</template>

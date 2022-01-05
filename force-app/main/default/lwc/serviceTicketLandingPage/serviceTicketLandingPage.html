@@ -1,0 +1,56 @@
+<template>
+  <lightning-card title="Service Visits" icon-name="standard:service_request">
+      <template if:false={isVendorUserPermissionSet}>
+      <div class="slds-col slds-size_4-of-12">
+				<h2>Filter</h2>
+				<lightning-combobox
+					name="Market"
+                    class="form-element"
+					label="Market"
+					value=""
+					placeholder="Add"
+					options={options}
+					onchange={handleChange}
+				></lightning-combobox>
+	  </div>
+      {marketValue}
+      </template>
+    <div class="slds-p-horizontal_small">
+
+     <!-- <lightning-spinner if:true={showSpinner} variant="brand" alternative-text="Loading" size="small"></lightning-spinner>-->
+       
+      <template if:true={serviceList}>
+      <template if:false={isVendorUserPermissionSet}>
+        <lightning-datatable
+            data={serviceList}
+            columns={columns}
+            key-field="Id"
+            hide-checkbox-column="false"
+            resize-column-disabled="true"
+            default-sort-direction={defaultSortDirection}
+            sorted-direction={sortDirection}
+            sorted-by={sortedBy}
+            onsort={onHandleSort}>
+        </lightning-datatable>
+      </template>
+      <template if:true={isVendorUserPermissionSet}>
+        <lightning-datatable
+            data={serviceList}
+            columns={columnsVendor}
+            key-field="Id"
+            hide-checkbox-column="false"
+            resize-column-disabled="true"
+            default-sort-direction={defaultSortDirection}
+            sorted-direction={sortDirection}
+            sorted-by={sortedBy}
+            onsort={onHandleSort}>
+        </lightning-datatable>
+      </template>
+        
+      </template>
+      <template if:true={error}>
+          {error}
+      </template>
+    </div>
+  </lightning-card>
+</template>

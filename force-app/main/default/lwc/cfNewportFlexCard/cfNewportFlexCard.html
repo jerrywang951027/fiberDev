@@ -1,0 +1,48 @@
+<template>
+            <div class="nds-grid nds-wrap nds-is-relative">
+            <div if:false={cardLoaded} class="nds-is-absolute vloc-loader_override" style="height: 100%; width: 100%; min-height:50px; background: white; z-index: 99;">
+  <div>
+   <vlocity_cmt-spinner
+      variant="brand"
+      alternative-text="Loading content..."
+      size="small"
+      theme="nds"
+      ></vlocity_cmt-spinner>
+  </div>
+</div>
+            <template if:false={hasPermission}>
+              You don't have required permissions to view this card.
+            </template>
+            <template if:true={hasPermission}>
+              <template if:true={hasRecords}>
+                        <template for:each={_records} for:item="record" for:index="rindex">
+                            <vlocity_cmt-flex-card-state key={record.uniqueKey} data-recordid={record.Id} record={record} data-statue="true"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state nds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="nds-grid nds-wrap nds-card nds-p-around_x-small nds-m-bottom_x-small" style="">
+          <div class="nds-col   nds-size_12-of-12 " style=""><vlocity_cmt-data-table     columns='\[{"fieldName":"Id","label":"Id","searchable":false,"sortable":true,"type":"text"},{"fieldName":"Name","label":"Name","searchable":false,"sortable":true,"type":"text"}]'  issearchavailable="false"  issortavailable="true"  records={records}  theme="nds"  ></vlocity_cmt-data-table>
+      </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                        </template>
+                      </template>
+                      <template if:false={hasRecords}>
+                            <vlocity_cmt-flex-card-state  record={record} data-statue="false"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state nds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="nds-grid nds-wrap nds-card nds-p-around_x-small nds-m-bottom_x-small" style="">
+          <div class="nds-col   nds-size_12-of-12 " style=""><vlocity_cmt-data-table     columns='\[{"fieldName":"Id","label":"Id","searchable":false,"sortable":true,"type":"text"},{"fieldName":"Name","label":"Name","searchable":false,"sortable":true,"type":"text"}]'  issearchavailable="false"  issortavailable="true"  records={records}  theme="nds"  ></vlocity_cmt-data-table>
+      </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                      </template>
+            </template>
+            <template if:true={hasError}>
+            {error}
+            </template>
+            
+      <vlocity_cmt-action action-wrapperclass="slds-hide" re-render-flyout class="action-trigger slds-col" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+      
+      </vlocity_cmt-action>
+  
+            <vlocity_cmt-action class="execute-action" re-render-flyout action-wrapperclass="slds-hide" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+            
+            </vlocity_cmt-action>
+            </div>
+          </template>

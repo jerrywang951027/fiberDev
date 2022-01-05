@@ -1,0 +1,22 @@
+<template>
+  <div class="slds-m-top_x-small">
+    <h4 class="ott-header ott-credit">Credit One Time Transaction Options</h4>
+    <lightning-radio-group
+        name="ottCreditTransactionRadioOptions"
+        options={creditOptions}
+        value={ottTransactionOption}
+        onchange={handleChange}
+        class="slds-p-left_x-small"
+        type="radio"></lightning-radio-group>
+  </div>
+  <div class="slds-m-top_x-small">
+    <h4 class="ott-header ott-debit">Debit One Time Transaction Options</h4>
+    <lightning-radio-group
+        name="ottCreditTransactionRadioOptions"
+        options={debitOptions}
+        value={ottTransactionOption}
+        onchange={handleChange}
+        class="slds-p-left_x-small"
+        type="radio"></lightning-radio-group>
+  </div>
+</template>

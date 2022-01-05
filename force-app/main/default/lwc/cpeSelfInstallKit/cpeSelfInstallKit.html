@@ -1,0 +1,29 @@
+<template>
+    <br/>
+    <div class="slds-text-heading_small">CPE</div>
+    <br/>
+    <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-border_right slds-border_left" aria-label="Example table of Opportunities with no row hovers">
+        <thead>
+          <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                <div class="slds-truncate" title="DEVICE NAME">DEVICE NAME</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="SERIAL NUMBER">SERIAL NUMBER</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={_orderedEquipment} for:item="data">
+                <tr key={data.orderItemId}>
+                    <td>
+                        <div class="slds-truncate" title={data.cpeType}>{data.cpeType}</div>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="" class="slds-input" value={data.serialNumber} data-orderid={data.orderItemId} onblur={handleOnBlur}/>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</template>

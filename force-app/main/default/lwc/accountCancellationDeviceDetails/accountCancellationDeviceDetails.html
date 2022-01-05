@@ -1,0 +1,63 @@
+<template>
+  <div class="slds-m-bottom_large">
+    <lightning-layout>
+      <lightning-layout-item size="5">
+        <h2 class="slds-text-heading_small">Devices to keep</h2>
+      </lightning-layout-item>
+      <lightning-layout-item size="7" padding="horizontal-small">
+        <ul if:true={devicesToKeep}>
+          <template iterator:device={devicesToKeep}>
+            <li key={device.value.id} if:true={device.first}>
+              <lightning-formatted-text
+                  value={device.value.formatString}></lightning-formatted-text>
+            </li>
+            <li key={device.value.id} if:false={device.first} class="slds-m-top_x-small">
+              <lightning-formatted-text
+                  value={device.value.formatString}></lightning-formatted-text>
+            </li>
+          </template>
+        </ul>
+        <lightning-formatted-text
+            if:false={devicesToKeep}
+            value={devicesToKeepMsg}></lightning-formatted-text>
+      </lightning-layout-item>
+    </lightning-layout>
+  </div>
+  <div class="slds-m-bottom_large">
+    <lightning-layout>
+      <lightning-layout-item size="5">
+        <h2 class="slds-text-heading_small">Devices that cannot be kept</h2>
+      </lightning-layout-item>
+      <lightning-layout-item size="7" padding="horizontal-small">
+        <ul if:true={devicesToReturn}>
+          <template iterator:device={devicesToReturn}>
+            <li key={device.value.id} if:true={device.first}>
+              <lightning-formatted-text
+                  value={device.value.formatString}></lightning-formatted-text>
+            </li>
+            <li key={device.value.id} if:false={device.first} class="slds-m-top_x-small">
+              <lightning-formatted-text
+                  value={device.value.formatString}></lightning-formatted-text>
+            </li>
+          </template>
+        </ul>
+        <lightning-formatted-text
+            if:false={devicesToReturn}
+            value={devicesToRetMsg}></lightning-formatted-text>
+      </lightning-layout-item>
+    </lightning-layout>
+  </div>
+  <lightning-layout>
+    <lightning-layout-item size="5">
+      <h2 class="slds-text-heading_small">
+        <lightning-formatted-text value={returnByDate}></lightning-formatted-text>
+      </h2>
+    </lightning-layout-item>
+    <lightning-layout-item size="7" padding="horizontal-small">
+      <lightning-formatted-number
+          value={totalPrice}
+          format-style="currency"
+          currency-code="USD"></lightning-formatted-number>
+    </lightning-layout-item>
+  </lightning-layout>
+</template>

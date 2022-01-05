@@ -1,0 +1,177 @@
+bundles {
+  id: "01t18000002JbiUAAS"
+  name: "Google Wifi"
+  description: "Google Wifi"
+  product_code: "wifi_network_box"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000003FVC5AAO"
+    product_id: "01t18000002JbiUAAS"
+    charges {
+      id: "a1u18000000kZ6PAAU"
+      name: "Upfront waiver for first google wifi copy"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003ibjQAAQ"
+        name: "First one waived copy"
+        ending_unit: 1
+        price_cents: -10000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+          is_bundled: true
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    charges {
+      id: "a1u18000000kZ6QAAU"
+      name: "Upfront charge for Google Wifi devices copy"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003ibjRAAQ"
+        name: "First Bundled Google-owned copy"
+        ending_unit: 1
+        price_cents: 10000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+          is_bundled: true
+        }
+      }
+      tiers {
+        id: "a1t18000003ibjSAAQ"
+        name: "Customer-owned copy"
+        starting_unit: 2
+        ending_unit: 6
+        price_cents: 10000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_ACCOUNT
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "[Tool] Google wifi with one free puck rate plan"
+    rate_plan_code: "prp_wifi_network_box_one_free"
+    line_item_message: "UNKNOWN_LINE_ITEM_MESSAGE"
+  }
+  rate_plans {
+    id: "a1v18000001ge5fAAA"
+    product_id: "01t18000002JbiUAAS"
+    charges {
+      id: "a1u18000000kMK0AAM"
+      name: "Upfront waiver for first 2 devices"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003MENdAAO"
+        name: "First two waived"
+        ending_unit: 2
+        price_cents: -10000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    charges {
+      id: "a1u18000000kMJvAAM"
+      name: "Upfront charge for Google Wifi devices"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003MENOAA4"
+        name: "First Bundled Google-owned"
+        ending_unit: 1
+        price_cents: 10000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+          is_bundled: true
+        }
+      }
+      tiers {
+        id: "a1t18000003MENTAA4"
+        name: "Second Google-owned"
+        starting_unit: 2
+        ending_unit: 2
+        price_cents: 10000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      tiers {
+        id: "a1t18000003MENYAA4"
+        name: "Customer-owned"
+        starting_unit: 3
+        ending_unit: 6
+        price_cents: 10000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_ACCOUNT
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "Google Wifi Rate Plan"
+    rate_plan_code: "prp_wifi_network_box"
+  }
+  product_line: DEVICE
+  product_subline: "Network Box"
+  hardware_info {
+    type: NETWORK_BOX
+    model: "GOOGLE_WIFI_1"
+    cost_cents: 10000
+    network_device_properties {
+      min_supported_static_ipv4_subnet_prefix: 30
+      min_supported_static_ipv6_subnet_prefix: 127
+    }
+  }
+  zuora_product_id: "2c92c0f8712986230171371f5ccc3345"
+}

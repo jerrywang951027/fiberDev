@@ -1,0 +1,43 @@
+<template>
+  <div if:true={showIssueList} class="slds-text-heading_small">
+    Following issue tickets are open
+  </div>
+    <ul if:true={showIssueList}>
+      <template for:each={openIssueTicketList} for:item="ticket">
+        <li key={ticket.value}>
+          <lightning-button
+            variant="base"
+            name={ticket.value}
+            label={ticket.label}
+            title={ticket.label}
+            onclick={openTicketDetails}>
+          </lightning-button>
+        </li>
+      </template>
+    </ul>
+  <div if:true={showEndMessage} class="slds-text-heading_small">
+    End this interaction?
+  </div>
+  <div class="slds-clearfix">
+    <div class="slds-float_right">
+      <div class="slds-m-top_small slds-m-bottom_medium">
+        <lightning-button
+          if:true={showIssueList}
+          variant="brand"
+          label="Refresh"
+          title="Refresh"
+          onclick={fetchOpenIssueTickets}
+          class="slds-m-left_x-small">
+        </lightning-button>
+        <lightning-button
+          if:true={showEndMessage}
+          variant="brand"
+          label="Yes"
+          title="Yes"
+          onclick={onEndInteraction}
+          class="slds-m-left_x-small">
+        </lightning-button>
+      </div>
+    </div>
+  </div>
+</template>

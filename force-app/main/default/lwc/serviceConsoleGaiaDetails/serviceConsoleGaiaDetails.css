@@ -1,0 +1,15 @@
+/*serviceConsoleGAIADetails.css*/
+.gaia-details-header {
+  background: #aa2422;
+  width: 100%;
+  color:#fff;
+  height:30px;
+  display: flex;
+  align-items: center;
+}
+.gaia-table-row:nth-child(odd) {
+  background: #f3f2f2;
+}
+.gaia-details-icon {
+ --sds-c-icon-color-foreground-default: #fff;
+}

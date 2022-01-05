@@ -1,0 +1,12 @@
+<template>
+  <div>
+    <select class="slds-select"  id="optionSelectId"
+        name="optionSelect" onchange={changeOptionHandler}>
+      <option value="">Select Warehouse</option>
+      <template  for:each = {warehouseItems} for:item="warehouseItem">
+        <option key={warehouse} value={warehouse}>
+          {warehouseItem}</option>
+      </template>
+    </select> 
+  </div>
+</template>

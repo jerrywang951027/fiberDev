@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>vlocity_cmt__SubType__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Product Sub Type can be used to drive implementations/engines, as well as filtering products in the Catalog/Pricebook. These values may be constrained by the Product Type.</description>
+    <externalId>false</externalId>
+    <label>Sub Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>vlocity_cmt__Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>true</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Postpaid</fullName>
+                <default>false</default>
+                <label>Postpaid</label>
+            </value>
+            <value>
+                <fullName>Prepaid</fullName>
+                <default>false</default>
+                <label>Prepaid</label>
+            </value>
+            <value>
+                <fullName>Professional Installation</fullName>
+                <default>false</default>
+                <label>Professional Installation</label>
+            </value>
+            <value>
+                <fullName>Self Installation</fullName>
+                <default>false</default>
+                <label>Self Installation</label>
+            </value>
+            <value>
+                <fullName>ONT</fullName>
+                <default>false</default>
+                <label>ONT</label>
+            </value>
+            <value>
+                <fullName>Voice Box</fullName>
+                <default>false</default>
+                <label>Voice Box</label>
+            </value>
+            <value>
+                <fullName>PortIn</fullName>
+                <default>false</default>
+                <label>PortIn</label>
+            </value>
+            <value>
+                <fullName>Primary User</fullName>
+                <default>false</default>
+                <label>Primary User</label>
+            </value>
+            <value>
+                <fullName>Secondary User</fullName>
+                <default>false</default>
+                <label>Secondary User</label>
+            </value>
+            <value>
+                <fullName>Power Adapter</fullName>
+                <default>false</default>
+                <label>Power Adapter</label>
+            </value>
+            <value>
+                <fullName>Router</fullName>
+                <default>false</default>
+                <label>Router</label>
+            </value>
+            <value>
+                <fullName>Extender</fullName>
+                <default>false</default>
+                <label>Extender</label>
+            </value>
+            <value>
+                <fullName>Subscription</fullName>
+                <default>false</default>
+                <label>Subscription</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>None</controllingFieldValue>
+            <valueName>None</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Plan</controllingFieldValue>
+            <valueName>Postpaid</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Plan</controllingFieldValue>
+            <valueName>Prepaid</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

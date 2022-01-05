@@ -1,0 +1,21 @@
+<template>
+  <lightning-textarea id="updateWorklog" placeholder="Update worklog here!">
+  </lightning-textarea>
+  <p align="right">
+    <lightning-button label="Save" variant="brand"
+       onclick={SaveUpdateWorklog}>
+    </lightning-button>
+  </p>
+  <div if:true={boolAddCommentToTicketIP}>
+    <vlocity_cmt-datasource-integrationprocedure
+        methodname="TCK_AddTicketComment"
+        inputmap={ipInput}
+        channel="addCommentToTicket">
+    </vlocity_cmt-datasource-integrationprocedure>
+  </div>
+  <div if:true={isWorkLog}>
+    <p>
+      Unable to update the worklog in the Bugafiber. Try again!
+    </p>
+  </div>
+</template>

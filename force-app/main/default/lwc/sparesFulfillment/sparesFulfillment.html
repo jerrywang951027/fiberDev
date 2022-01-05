@@ -1,0 +1,105 @@
+<template>
+    <template if:true={showUserMessage}>
+        <lightning-card title={userMessage} icon-name="standard:contact">
+        </lightning-card>
+    </template>
+    <template if:true={showError}>
+        <div class="slds-p-around_small">
+          <b>User {userName} is not a member of this Group</b>
+        </div>
+    </template>
+    <template if:true={isUserNameEmpty}>
+      <div class="slds-p-around_small">
+        <b>Tech name shold not be empty</b>
+      </div>
+    </template>
+    <div class="slds-form-element slds-align_absolute-center">
+        <div class="slds-form-element__control">
+          <div class="slds-grid" >
+            <div class="slds-col slds-p-right_none" style="width:400px">
+              <input type="text" id="text-search" placeholder="Please select a tech username"
+               class="slds-input" onchange={handleTechSearch} onkeypress={handleKeypress} />
+            </div>
+            <div class="slds-col slds-p-left_none">
+              <button class="slds-button slds-button_brand"
+               title="Select Tech" onclick={handleSearch}>Select Tech </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <template if:true={showDevices}>
+        <br/>
+              <h3 style=" font-family: Helvetica Neue,Helvetica,Arial,sans-serif; font: size 14px;">
+                  Spares Fulfillment for Tech: <b>{userName}</b></h3>
+              <table class="slds-table  slds-table_cell-buffer
+                            slds-table_bordered slds-table_striped">
+                  <thead>
+                      <tr class="slds-p-around_small" style="background-color:grey;">
+                          <th style="font-size: 14px; text-align: left; font-weight:normal;"
+                              scope="row">
+                              <div class="slds-p-around_xx-small" title="Assign"
+                                   style="font-weight:normal;
+                                          color: black ; font-family:
+                                          Helvetica Neue,Helvetica,Arial,sans-serif">
+                                  Assign Spare Devices ({totalNumberOfDevices})</div>
+                          </th>
+                      </tr>
+                    <tr class="slds-line-height_reset">
+                      <th class="slds-size_1-of-4 " scope="col">
+                        <div class="slds-truncate " title="GPN">GPN</div>
+                      </th>
+                      <th class="slds-size_1-of-4 " scope="col">
+                        <div class="slds-truncate " title="Description">Description</div>
+                      </th>
+                      <th class="slds-size_1-of-4 " scope="col">
+                        <div class="slds-truncate " title="Serial">Serial</div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                <template  for:each = {deviceList} for:item="device">
+                    <tr  key={device.serial} style="border: 1px;">
+                        <td>
+                            {device.gpn}
+                        </td>
+                        <td>
+                            {device.description}
+                        </td>
+                        <td>
+                            {device.serial}
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+          </table>
+        <div class="serial-number slds-form-elements">
+                <div class="form-group slds-p-around_none">
+                <lightning-input value={serialNumber1} class="serial"
+                    type="text" name="Serial number 1"
+                    placeholder="Serial Number" onblur={saveSerialNumber1}></lightning-input>
+                </div>
+                <div class="form-group slds-p-around_none">
+                <lightning-input value={serialNumber2} class="serial"
+                    type="text" name="Serial number 2"
+                    placeholder="Serial Number" onblur={saveSerialNumber2}></lightning-input>
+                </div>
+                <div class="slds-p-around_none">
+                <lightning-input value={serialNumber3} type="text" name="Serial number 3"
+                    placeholder="Serial Number" style="height: 34px;" onblur={saveSerialNumber3}>
+                  </lightning-input>
+                </div>
+                <div class="slds-p-around_none">
+                <lightning-input value={serialNumber4} type="text" name="Serial number 4"
+                    placeholder="Serial Number" style="height: 34px;" onblur={saveSerialNumber4}>
+                  </lightning-input>
+                </div>
+                <div class="slds-p-around_none">
+                <lightning-input value={serialNumber5} type="text" name="Serial number 5"
+                     placeholder="Serial Number" onblur={saveSerialNumber5}></lightning-input>
+                </div>
+                </br>
+                <lightning-button variant="brand-outline" label="Assign" title="Assign"
+                 onclick={assignSerials} class="slds-m-left_xxx-small lbt"></lightning-button>
+        </div>
+      </template>
+</template>

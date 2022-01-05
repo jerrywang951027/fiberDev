@@ -1,0 +1,153 @@
+<template>
+  <div class="slds-section slds-is-open">
+    <h3 class="slds-section__title slds-theme_shade">
+      <lightning-button
+        variant="base"
+        label="Ticket Details"
+        title="Ticket Details"
+        icon-name={ticketDetailsHeaderIcon}
+        class="blackTxtColorForBtn"
+        onclick={onTicketDetailsHeaderClick}
+      ></lightning-button>
+    </h3>
+    <div if:false={ticketDetailsCollapsed} class="slds-section__content">
+      <div class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Bugafiber Ticket Id</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.bugafiberTicketId}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Contact Type</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.type}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Interaction Id</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.interactionId}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Status</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.status}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Row2-->
+        <!--Row3-->
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Assigned Group</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.assignedGoogleGroup}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Ticket Created Date</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.createdDateTime}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Row3-->
+
+        <!--Row4-->
+        <div class="slds-form__row">
+          <lightning-record-view-form
+            record-id={recordId}
+            object-api-name="History_Event__c"
+            columns ="2">
+            <div class="slds-form__item" role="listitem" style="min-width: 580px;">
+              <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                <lightning-output-field field-name="Signup_Plan_Type__c">
+                </lightning-output-field>
+                  <div class="slds-form-element__control">
+                  </div>
+              </div>
+            </div>
+            <div class="slds-form__item" role="listitem" style="min-width: 580px;">
+              <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+                <lightning-output-field field-name="Signup_Timestamp__c">
+                </lightning-output-field>
+                  <div class="slds-form-element__control">
+                  </div>
+              </div>
+            </div>
+          </lightning-record-view-form>
+        </div>
+        <!--Row4-->
+
+      </div>
+    </div>
+  </div>
+  <div class="slds-section slds-is-open">
+    <h3 class="slds-section__title slds-theme_shade">
+      <lightning-button
+        variant="base"
+        label="Related Details"
+        title="Related Details"
+        icon-name={accountDetailsHeaderIcon}
+        class="blackTxtColorForBtn"
+        onclick={onAccountDetailsHeaderClick}
+      ></lightning-button>
+    </h3>
+    <div if:false={accountDetailsCollapsed} class="slds-section__content">
+      <div class="slds-form" role="list">
+        <div class="slds-form__row">
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Customer Account</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.accountName}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slds-form__item" role="listitem">
+            <div class="slds-form-element slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
+              <span class="slds-form-element__label">Customer Lead</span>
+              <div class="slds-form-element__control">
+                <div class="slds-form-element__static">
+                  {ticketDetails.leadName}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

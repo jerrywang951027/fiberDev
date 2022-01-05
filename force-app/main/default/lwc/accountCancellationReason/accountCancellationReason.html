@@ -1,0 +1,223 @@
+<template>
+  <div if:true={note} class="slds-m-bottom_large">
+    <vlocity_cmt-alert
+        theme="slds"
+        icon="utility:info"
+        message={note}></vlocity_cmt-alert>
+  </div>
+  <h2 class="slds-text-heading_small slds-m-bottom_small">
+    <lightning-formatted-text
+        value={premisesAddress}></lightning-formatted-text>
+  </h2>
+  <div class="slds-m-bottom_small">
+    <h2 class="slds-text-heading_small slds-m-bottom_xx-small">
+      <abbr title="required" class="slds-required">*</abbr>Cancellation Reason</h2>
+      <lightning-layout multiple-rows>
+        <lightning-layout-item size="6" padding="around-small">
+          <h3>Moving to Another Address</h3>
+          <div class="slds-p-around_x-small">
+            <lightning-input
+                type="radio"
+                label="Address not eligible for Fiber"
+                name="cancellation_reason"
+                value="Address not eligible for Fiber"
+                data-title="Moving to Another Address"
+                class="slds-m-bottom_xx-small type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+            <lightning-input
+                type="radio"
+                label="Address not eligible for Moves"
+                name="cancellation_reason"
+                value="Address not eligible for Moves"
+                data-title="Moving to Another Address"
+                class="type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+          </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="around-small">
+          <h3>Forced Cancellation</h3>
+          <div class="slds-p-around_x-small">
+            <lightning-input
+                type="radio"
+                label="Cancel previous resident's account"
+                name="cancellation_reason"
+                value="Cancel previous resident's account"
+                data-title="Forced Cancellation"
+                class="slds-m-bottom_xx-small type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+            <lightning-input
+                type="radio"
+                label="Signed up at wrong address or with wrong GAIA"
+                name="cancellation_reason"
+                value="Signed up at wrong address or with wrong GAIA"
+                data-title="Forced Cancellation"
+                class="type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+          </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="around-small">
+          <h3>Switching to Competitor</h3>
+          <div class="slds-p-around_x-small">
+            <lightning-input
+                type="radio"
+                label="Better Deal"
+                name="cancellation_reason"
+                value="Better Deal"
+                data-title="Switching to Competitor"
+                class="slds-m-bottom_xx-small type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+            <lightning-input
+                type="radio"
+                label="Wants service or feature Fiber doesn't offer"
+                name="cancellation_reason"
+                value="Wants service or feature Fiber doesn't offer"
+                data-title="Switching to Competitor"
+                class="type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+          </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="around-small">
+          <h3>Service Dissatisfaction</h3>
+          <div class="slds-p-around_x-small">
+            <lightning-input
+                type="radio"
+                label="Dissatisfied with wireless (WIFI)"
+                name="cancellation_reason"
+                value="Dissatisfied with wireless (WIFI)"
+                data-title="Service Dissatisfaction"
+                class="slds-m-bottom_xx-small type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+            <lightning-input
+                type="radio"
+                label="Outage to disruptive"
+                name="cancellation_reason"
+                value="Outage to disruptive"
+                data-title="Service Dissatisfaction"
+                class="slds-m-bottom_xx-small type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+            <lightning-input
+                type="radio"
+                label="Misc. connectivity issue"
+                name="cancellation_reason"
+                value="Misc. connectivity issue"
+                data-title="Service Dissatisfaction"
+                class="slds-m-bottom_xx-small type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+            <lightning-input
+                type="radio"
+                label="Dissatisfied with TV"
+                name="cancellation_reason"
+                value="Dissatisfied with TV"
+                data-title="Service Dissatisfaction"
+                class="slds-m-bottom_xx-small type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+            <lightning-input
+                type="radio"
+                label="Dissatisfied with Google Fiber Phone"
+                name="cancellation_reason"
+                value="Dissatisfied with Google Fiber Phone"
+                data-title="Service Dissatisfaction"
+                class="slds-m-bottom_xx-small type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+            <lightning-input
+                type="radio"
+                label="Dissatisfied with other Fiber service"
+                name="cancellation_reason"
+                value="Dissatisfied with other Fiber service"
+                data-title="Service Dissatisfaction"
+                class="type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+          </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="around-small">
+          <h3>Change in Person Circumstances</h3>
+          <div class="slds-p-around_x-small">
+            <lightning-input
+                type="radio"
+                label="Can no longer afford(e.g., job loss)"
+                name="cancellation_reason"
+                value="Can no longer afford(e.g., job loss)"
+                data-title="Change in Person Circumstances"
+                class="slds-m-bottom_xx-small type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+            <lightning-input
+                type="radio"
+                label="No longer needs service ( death, divorce, military,
+                    moving in with a roommate that already has internet service)"
+                name="cancellation_reason"
+                value="No longer needs service ( death, divorce, military,
+                    moving in with a roommate that already has internet service)"
+                data-title="Change in Person Circumstances"
+                class="type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+          </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="around-small">
+          <h3>Abuse</h3>
+          <div class="slds-p-around_x-small">
+            <lightning-input
+                type="radio"
+                label="Copyright Infringement"
+                name="cancellation_reason"
+                value="Copyright Infringement"
+                data-title="Abuse"
+                class="slds-m-bottom_xx-small type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+            <lightning-input
+                type="radio"
+                label="Fraud"
+                name="cancellation_reason"
+                value="Fraud"
+                data-title="Abuse"
+                class="slds-m-bottom_xx-small type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+            <lightning-input
+                type="radio"
+                label="Security Risk"
+                name="cancellation_reason"
+                value="Security Risk"
+                data-title="Abuse"
+                class="type-radio"
+                onchange={handleCancellationReason}></lightning-input>
+          </div>
+        </lightning-layout-item>
+      </lightning-layout>
+      <div if:true={isCancellationReason} class="slds-box slds-box_x-small slds-text-color_error">
+        <p>Please select a Cancellation Reason</p>
+      </div>
+  </div>
+  <div class="slds-m-bottom_small">
+    <lightning-layout>
+      <lightning-layout-item size="4">
+        <lightning-combobox
+            class="validation-required"
+            name="cancellation_date"
+            label="Cancellation Date"
+            value={cancellationDate}
+            options={cancellationOptions}
+            required
+            onchange={onDurationChange}></lightning-combobox>
+      </lightning-layout-item>
+      <lightning-layout-item if:true={isOther} padding="horizontal-small" size="4">
+        <lightning-input
+            class="validation-required"
+            type="date"
+            name="other_date"
+            label="Select a Date"
+            value={date}
+            date-style="short"
+            min={tomorrowsDate}
+            max={futureDate}
+            required
+            onchange={onDateChange}></lightning-input>
+      </lightning-layout-item>
+    </lightning-layout>
+  </div>
+  <div class="slds-text-align_right">
+    <lightning-button
+        variant="brand"
+        label="Next"
+        title="Next"
+        onclick={handleNext}></lightning-button>
+  </div>
+</template>

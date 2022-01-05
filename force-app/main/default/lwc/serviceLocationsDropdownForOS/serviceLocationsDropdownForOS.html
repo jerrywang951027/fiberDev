@@ -1,0 +1,9 @@
+<template>
+  <lightning-combobox
+      name="serviceLocations"
+      label="Service Locations"
+      options={premisesList}
+      value={selectedServiceAccount}
+      required
+      onchange={getServiceLocation}></lightning-combobox>
+</template>

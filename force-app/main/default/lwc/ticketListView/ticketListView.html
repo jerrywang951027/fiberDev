@@ -1,0 +1,27 @@
+<template>
+  <lightning-card title="Open Tickets">
+    <div class="slds-p-around_medium">
+      <div class="slds-grid slds-wrap">
+        <lightning-combobox
+          name="kind"
+          label="Kind : "
+          value={value}
+          options={options}
+          onchange={handleChange} >
+        </lightning-combobox>
+        <br/><br/>
+      </div>
+    </div>
+    <div if:true={boolTicketData}>
+      <lightning-datatable columns={columns}
+        data={resultdata}
+        key-field="ticketId"
+        sorted-by={sortBy}
+        sorted-direction={sortDirection}
+        onsort={handleSortdata}
+		  onrowaction={handleRowAction}
+        hide-checkbox-column="true">
+      </lightning-datatable>
+    </div>
+  </lightning-card>
+</template>

@@ -1,0 +1,39 @@
+<template>
+  <lightning-card>
+    <div class="slds-m-left_medium slds-m-right_medium">
+      <c-account-notification-banner
+          account-id={serviceAccountId}></c-account-notification-banner>
+      <lightning-tabset>
+        <lightning-tab label="Overview" onactive={handleActiveTab}>
+          <c-cf-c-o-n_-service-console debug=false></c-cf-c-o-n_-service-console>
+        </lightning-tab>
+        <lightning-tab label="Billing" onactive={handleActiveTab}>
+          <c-billing-information record-id={recordId}></c-billing-information>
+          <c-cf-c-o-n_-billing-events record-id={serviceAccountId}></c-cf-c-o-n_-billing-events>
+        </lightning-tab>
+        <lightning-tab label="Orders" onactive={handleActiveTab}>
+          <c-order-list service-account-data={serviceAccountId}></c-order-list>
+        </lightning-tab>
+        <lightning-tab label="Devices" onactive={handleActiveTab}>
+          <c-cf-c-o-n_-devices record-id={serviceAccountId}></c-cf-c-o-n_-devices>
+        </lightning-tab>
+        <lightning-tab label="Troubleshooting" onactive={handleActiveTab}>
+          <c-cf-c-o-n_-troubleshooting-devices record-id={serviceAccountId}>
+          </c-cf-c-o-n_-troubleshooting-devices>
+        </lightning-tab>
+        <lightning-tab label="Network Settings" onactive={handleActiveTab}>
+        </lightning-tab>
+        <lightning-tab label="Location Details" onactive={handleActiveTab}>
+          <c-cf-c-o-n_-premises-details record-id={premisesData}
+              debug=false></c-cf-c-o-n_-premises-details>
+        </lightning-tab>
+        <lightning-tab label="History" onactive={handleActiveTab}>
+          <c-ticket-tree-grid record-id={recordId} object-name="Account"></c-ticket-tree-grid>
+        </lightning-tab>
+        <lightning-tab label="History 2" onactive={handleActiveTab}>
+          <c-history-tab service-account-data={serviceAccountId}></c-history-tab>
+        </lightning-tab>
+      </lightning-tabset>
+    </div>
+  </lightning-card>
+</template>

@@ -1,0 +1,78 @@
+<template>
+            <div class="slds-grid slds-wrap slds-is-relative">
+            <div if:false={cardLoaded} class="slds-is-absolute vloc-loader_override" style="height: 100%; width: 100%; min-height:50px; background: white; z-index: 99;">
+  <div>
+   <vlocity_cmt-spinner
+      variant="brand"
+      alternative-text="Loading content..."
+      size="medium"
+      theme="slds"
+      ></vlocity_cmt-spinner>
+  </div>
+</div>
+            <template if:false={hasPermission}>
+              You don't have required permissions to view this card.
+            </template>
+            <template if:true={hasPermission}>
+              <template if:true={hasRecords}>
+                        <template for:each={_records} for:item="record" for:index="rindex">
+                            <vlocity_cmt-flex-card-state key={record.uniqueKey} data-recordid={record.Id} record={record} data-statue="true"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  record={record}  card={card}  collapsed-by-default="false"  collapsible="false"  label="Block"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="background-color:#f3f2f2;     : #dddbda 1px solid; 
+    border-radius:5px 5px 0 0;     "><vlocity_cmt-output-field     record={record}  card={card}  data-conditions='\{"group":[{"field":"accountTicket","id":"state-new-condition-3","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2014pt;%22%3ERelated%20Account%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_top slds-border_right slds-border_bottom slds-border_left slds-p-around_small  slds-size_12-of-12  condition-element" style="     border-top: #dddbda 1px solid;border-right: #dddbda 1px solid;border-bottom: #dddbda 1px solid;border-left: #dddbda 1px solid; 
+    border-radius:0 0 5px 5px;     "><vlocity_cmt-data-table     cell-level-edit="true"  columns='\[{"fieldName":"ticketAccountId","label":"          Customer Id","searchable":true,"sortable":true,"type":"text"},{"fieldName":"accountName","label":"          Customer Name","searchable":true,"sortable":true,"type":"text"},{"fieldName":"accountPhone","label":"Contact","searchable":true,"sortable":true},{"fieldName":"accountAddress","label":"Address","searchable":true,"sortable":true}]'  data-conditions='\{"group":[{"field":"accountTicket","id":"state-new-condition-15","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  group-order="asc"  issearchavailable="false"  issortavailable="true"  pagelimit="3"  records={records}  styles='\{"cellBgColor":"","cellBorderColor":"","cellBorderType":[],"cellBorderWidth":"","cellMargin":[],"cellPadding":[],"headBgColor":"","rowBgColor":"","tableBgColor":"","tableBorderColor":"#f3f2f2","tableBorderType":["border_top","border_right","border_bottom","border_left"],"tableBorderWidth":"2"}'  theme="slds"  ></vlocity_cmt-data-table>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  record={record}  card={card}  collapsed-by-default="false"  collapsible="false"  label="Block"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="background-color:#f3f2f2;     : #dddbda 1px solid; 
+    border-radius:5px 5px 0 0;     "><vlocity_cmt-output-field     record={record}  card={card}  data-conditions='\{"group":[{"field":"leadTicket","id":"state-new-condition-27","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2014pt;%22%3ERelated%20Lead%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_top slds-border_right slds-border_bottom slds-border_left slds-p-around_small  slds-size_12-of-12  condition-element" style="     border-top: #dddbda 1px solid;border-right: #dddbda 1px solid;border-bottom: #dddbda 1px solid;border-left: #dddbda 1px solid; 
+    border-radius:0 0 5px 5px;     "><vlocity_cmt-data-table     cell-level-edit="true"  columns='\[{"fieldName":"leadName","label":"Customer Name","searchable":true,"sortable":true,"type":"text"},{"fieldName":"leadAddress","label":"Address","searchable":true,"sortable":true,"type":"text"},{"fieldName":"leadContact","label":"Contact","searchable":true,"sortable":true}]'  data-conditions='\{"group":[{"field":"leadTicket","id":"state-new-condition-17","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  group-order="asc"  issearchavailable="false"  issortavailable="true"  pagelimit="3"  records={records}  styles='\{"cellBorderColor":"","cellBorderType":[],"cellBorderWidth":"","cellMargin":[],"cellPadding":[],"tableBorderColor":"#f3f2f2","tableBorderType":["border_top","border_right","border_bottom","border_left"],"tableBorderWidth":"2"}'  theme="slds"  ></vlocity_cmt-data-table>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                        </template>
+                      </template>
+                      <template if:false={hasRecords}>
+                            <vlocity_cmt-flex-card-state  record={record} data-statue="false"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  record={record}  card={card}  collapsed-by-default="false"  collapsible="false"  label="Block"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="background-color:#f3f2f2;     : #dddbda 1px solid; 
+    border-radius:5px 5px 0 0;     "><vlocity_cmt-output-field     record={record}  card={card}  data-conditions='\{"group":[{"field":"accountTicket","id":"state-new-condition-3","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2014pt;%22%3ERelated%20Account%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_top slds-border_right slds-border_bottom slds-border_left slds-p-around_small  slds-size_12-of-12  condition-element" style="     border-top: #dddbda 1px solid;border-right: #dddbda 1px solid;border-bottom: #dddbda 1px solid;border-left: #dddbda 1px solid; 
+    border-radius:0 0 5px 5px;     "><vlocity_cmt-data-table     cell-level-edit="true"  columns='\[{"fieldName":"ticketAccountId","label":"          Customer Id","searchable":true,"sortable":true,"type":"text"},{"fieldName":"accountName","label":"          Customer Name","searchable":true,"sortable":true,"type":"text"},{"fieldName":"accountPhone","label":"Contact","searchable":true,"sortable":true},{"fieldName":"accountAddress","label":"Address","searchable":true,"sortable":true}]'  data-conditions='\{"group":[{"field":"accountTicket","id":"state-new-condition-15","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  group-order="asc"  issearchavailable="false"  issortavailable="true"  pagelimit="3"  records={records}  styles='\{"cellBgColor":"","cellBorderColor":"","cellBorderType":[],"cellBorderWidth":"","cellMargin":[],"cellPadding":[],"headBgColor":"","rowBgColor":"","tableBgColor":"","tableBorderColor":"#f3f2f2","tableBorderType":["border_top","border_right","border_bottom","border_left"],"tableBorderWidth":"2"}'  theme="slds"  ></vlocity_cmt-data-table>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  record={record}  card={card}  collapsed-by-default="false"  collapsible="false"  label="Block"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="background-color:#f3f2f2;     : #dddbda 1px solid; 
+    border-radius:5px 5px 0 0;     "><vlocity_cmt-output-field     record={record}  card={card}  data-conditions='\{"group":[{"field":"leadTicket","id":"state-new-condition-27","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2014pt;%22%3ERelated%20Lead%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_top slds-border_right slds-border_bottom slds-border_left slds-p-around_small  slds-size_12-of-12  condition-element" style="     border-top: #dddbda 1px solid;border-right: #dddbda 1px solid;border-bottom: #dddbda 1px solid;border-left: #dddbda 1px solid; 
+    border-radius:0 0 5px 5px;     "><vlocity_cmt-data-table     cell-level-edit="true"  columns='\[{"fieldName":"leadName","label":"Customer Name","searchable":true,"sortable":true,"type":"text"},{"fieldName":"leadAddress","label":"Address","searchable":true,"sortable":true,"type":"text"},{"fieldName":"leadContact","label":"Contact","searchable":true,"sortable":true}]'  data-conditions='\{"group":[{"field":"leadTicket","id":"state-new-condition-17","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  group-order="asc"  issearchavailable="false"  issortavailable="true"  pagelimit="3"  records={records}  styles='\{"cellBorderColor":"","cellBorderType":[],"cellBorderWidth":"","cellMargin":[],"cellPadding":[],"tableBorderColor":"#f3f2f2","tableBorderType":["border_top","border_right","border_bottom","border_left"],"tableBorderWidth":"2"}'  theme="slds"  ></vlocity_cmt-data-table>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                      </template>
+            </template>
+            <template if:true={hasError}>
+            {error}
+            </template>
+            
+      <vlocity_cmt-action action-wrapperclass="slds-hide" re-render-flyout class="action-trigger slds-col" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+      
+      </vlocity_cmt-action>
+  
+            <vlocity_cmt-action class="execute-action" re-render-flyout action-wrapperclass="slds-hide" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+            
+            </vlocity_cmt-action>
+            </div>
+          </template>

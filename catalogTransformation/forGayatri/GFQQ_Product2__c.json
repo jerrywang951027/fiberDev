@@ -1,0 +1,33 @@
+{
+  "totalSize": 1,
+  "done": true,
+  "records": [
+    {
+      "attributes": {
+        "type": "GFQQ_Product2__c",
+        "url": "/services/data/v52.0/sobjects/GFQQ_Product2__c/a870n000000CWK9AAO"
+      },
+      "CMS_Lineup_ID__c": null,
+      "Component__c": true,
+      "Criteria__c": null,
+      "Description__c": null,
+      "Family__c": null,
+      "Fiber_Market__c": "Atlanta, GA;Austin, TX;Charlotte, NC;Huntsville, AL;Kansas City, KS;Kansas City, MO;Louisville, KY;Nashville, TN;Orange County;Provo, UT;Salt Lake City, UT;San Antonio, TX;The Triangle;San Jose, CA;Stanford, CA;West Des Moines, IA",
+      "GFiber_Cost__c": null,
+      "GFiber_Device_Model__c": null,
+      "GFiber_Device_Type__c": null,
+      "GFiber_Min_IPv4_Subnet_Prefix__c": null,
+      "GFiber_Min_IPv6_Subnet_Prefix__c": null,
+      "Id": "a870n000000CWK9AAO",
+      "Line_Item_Message__c": null,
+      "Name": "a870n000000CWK9",
+      "Payments_Usage_Type__c": null,
+      "Product_Code__c": "fiber_1000",
+      "Product_Line__c": "Internet Service",
+      "Product_Sub_Line__c": "Gigabit",
+      "Static_Ip_Has_Ipv4_Lan_Service__c": false,
+      "Static_Ip_Ipv4_Address_Count__c": null,
+      "Static_Ip_Ipv4_Lan_Subnet_Prefix__c": null
+    }
+  ]
+}

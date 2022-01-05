@@ -1,0 +1,10 @@
+<template>
+  <lightning-combobox
+      if:true={isVisible}
+      name="location"
+      label="Location"
+      value={locationValue}
+      placeholder="Select location"
+      options={premisesList}
+      onchange={onLocationChange}></lightning-combobox>
+</template>

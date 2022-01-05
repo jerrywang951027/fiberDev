@@ -1,0 +1,20 @@
+<template>
+  <div class="slds-m-top_medium slds-m-bottom_x-large">
+    <lightning-input
+      if:true={isSearch}
+      name="enter-filter-text"
+      label=""
+      type="text" autocomplete="off"
+      placeholder="Search an issue"
+      value={filterText}
+      onchange={handleChange}>
+    </lightning-input>
+    <div class="slds-p-around_medium lgc-bg">
+      <lightning-tree
+        items={items}
+        header="Select Issue"
+        onselect={handleOnselect}>
+      </lightning-tree>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,129 @@
+<template>
+  <lightning-card title="Signup Checklist" icon-name="standard:record">
+    <lightning-record-edit-form
+      record-id={recordId}
+      object-api-name="Lead"
+      fields={fields}
+      onload={handleOnLoad}
+      onsuccess={handleSuccess}>
+      <div if:true={isFormLoaded} class="slds-grid slds-wrap slds-gutters_x-small">
+        <div class="slds-col slds-size_1-of-2">
+          <lightning-messages>
+          </lightning-messages>
+          <lightning-card title="First Name" icon-name={getFirstNameIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="FirstName"
+                variant="label-hidden"
+                onchange={handleFieldChange}
+                required="true"></lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Last Name" icon-name={getLastNameIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field label="Last Name"
+                field-name="LastName" variant="label-hidden"
+                onchange={handleFieldChange} required="true"></lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Email" icon-name={getEmailIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Email"
+                variant="label-hidden" class="Email"
+                onchange={handleFieldChange}>
+              </lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Phone" icon-name={getPhoneIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Phone"
+                variant="label-hidden" class="Phone"
+                onchange={handleFieldChange}>
+              </lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Pilot" icon-name={getPilot__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Pilot__c"
+                variant="label-hidden"
+                disabled={isHistoryEvent}
+                onchange={handleFieldChange}>
+              </lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Customer consents to 3rd Party delivery"
+            icon-name={getCustomer_Consent_to_3rd_Party_Delivery__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field
+                field-name="Customer_Consent_to_3rd_Party_Delivery__c" variant="label-hidden"
+                onchange={handleFieldChange}
+                disabled={isHistoryEvent}>
+              </lightning-input-field>
+            </p>
+          </lightning-card>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+          <lightning-card title="Campaign" icon-name={getCampaign__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Campaign__c"
+                variant="label-hidden" onchange={handleFieldChange}
+                disabled={isHistoryEvent}
+                required="true"></lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Sign-up Insights" icon-name={getSign_up_Insights__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Sign_up_Insights__c"
+                variant="label-hidden"
+                disabled={isHistoryEvent}
+                class="signUpInsights"
+                onchange={handleFieldChange}></lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Objection Reason" icon-name={getObjection_Reason__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Objection_Reason__c"
+                variant="label-hidden"
+                disabled={isHistoryEvent}
+                class="objectionReason"
+                onchange={handleFieldChange}></lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Interaction Log" icon-name={getInteraction_Notes__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Interaction_Notes__c"
+                variant="label-hidden" onchange={handleFieldChange}
+                disabled={isHistoryEvent}>
+              </lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Interaction Type" icon-name={getInteraction_Type__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Interaction_Type__c"
+                variant="label-hidden"
+                disabled={isHistoryEvent}
+                onchange={handleFieldChange} required="true"></lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Interaction Result" icon-name={getInteraction_Result__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Interaction_Result__c" variant="label-hidden"
+                disabled={isHistoryEvent}
+                onchange={handleFieldChange}></lightning-input-field>
+            </p>
+          </lightning-card>
+          <lightning-card title="Third Party delivery"
+            icon-name={getThird_Party_Delivery__cIcon}>
+            <p class="slds-p-horizontal_small">
+              <lightning-input-field field-name="Third_Party_Delivery__c" variant="label-hidden"
+                disabled={isHistoryEvent}
+                onchange={handleFieldChange}></lightning-input-field>
+            </p>
+          </lightning-card>
+        </div>
+      </div>
+      <div class="slds-m-top_medium slds-align_absolute-center">
+        <lightning-button label="Save" title="Save" onclick={onSave}></lightning-button>
+      </div>
+    </lightning-record-edit-form>
+  </lightning-card>
+</template>

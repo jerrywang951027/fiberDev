@@ -1,0 +1,16 @@
+product_bundles_request {
+    address_id: "ADFAKE0901000017"
+  }
+  selected_products {
+    product {
+      product_code: "fiber_1000"
+    }
+    quantity: 1
+  }
+  selected_products {
+    product {
+      product_code: "phone"
+    }
+    quantity: 1
+  }
+  

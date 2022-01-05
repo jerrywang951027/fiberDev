@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+  <apiVersion>52.0</apiVersion>
+  <runtimeNamespace>vlocity_cmt</runtimeNamespace>
+  <isExposed>true</isExposed>
+  <description>Component to display mobile number as labels in radio button
+  </description>
+  <targets>
+    <target>lightning__RecordPage</target>
+  </targets>
+</LightningComponentBundle>

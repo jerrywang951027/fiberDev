@@ -1,0 +1,62 @@
+{
+    "success": true,
+    "AllAssets": [
+        {
+            "One Time Total": "$0.00",
+            "Recurring Total": "$70.00",
+            "Provisioning Status": "Active",
+            "Product Name": "1 Gig",
+            "Status": null,
+            "Quantity": 1.00,
+            "Serial Number": null,
+            "Activation Date": null,
+            "Asset Name": "1 Gig",
+            "RootItemId": "02i8G000000BHSMQA4",
+            "LineNumber": "0001",
+            "Id": "02i8G000000BHSMQA4"
+        },
+        {
+            "One Time Total": "$0.00",
+            "Recurring Total": "$0.00",
+            "Provisioning Status": "Active",
+            "Product Name": "Additional Storage",
+            "Status": null,
+            "Quantity": 1.00,
+            "Serial Number": null,
+            "Activation Date": null,
+            "Asset Name": "Additional Storage",
+            "RootItemId": "02i8G000000BHSMQA4",
+            "LineNumber": "0001.0001",
+            "Id": "02i8G000000BHSNQA4"
+        },
+        {
+            "One Time Total": "$0.00",
+            "Recurring Total": "$0.00",
+            "Provisioning Status": "Active",
+            "Product Name": "Google Wifi",
+            "Status": null,
+            "Quantity": 1.00,
+            "Serial Number": null,
+            "Activation Date": null,
+            "Asset Name": "Google Wifi",
+            "RootItemId": "02i8G000000BHSMQA4",
+            "LineNumber": "0001.0002",
+            "Id": "02i8G000000BHSOQA4"
+        },
+        {
+            "One Time Total": "$0.00",
+            "Recurring Total": "$0.00",
+            "Provisioning Status": "Active",
+            "Product Name": "Google Wifi",
+            "Status": null,
+            "Quantity": 1.00,
+            "Serial Number": null,
+            "Activation Date": null,
+            "Asset Name": "Google Wifi",
+            "RootItemId": "02i8G000000BHSMQA4",
+            "LineNumber": "0001.0003",
+            "Id": "02i8G000000BHSPQA4"
+        }
+    ],
+    "error": "OK"
+}

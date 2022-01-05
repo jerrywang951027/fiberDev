@@ -1,0 +1,12 @@
+.serial-number{
+    margin:25px;
+    width:60%;
+    margin-top:10px;
+}
+.serial{
+    height: 34px;
+}
+th,td {
+    text-align: center;
+}
+.lbt:hover{ background-color: #cccccc}

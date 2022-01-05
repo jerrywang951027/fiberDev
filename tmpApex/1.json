@@ -1,0 +1,32 @@
+[
+    {
+        "ContextId": "02i8G000000BHSMQA4+0018G000008xDZkQAM",
+        "timeStamp": "2021-12-08T22:53:18.882Z",
+        "userId": "0058G000000NARmQAO",
+        "userName": "mdshariquen@google.com.fiberv3.devpro",
+        "userProfile": "Google System Admin",
+        "userTimeZone": -480,
+        "userCurrencyCode": "USD",
+        "tour": "",
+        "sfdcIFrameOrigin": "https://fiber-v3--devpro.lightning.force.com",
+        "sfdcIFrameHost": "web",
+        "nonce": "5b165e37cbab301c9d91fe9bceee90dd117ca342aaa9bea87fdf4c3fa8b4444b",
+        "ltn_app_id": "06m8G0000004QlPQAU",
+        "isdtp": "p1",
+        "id": "02i8G000000BHSMQA4",
+        "clc": "0",
+        "vlcPersistentComponent": {},
+        "vlcTimeTracking": {},
+        "SelectInOutDate": {
+            "MoveOutDate": null,
+            "MoveInDate": null,
+            "DateTest": null,
+            "Move Date Error": null
+        }
+    },
+    {
+        "preTransformBundle": "",
+        "postTransformBundle": "",
+        "vlcClass": "OmniMoveAssetWrapper"
+    }
+]

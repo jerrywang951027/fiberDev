@@ -1,0 +1,150 @@
+<template>
+  <div class="slds-grid slds-gutters">
+    <div class="slds-col slds-size_1-of-4 slds-p-right_none">
+    <lightning-card>
+      <div class="slds-m-top_small slds-m-bottom_medium">
+      <div class="slds-p-around_medium lgc-bg">
+        <div class="slds-text-heading_large slds-text-title_bold">
+        Select Warehouse
+        </div>
+        <br/>
+        <!-- Select Warehouse on Side-bar -->
+        <div>
+        <c-warehouse-actions
+          selected-value={selectedValue}
+        ></c-warehouse-actions>
+        </div>
+      </div>
+      </div>
+      <div
+      class="
+        slds-text-heading_large
+        slds-text-title_bold
+        slds-p-bottom_none
+        slds-p-left_medium
+      "
+      >
+      Warehouse Actions
+      </div>
+  
+      <!-- Side-bar action, to select any view -->
+      <div class="slds-p-top_none">
+      <lightning-vertical-navigation onselect={handleSelect}>
+        <lightning-vertical-navigation-section>
+        <lightning-vertical-navigation-item
+          label="Spares Fulfillment"
+          name="spares_fulfillment"
+        ></lightning-vertical-navigation-item>
+        <lightning-vertical-navigation-item
+          label="Onhand Devices"
+          name="onhand_devices"
+        ></lightning-vertical-navigation-item>
+        <lightning-vertical-navigation-item
+          label="Resolve Pre-Assigned"
+          name="resolve_pre_assigned"
+        ></lightning-vertical-navigation-item>
+        <lightning-vertical-navigation-item
+          label="Resolve Lost Pending Receipt"
+          name="resolve_lost"
+        ></lightning-vertical-navigation-item>
+        <lightning-vertical-navigation-item
+          label="Technician End Of Day"
+          name="end_of_day"
+        ></lightning-vertical-navigation-item>
+        </lightning-vertical-navigation-section>
+      </lightning-vertical-navigation>
+      </div>
+
+      <!-- Side-bar search component -->
+      <div class="slds-m-top_medium slds-m-bottom_x-large">
+      <div class="slds-p-around_medium lgc-bg">
+        <div class="slds-text-heading_large slds-text-title_bold">
+        Search
+        </div>
+        <lightning-input
+        type="text"
+        data-formfield="serialnumber"
+        placeholder="Serial Number"
+        ></lightning-input>
+        <lightning-input
+        type="text"
+        data-formfield="techname"
+        placeholder="Tech Username(s)"
+        ></lightning-input>
+        <lightning-input
+        type="text"
+        data-formfield="gpn"
+        placeholder="GPN"
+        ></lightning-input>
+        <!-- Drop down list for status -->
+        <lightning-combobox
+        name="status"
+        class="start-select"
+        value={selectedStatus}
+        placeholder="Status"
+        onchange={handleStatusChange}
+        data-formfield="status"
+        options={getStatusValue}
+        >
+        </lightning-combobox>
+        <br />
+        <button
+        onclick={handleSearch}
+        class="slds-button slds-button_brand slds-button_stretch"
+        >
+        Search
+        </button>
+      </div>
+      </div>
+    </lightning-card>
+    </div>
+  
+    <!-- Based on screen selection, call child component -->
+    <div class="slds-col slds-size_3-of-4">
+    <lightning-card>
+      <!-- When Spare-Fulfillment was selected from side-bar -->
+      <template if:true={sparefulfillmentShow}>
+      <c-warehouse-view warehouse={selectedValue}></c-warehouse-view>
+      </template>
+  
+      <!-- When OnHand was selected from side-bar -->
+      <template if:true={onhandDevicesShow}>
+      <c-onhand-devices
+        warehouse={warehouseFromScreen}
+        warehouseaccess={warehouseAccessFromPublicGroup}
+      ></c-onhand-devices>
+      </template>
+  
+      <!-- When Resolve Pre-Assignes was selected from side-bar -->
+      <template if:true={resolvePreAssignedShow}>
+      <c-resolve-pre-assigned
+        warehouse={selectedValue}
+      ></c-resolve-pre-assigned>
+      </template>
+  
+      <!-- When Technician End of Day was selected from side-bar -->
+      <template if:true={technicianEndOfDayShow}>
+      <c-i2ms-warehouse-technician-end-of-day></c-i2ms-warehouse-technician-end-of-day>
+      </template>
+  
+      <!-- When Resolve Lost Pending was selected from side-bar -->
+      <template if:true={resolveLostPendingShow}>
+      <c-resolve-lost-pending-receipt
+        warehouse={selectedValue}
+      ></c-resolve-lost-pending-receipt>
+      </template>
+  
+      <!-- When Search was clicked on side-bar -->
+      <template if:true={warehouseSearchShow}>
+      <c-warehouse-search-element
+        warehouse={selectedValue}
+        serialnumber={serialnumberSearch}
+        techname={technameSearch}
+        gpn={gpnSearch}
+        status={statusSearch}
+      ></c-warehouse-search-element>
+      </template>
+    </lightning-card>
+    </div>
+  </div>
+  </template>

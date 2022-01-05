@@ -1,0 +1,132 @@
+<template>
+  <template if:true={hasDeviceId}>
+    <div class="slds-var-p-around_small">
+      <div class="slds-var-p-top_x-small">
+        <lightning-layout class="slds-var-m-bottom_small">
+          <lightning-layout-item size="10" padding="slds-p-top_xx-small">
+            <lightning-icon icon-name={deviceIcon} size="small" alternative-text={deviceIcon}
+                class="device-return-icon-color" title={device.productSubType}>
+            </lightning-icon>
+            <span class="slds-var-m-left_small slds-text-heading_small">
+              <strong>{device.productName}</strong>
+            </span>
+          </lightning-layout-item>
+          <lightning-layout-item
+              size="2"
+              padding="slds-p-top_xx-small"
+              class="slds-text-align_right">
+            <div class={deviceProvisioningStatusColor}>
+              <lightning-icon
+                  class="slds-var-m-right_xx-small"
+                  icon-name="utility:record"
+                  size="x-small"
+                  alternative-text={device.provisioningStatus}
+                  title={device.provisioningStatus}>
+              </lightning-icon>
+              <lightning-formatted-text
+                  class={deviceProvisioningStatusColor}
+                  value={device.provisioningStatus}></lightning-formatted-text>
+            </div>
+          </lightning-layout-item>
+        </lightning-layout>
+      </div>
+      <lightning-layout>
+        <div class="slds-grid device-return">
+          <lightning-layout-item size="9" padding="slds-p-top_xx-small">
+            <div class="slds-grid">
+              <div class="slds-size_7-of-12 device-return-font-size">
+                <div>
+                  <span>Serial Number:</span>
+                  <span class="device-return-text-bold slds-var-p-left_xx-small">
+                      {device.serialNumber}</span>
+                </div>
+                <div>
+                  <span>Model:</span>
+                  <span class="device-return-text-bold slds-var-p-left_xx-small">
+                      {device.deviceModel}</span>
+                </div>
+                <div>
+                  <span>Location:</span>
+                  <span class="device-return-text-bold slds-var-p-left_xx-small">
+                      {device.deviceLocation}</span>
+                </div>
+                <div>
+                  <span>Ownership:</span>
+                  <span class="device-return-text-bold slds-var-p-left_xx-small">
+                      {device.deviceOwner}</span>
+                </div>
+              </div>
+              <div class="slds-size_5-of-12 device-return-font-size">
+              <div>
+                <span>Billing:</span>
+                <span class="device-return-text-bold slds-var-p-left_xx-small">
+                    {device.effectiveOneTimeTotal}</span>
+              </div>
+                <div>
+                  <span>Connect Date:</span>
+                  <span class="device-return-text-bold slds-var-p-left_xx-small">
+                    <lightning-formatted-date-time
+                        value={device.deviceInstallDate}
+                        year="numeric"
+                        month="numeric"
+                        day="numeric">
+                    </lightning-formatted-date-time>
+                  </span>
+                </div>
+                <div>
+                  <span>Remove Date:</span>
+                  <span class="device-return-text-bold slds-var-p-left_xx-small">
+                    <lightning-formatted-date-time
+                        value={device.deviceDisconnectDate}
+                        year="numeric"
+                        month="numeric"
+                        day="numeric">
+                    </lightning-formatted-date-time>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </lightning-layout-item>
+          <lightning-layout-item size="3" padding="slds-p-around_xxx-small">
+            <div class="device-return-button-alignment device-return-text-bold
+                device-return-font-size">
+              <lightning-button-menu alternative-text="Update Device" label="Update Device"
+                  onselect={handleComboboxSelection}>
+                <lightning-menu-item value="return" label="Return" disabled={disableReturnButton}>
+                </lightning-menu-item>
+                <lightning-menu-item value="swap" label="Swap"> <!-- disabled={isActiveAsset}-->
+                </lightning-menu-item>
+                <lightning-menu-item value="reportLostOrStolen" label="Report Lost/Stolen" disabled={isDisableReportLostOrStolenButton}>
+                </lightning-menu-item>
+              </lightning-button-menu>
+              <div class="slds-var-m-top_x-small">
+                <lightning-button variant="brand-outline"
+                    icon-name="standard:return_order"
+                    label="Return Details"
+                    title="Return Details"
+                    disabled={disableReturnButton}
+                    onclick={openDeviceDetailsModal}
+                    class="device-return-button-height"></lightning-button>
+              </div>
+            </div>
+          </lightning-layout-item>
+        </div>
+      </lightning-layout>
+      <c-service-console-device-return-details device-details={device}>
+      </c-service-console-device-return-details>
+      <c-service-console-device-swap device={device}>
+      </c-service-console-device-swap>
+      <c-service-console-device-return-flyout device={device} is-order-line-item={isOrderLineItem}>
+      </c-service-console-device-return-flyout>
+      <vlocity_cmt-modal size="medium">
+        <div slot="content" style="position: relative;">
+          <c-c-o-n-report-lost-or-stolen-english if:true={isRestoreLostOrStolenSelected}
+              prefill={contextIdForLostOrStolenDevice}
+              layout="lightning"></c-c-o-n-report-lost-or-stolen-english>
+        </div>
+        <div slot="footer">
+        </div>
+      </vlocity_cmt-modal>
+    </div>
+  </template>
+</template>

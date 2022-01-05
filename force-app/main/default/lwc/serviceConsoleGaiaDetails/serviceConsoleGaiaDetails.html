@@ -1,0 +1,66 @@
+<template>
+  <div>
+    <template if:true={isAccordionOpened}>
+      <div class="gaia-details-header" onclick={toggleAccordion}>
+        <lightning-icon icon-name="utility:chevrondown" size="xx-small"
+            alternative-text="Opened" title="Opened"
+            class="gaia-details-icon slds-var-p-left_xx-small">
+        </lightning-icon>
+        <span class="slds-var-p-left_xx-small">GAIA Disabled</span>
+      </div>
+      <div class="slds-var-p-around_xx-small slds-text-align_center">
+        <div class="slds-grid slds-border_bottom slds-border_left slds-border_right
+            slds-border_top gaia-table-row">
+          <div class="slds-col slds-size_6-of-12 slds-border_right slds-var-p-top_x-small
+              slds-var-p-bottom_x-small">Id</div>
+          <div class="slds-col slds-size_6-of-12 slds-var-p-top_x-small
+              slds-var-p-bottom_x-small">
+            <strong>{gaiaDetails.userId}</strong>
+          </div>
+        </div>
+        <div class="slds-grid slds-border_bottom slds-border_left slds-border_right
+            gaia-table-row">
+          <div class="slds-col slds-size_6-of-12 slds-border_right slds-var-p-top_x-small
+              slds-var-p-bottom_x-small">Created Date</div>
+          <div class="slds-col slds-size_6-of-12 slds-var-p-top_x-small
+              slds-var-p-bottom_x-small">
+            <strong>
+              <lightning-formatted-date-time
+                  value={gaiaDetails.creationTime}
+                  year="numeric"
+                  month="numeric"
+                  day="numeric"></lightning-formatted-date-time>
+            </strong>
+          </div>
+        </div>
+        <div class="slds-grid slds-border_bottom slds-border_left slds-border_right
+            gaia-table-row">
+          <div class="slds-col slds-size_6-of-12 slds-border_right slds-var-p-top_x-small
+              slds-var-p-bottom_x-small">Verified</div>
+          <div class="slds-col slds-size_6-of-12 slds-var-p-top_x-small
+              slds-var-p-bottom_x-small">
+            <strong>{gaiaDetails.verified}</strong>
+          </div>
+        </div>
+        <div class="slds-grid slds-border_bottom slds-border_left slds-border_right
+            gaia-table-row">
+          <div class="slds-col slds-size_6-of-12 slds-border_right slds-var-p-top_x-small
+              slds-var-p-bottom_x-small">Disabled</div>
+          <div class="slds-col slds-size_6-of-12 slds-var-p-top_x-small
+              slds-var-p-bottom_x-small">
+            <strong>{gaiaDetails.disabled}</strong>
+          </div>
+        </div>
+      </div>
+    </template>
+    <template if:false={isAccordionOpened}>
+      <div class="gaia-details-header" onclick={toggleAccordion}>
+        <lightning-icon icon-name="utility:chevronright" size="xx-small"
+            alternative-text="Closed" title="Closed"
+            class="gaia-details-icon slds-var-p-left_xx-small">
+        </lightning-icon>
+        <span class="slds-var-p-left_xx-small">GAIA Disabled</span>
+      </div>
+    </template>
+  </div>
+</template>

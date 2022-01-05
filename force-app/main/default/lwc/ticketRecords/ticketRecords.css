@@ -1,0 +1,16 @@
+/*ticketRecords.css*/
+.radio-group-label {
+    font-weight: 400;
+    font-size: 14px;
+}
+/*
+.navigation-button-container {
+    position: absolute;
+    bottom: 16px;
+    right: 175px;
+}
+*/
+.disable-button {
+    opacity: 0.4;
+    pointer-events: none;
+}

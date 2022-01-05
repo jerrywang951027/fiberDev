@@ -1,0 +1,28 @@
+<template>
+  <ul if:true={notificationList}>
+    <template for:each={notificationList} for:item="notification">
+      <li key={notification.id} class="slds-m-bottom_xx-small">
+        <vlocity_cmt-alert
+            class={notification.styleClass}
+            theme="slds"
+            icon={notification.icon}
+            variation={notification.variant}
+            dismissible="true">
+          <lightning-formatted-rich-text
+              value={notification.message}></lightning-formatted-rich-text>
+          <div if:true={notification.isTicketId}>
+            <strong>
+              <span class="slds-m-right_xxx-small">Outage Id:</span>
+              <lightning-button
+                  variant="base"
+                  label={notification.id}
+                  title={notification.id}
+                  value={notification.id}
+                  onclick={loadTicketDetails}></lightning-button>
+            </strong>
+          </div>
+        </vlocity_cmt-alert>
+      </li>
+    </template>
+  </ul>
+</template>

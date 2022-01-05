@@ -1,0 +1,33 @@
+<template>
+  <lightning-button-menu class="button-menu-styling slds-show slds-m-bottom_x-small full-width"
+      label="Options" menu-alignment="right" onselect={onOptionClick}>
+    <lightning-menu-item value={option.CANCEL} label={option.CANCEL} disabled={isShowCancel}>
+        </lightning-menu-item>
+    <lightning-menu-item value={option.CONFIGURE} label={option.CONFIGURE}
+        disabled={isShowConfigure}></lightning-menu-item>
+    <lightning-menu-item value={option.RESCHEDULE} label={option.RESCHEDULE}
+        disabled={isShowReschdule}></lightning-menu-item>
+    <lightning-menu-item value={optionValue.RETURN_DEVICES} label={option.RETURN_DEVICES}
+        disabled={isShowReturnDevices}></lightning-menu-item>
+    <lightning-menu-item value={optionValue.SIK_PICKUP} label={option.SIK_PICK_UP}
+        disabled={isShowSIKPickup}></lightning-menu-item>
+    <lightning-menu-item value={optionValue.RESCHEDULE_APPOINTMENT}
+        label={option.RESCHEDULE_APPOINTMENT}
+        disabled={isShowReschduleAppointment}></lightning-menu-item>
+  </lightning-button-menu>
+  <vlocity_cmt-modal size="medium">
+    <div slot="content" style="position: relative;">
+      <c-c-o-n-cancel-order-english if:true={isCancelSelected}
+          prefill={contextId}
+          layout="lightning"></c-c-o-n-cancel-order-english>
+      <c-c-o-n-inflight-order-details-english if:true={isConfigureSelected}
+          prefill={contextId}
+          layout="lightning"></c-c-o-n-inflight-order-details-english>
+      <c-c-o-n-selfinstall-kit-english if:true={isSIKPickUpSelected}
+          prefill={contextIdForSIKPickup}
+          layout="lightning"></c-c-o-n-selfinstall-kit-english>
+    </div>
+    <div slot="footer">
+    </div>
+  </vlocity_cmt-modal>
+</template>

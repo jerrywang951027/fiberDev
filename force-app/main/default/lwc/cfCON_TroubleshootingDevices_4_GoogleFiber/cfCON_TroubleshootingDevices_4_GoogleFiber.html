@@ -1,0 +1,58 @@
+<template>
+            <div class="slds-grid slds-wrap slds-is-relative">
+            <div if:false={cardLoaded} class="slds-is-absolute vloc-loader_override" style="height: 100%; width: 100%; min-height:50px; background: white; z-index: 99;">
+  <div>
+   <vlocity_cmt-spinner
+      variant="brand"
+      alternative-text="Loading content..."
+      size="medium"
+      theme="slds"
+      ></vlocity_cmt-spinner>
+  </div>
+</div>
+            <template if:false={hasPermission}>
+              You don't have required permissions to view this card.
+            </template>
+            <template if:true={hasPermission}>
+              <template if:true={hasRecords}>
+                      <vlocity_cmt-flex-card-state   data-statue="true"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%20class=%22slds-text-align_center%22%3ENo%20devices%20available%20to%20troubleshoot%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div>
+      </vlocity_cmt-flex-card-state><vlocity_cmt-flex-card-state   data-statue="true"  data-index="1" data-rindex={rindex} class="cf-vlocity-state-1 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div class="slds-col    slds-large-size_12-of-12  slds-medium-size_3-of-12  slds-small-size_12-of-12  slds-size_12-of-12  " style="      
+         "><c-cf-c-o-n_-troubleshooting-device-information  tracking-obj={_childCardTrackingObj}   card-node="\{records}"  records={_records}  parent-record={record}  record-id={recordId}  is-child-card-tracking-enabled="false"  theme="slds"  omni-json-def={omniJsonDef} omni-script-header-def={omniScriptHeaderDef} omni-custom-state={omniCustomState} omni-json-data={omniJsonData}  onupdateparent={updateParentData}></c-cf-c-o-n_-troubleshooting-device-information>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                </template>
+                <template if:false={hasRecords}>
+                      <vlocity_cmt-flex-card-state   data-statue="false"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div class="slds-col   slds-size_12-of-12 " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%20class=%22slds-text-align_center%22%3ENo%20devices%20available%20to%20troubleshoot%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div>
+      </vlocity_cmt-flex-card-state><vlocity_cmt-flex-card-state   data-statue="false"  data-index="1" data-rindex={rindex} class="cf-vlocity-state-1 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div class="slds-col    slds-large-size_12-of-12  slds-medium-size_3-of-12  slds-small-size_12-of-12  slds-size_12-of-12  " style="      
+         "><c-cf-c-o-n_-troubleshooting-device-information  tracking-obj={_childCardTrackingObj}   card-node="\{records}"  records={_records}  parent-record={record}  record-id={recordId}  is-child-card-tracking-enabled="false"  theme="slds"  omni-json-def={omniJsonDef} omni-script-header-def={omniScriptHeaderDef} omni-custom-state={omniCustomState} omni-json-data={omniJsonData}  onupdateparent={updateParentData}></c-cf-c-o-n_-troubleshooting-device-information>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                </template>
+            </template>
+            <template if:true={hasError}>
+            {error}
+            </template>
+            
+      <vlocity_cmt-action action-wrapperclass="slds-hide" re-render-flyout class="action-trigger slds-col" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+      
+      </vlocity_cmt-action>
+  
+            <vlocity_cmt-action class="execute-action" re-render-flyout action-wrapperclass="slds-hide" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+            
+            </vlocity_cmt-action>
+            </div>
+          </template>

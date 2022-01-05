@@ -1,0 +1,4 @@
+.table-height {
+  max-height:  450px;
+  overflow-y: auto;
+}

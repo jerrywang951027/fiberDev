@@ -1,0 +1,18 @@
+<template>
+  <div class="slds-p-horizontal_large">
+    <div if:false={isValid} class="slds-m-bottom_large">
+      <vlocity_cmt-alert
+          theme="slds"
+          variation="error"
+          icon="utility:error"
+          message={validationErrorMessage}></vlocity_cmt-alert>
+    </div>
+    <div class="slds-text-align_right">
+      <lightning-button
+          variant="brand"
+          label={buttonLabel}
+          title="Next"
+          onclick={validatePauseService}></lightning-button>
+    </div>
+  </div>
+</template>

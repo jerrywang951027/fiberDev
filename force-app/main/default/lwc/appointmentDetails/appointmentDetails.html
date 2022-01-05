@@ -1,0 +1,14 @@
+<template>
+  <div class="radio-group-container">
+    <lightning-radio-group
+      if:true={appointmentsAvailable}
+      name="radioGroup"
+      label="Select new available Appointment times"
+      options={appointmentOptions}
+      value={value}
+      onchange={onRadioSelection}
+      type="radio"
+      required=true>
+    </lightning-radio-group>
+  </div>
+</template>

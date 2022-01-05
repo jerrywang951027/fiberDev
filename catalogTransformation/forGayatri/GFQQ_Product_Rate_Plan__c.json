@@ -1,0 +1,22 @@
+{
+    "totalSize": 1,
+    "done": true,
+    "records": [
+        {
+            "attributes": {
+                "type": "GFQQ_Product_Rate_Plan__c",
+                "url": "/services/data/v52.0/sobjects/GFQQ_Product_Rate_Plan__c/a8L0n0000004X7EEAU"
+            },
+            "Criteria__c": "address.isResidential && !address.isFiberInside && !address.isAffordableHousing && !address.courtesyInfo.courtesyInternet",
+            "Effective_End_Date__c": null,
+            "Effective_Start_Date__c": null,
+            "Fiber_Market__c": "Atlanta, GA;Austin, TX;Charlotte, NC;Huntsville, AL;Kansas City, KS;Kansas City, MO;Nashville, TN;Orange County;Provo, UT;Salt Lake City, UT;San Antonio, TX;The Triangle;San Jose, CA;Stanford, CA;West Des Moines, IA",
+            "Id": "a8L0n0000004X7EEAU",
+            "Line_Item_Message__c": null,
+            "Name": "fiber_1000",
+            "Product_Plan_Rate_Code__c": "prp_fiber_1000",
+            "Product__c": "a870n000000CWK9AAO",
+            "Zuora_Product_Rate_Plan_Id__c": null
+        }
+    ]
+}

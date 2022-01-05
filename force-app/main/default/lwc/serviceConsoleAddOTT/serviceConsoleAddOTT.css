@@ -1,0 +1,13 @@
+.ott-header {
+  color: #fff;
+  height: 27px;
+  padding: 3px 0 0 5px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+.ott-credit {
+  background-color: #87b357;
+}
+.ott-debit {
+  background-color: #ba0517
+}

@@ -1,0 +1,7 @@
+/*ticketTreeGrid.css*/
+.clickable-link {
+    color: #0176d3;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 5px;
+}

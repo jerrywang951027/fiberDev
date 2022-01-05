@@ -1,0 +1,13 @@
+<template>
+  <lightning-card  title="Worklog History" icon-name="standard:case">
+    <div>
+      <lightning-datatable
+        key-field="Id"
+        columns={columns}
+        data={records}
+        hide-checkbox-column="true"
+        enable-infinite-loading="true">
+      </lightning-datatable>
+    </div>
+  </lightning-card>
+</template>

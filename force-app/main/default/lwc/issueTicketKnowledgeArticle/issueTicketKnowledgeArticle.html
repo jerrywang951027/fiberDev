@@ -1,0 +1,25 @@
+<template>
+  <lightning-spinner if:true={isSpinnerLoaded} variant="brand" alternative-text="Loading" size="small">
+  </lightning-spinner>
+  <div class="slds-m-vertical_medium slds-border_left slds-border_right slds-border_top slds-border_bottom">
+    <h2 class="slds-p-vertical_x-small slds-p-horizontal_x-small slds-text-heading_small slds-theme_shade">
+      Related KB Articles
+    </h2>
+  </div>
+  <div class="slds-p-vertical_x-small slds-p-horizontal_x-small">
+    <ul if:true={articles}>
+      <template for:each={articles} for:item="article"
+        class='slds-border_left slds-border_right slds-border_top slds-border_bottom slds-m-vertical_medium'>
+        <li key={article.Id} if:true={article.isData}>
+          <p class='break-word slds-border_bottom slds-m-vertical_medium'>
+            <lightning-formatted-url value={article.url} label={article.title} target="_blank">
+            </lightning-formatted-url>
+          </p>
+        </li>
+      </template>
+    </ul>
+    <div if:true={error}>
+      <lightning-formatted-text value={error}></lightning-formatted-text>
+    </div>
+  </div>
+</template>

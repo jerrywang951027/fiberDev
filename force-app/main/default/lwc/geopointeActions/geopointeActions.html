@@ -1,0 +1,22 @@
+<template>
+  <lightning-card>
+    <div if:true={isSignUpFlow}>
+      <c-g-e-o-lead-management-sign-up-flow-english
+        layout="lightning"
+        prefill={omniscriptParameters}>
+      </c-g-e-o-lead-management-sign-up-flow-english>
+    </div>
+    <div if:true={isInProgressFlow}>
+      <c-g-e-o-lead-management-in-progress-flow-english
+        layout="lightning"
+        prefill={omniscriptParameters}>
+      </c-g-e-o-lead-management-in-progress-flow-english>
+    </div>
+    <div if:true={isDisqualifiedFlow}>
+      <c-g-e-o-lead-management-disqualified-flow-english
+        layout="lightning"
+        prefill={omniscriptParameters}>
+      </c-g-e-o-lead-management-disqualified-flow-english>
+    </div>
+  </lightning-card>
+</template>

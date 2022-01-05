@@ -1,0 +1,20 @@
+.slds-box {
+  position: relative;
+  max-height: 12.5rem;
+  overflow-y: auto;
+}
+.slds-box .slds-has-dividers_top > .slds-item:first-child {
+  border-top: 0 none;
+}
+.slds-box .slds-has-dividers_top > .slds-item:first-child a {
+  padding-top: 0;
+}
+.slds-box a {
+  text-decoration: none;
+}
+.slds-button-position-right {
+  padding-right:10px;
+}
+.slds-button-position-bottom {
+  padding-bottom: 20px;
+}

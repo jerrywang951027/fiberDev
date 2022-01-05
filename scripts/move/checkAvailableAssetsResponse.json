@@ -1,0 +1,65 @@
+{
+    "SelectAsset": [
+        {
+            "Availability": "Available",
+            "Id": "02i8G000000BHSMQA4",
+            "LineNumber": "0001",
+            "RootItemId": "02i8G000000BHSMQA4",
+            "Asset Name": "1 Gig",
+            "Activation Date": null,
+            "Serial Number": null,
+            "Quantity": 1,
+            "Status": null,
+            "Product Name": "1 Gig",
+            "Provisioning Status": "Active",
+            "Recurring Total": "$70.00",
+            "One Time Total": "$0.00"
+        },
+        {
+            "Availability": "Available",
+            "Id": "02i8G000000BHSNQA4",
+            "LineNumber": "0001.0001",
+            "RootItemId": "02i8G000000BHSMQA4",
+            "Asset Name": "Additional Storage",
+            "Activation Date": null,
+            "Serial Number": null,
+            "Quantity": 1,
+            "Status": null,
+            "Product Name": "Additional Storage",
+            "Provisioning Status": "Active",
+            "Recurring Total": "$0.00",
+            "One Time Total": "$0.00"
+        },
+        {
+            "Availability": "Available",
+            "Id": "02i8G000000BHSOQA4",
+            "LineNumber": "0001.0002",
+            "RootItemId": "02i8G000000BHSMQA4",
+            "Asset Name": "Google Wifi",
+            "Activation Date": null,
+            "Serial Number": null,
+            "Quantity": 1,
+            "Status": null,
+            "Product Name": "Google Wifi",
+            "Provisioning Status": "Active",
+            "Recurring Total": "$0.00",
+            "One Time Total": "$0.00"
+        },
+        {
+            "Availability": "Available",
+            "Id": "02i8G000000BHSPQA4",
+            "LineNumber": "0001.0003",
+            "RootItemId": "02i8G000000BHSMQA4",
+            "Asset Name": "Google Wifi",
+            "Activation Date": null,
+            "Serial Number": null,
+            "Quantity": 1,
+            "Status": null,
+            "Product Name": "Google Wifi",
+            "Provisioning Status": "Active",
+            "Recurring Total": "$0.00",
+            "One Time Total": "$0.00"
+        }
+    ],
+    "error": "OK"
+}

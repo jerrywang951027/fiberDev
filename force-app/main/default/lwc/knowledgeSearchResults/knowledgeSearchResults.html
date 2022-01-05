@@ -1,0 +1,74 @@
+<template>
+  <lightning-spinner
+      if:true={isSpinnerLoaded}
+      variant="brand"
+      alternative-text="Loading"
+      size="small">
+  </lightning-spinner>
+  <ul if:true={articles} class={listClassName}>
+    <template for:each={articles} for:item="article">
+      <li if:true={article.isData}
+          key={article.helpCenterName}
+          class={listItemClassName}>
+        <div class={listItemDivClassName}>
+          <h2 class="slds-p-vertical_x-small slds-p-horizontal_x-small
+              slds-text-heading_small slds-theme_shade">
+            {article.kBTitle}
+          </h2>
+          <template if:true={article.result}>
+            <ul class="slds-p-vertical_x-small slds-p-horizontal_x-small">
+              <template iterator:it={article.result}>
+                <li key={it.value.resultId}
+                    if:true={it.first}>
+                  <p class="break-word">
+                    <lightning-formatted-url
+                        value={it.value.url}
+                        label={it.value.title}
+                        target="_blank">
+                    </lightning-formatted-url>
+                  </p>
+                  <p class="slds-m-top_xx-small">
+                    <lightning-formatted-rich-text value={it.value.snippet}>
+                    </lightning-formatted-rich-text>
+                  </p>
+                </li>
+                <li key={it.value.resultId}
+                    if:false={it.first}
+                    class="slds-m-top_small slds-p-top_small slds-border_top">
+                  <p class="break-word">
+                    <lightning-formatted-url
+                        value={it.value.url}
+                        label={it.value.title}
+                        target="_blank">
+                    </lightning-formatted-url>
+                  </p>
+                  <p class="slds-m-top_xx-small">
+                    <lightning-formatted-rich-text value={it.value.snippet}>
+                    </lightning-formatted-rich-text>
+                  </p>
+                </li>
+              </template>
+            </ul>
+            <a href={article.url} target="_blank"
+                class="slds-p-vertical_x-small slds-p-horizontal_x-small
+                slds-border_top slds-button_brand slds-text-align_left block-element">
+              <p><strong>More results...</strong></p>
+              <p>Displaying <lightning-formatted-number value={article.recordLength}>
+                </lightning-formatted-number> of <lightning-formatted-text
+                    value={article.totalResults}>
+                </lightning-formatted-text>
+              </p>
+            </a>
+          </template>
+          <div if:true={article.error}
+              class="slds-p-vertical_x-small slds-p-horizontal_x-small">
+            <lightning-formatted-text value={article.error}></lightning-formatted-text>
+          </div>
+        </div>
+      </li>
+    </template>
+  </ul>
+  <div if:true={error} class="slds-box slds-m-top_medium">
+    <lightning-formatted-text value={error}></lightning-formatted-text>
+  </div>
+</template>

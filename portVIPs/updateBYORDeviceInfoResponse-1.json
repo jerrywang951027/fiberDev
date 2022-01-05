@@ -1,0 +1,129 @@
+{
+  "account": {
+    "metadata": {
+      "creationTimeMs": "1606766862156",
+      "lastUpdateTimeMs": "1639524529110"
+    },
+    "accountId": "6167922997",
+    "accountState": "ACTIVE",
+    "addressId": "ADFAKE0301030068",
+    "servicePlan": {
+      "internetService": {
+        "type": "GIGABIT",
+        "pricePlan": {
+          "monthlyFee": [
+            {
+              "perMonthPretaxInCents": 7000,
+              "isProratable": true
+            }
+          ]
+        },
+        "activationInfo": {
+          "activationTimeInMs": "1606769152370",
+          "billingStartTimeInMs": "1606809600000"
+        }
+      },
+      "device": [
+        {
+          "serialNo": "GSAFNS1441P0168",
+          "deviceType": "NETWORK_BOX",
+          "deviceModel": "GFRG210",
+          "pricePlan": {
+            "upfrontFee": {
+              "totalAmountPretaxInCents": 30000,
+              "waivedFee": {
+                "totalAmountPretaxInCents": 30000
+              }
+            },
+            "feeWaiverReason": "INCLUDED_IN_BUNDLE"
+          },
+          "termsAndConditions": {
+            "ownership": "OWNED_BY_GOOGLE_FIBER",
+            "bundling": "BUNDLED_DEVICE"
+          },
+          "installationStatus": "INSTALLED",
+          "deviceInstallationTimeMs": "1606769152946",
+          "associatedGaiaId": "858374464871",
+          "role": [
+            "NETWORK_BOX",
+            "STORAGE_BOX"
+          ],
+          "activationInfo": {
+            "activationTimeInMs": "1606769152946",
+            "billingStartTimeInMs": "1606809600000"
+          }
+        },
+        {
+          "serialNo": "GVAOFG173039756",
+          "deviceType": "VOICE_BOX",
+          "deviceModel": "GFPB100",
+          "pricePlan": {
+            "upfrontFee": {
+              "totalAmountPretaxInCents": 5000,
+              "waivedFee": {
+                "totalAmountPretaxInCents": 5000
+              }
+            },
+            "feeWaiverReason": "INCLUDED_IN_BUNDLE"
+          },
+          "termsAndConditions": {
+            "ownership": "OWNED_BY_GOOGLE_FIBER",
+            "bundling": "BUNDLED_DEVICE"
+          },
+          "installationStatus": "INSTALLED",
+          "deviceInstallationTimeMs": "1622846384185",
+          "role": [
+            "VOICE_BOX"
+          ],
+          "activationInfo": {
+            "activationTimeInMs": "1622846384185",
+            "billingStartTimeInMs": "1625122800000"
+          }
+        }
+      ],
+      "internalName": "gig",
+      "name": "1 Gig",
+      "hasPendingServicePlanChanges": false,
+      "voiceService": {
+        "pricePlan": {
+          "monthlyFee": [
+            {
+              "perMonthPretaxInCents": 1000,
+              "isProratable": true
+            }
+          ],
+          "feeWaiverReason": "INCLUDED_IN_BUNDLE"
+        },
+        "activationInfo": {
+          "activationTimeInMs": "1622581175151",
+          "billingStartTimeInMs": "1622581175151"
+        }
+      },
+      "byorDeviceModel": "AR100",
+      "byorDeviceMake": "ARRIS",
+      "byorDetectedRouterManufacturer": "Google, Inc.",
+      "planChangeTimeInMs": "1626459781106"
+    },
+    "billing3Info": {
+      "billingState": "KNOWN_TO_B3",
+      "orderlineKeyPrefix": "1",
+      "gaiaId": "483834206321",
+      "billing3Pcid": {
+        "billing3PacId": {
+          "billableServiceId": "70018",
+          "accountKey": "4836241655",
+          "orderLineKeyPrefix": 1
+        },
+        "orderLineKey": "4836241655",
+        "orderLineKeyPrefix": 1
+      },
+      "attemptedCreationTimeMs": "1606766861201"
+    },
+    "user": [
+      {
+        "gaiaId": "483834206321",
+        "isPrimaryAccountHolder": true
+      }
+    ]
+  }
+}

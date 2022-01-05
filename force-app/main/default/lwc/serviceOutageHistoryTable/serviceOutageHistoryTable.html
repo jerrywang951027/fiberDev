@@ -1,0 +1,56 @@
+<template>
+  <lightning-button
+      variant="brand"
+      label="Outage History"
+      title="Outage History"
+      class="slds-show slds-m-bottom_x-small full-width"
+      onclick={loadOutages}></lightning-button>
+  <vlocity_cmt-modal size="medium">
+    <div slot="header">
+      <h2 class="slds-text-align_left slds-text-heading_medium">Service Outages</h2>
+    </div>
+    <div slot="content" style="position: relative;">
+      <lightning-spinner
+          if:true={isSpinnerLoaded}
+          alternative-text="Loading"
+          size="small"
+          variant="brand"></lightning-spinner>
+      <vlocity_cmt-alert
+          if:true={isError}
+          theme="slds"
+          variation="error"
+          icon="utility:error"
+          class="slds-show slds-m-bottom_medium"
+          message={validationErrorMessage}></vlocity_cmt-alert>
+      <vlocity_cmt-data-table
+          theme="slds"
+          issortavailable="true"
+          pagelimit="3"
+          pagesize="6"
+          columns={columns}
+          records={serviceOutageList}>
+        <vlocity_cmt-data-table-cell
+            data-field-name="serviceAffected"
+            class="dataTableCell"></vlocity_cmt-data-table-cell>
+        <vlocity_cmt-data-table-cell
+            data-field-name="impact"
+            class="dataTableCell"></vlocity_cmt-data-table-cell>
+        <vlocity_cmt-data-table-cell
+            data-field-name="status"
+            class="dataTableCell"></vlocity_cmt-data-table-cell>
+        <vlocity_cmt-data-table-cell
+            data-field-name="fiberMarketStartTime"
+            class="dataTableCell"></vlocity_cmt-data-table-cell>
+        <vlocity_cmt-data-table-cell
+            data-field-name="fiberMarketEstimatedEndTime"
+            class="dataTableCell"></vlocity_cmt-data-table-cell>
+        <vlocity_cmt-data-table-cell
+            data-field-name="fiberMarketEndTime"
+            class="dataTableCell"></vlocity_cmt-data-table-cell>
+        <c-ticket-id-data-table-cell
+            data-field-name="ticketId"
+            class="dataTableCell"></c-ticket-id-data-table-cell>
+      </vlocity_cmt-data-table>
+    </div>
+  </vlocity_cmt-modal>
+</template>

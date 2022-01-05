@@ -1,0 +1,93 @@
+[
+    {
+        "ContextId": "02i8G000000BHSMQA4+0018G000008xDZkQAM",
+        "timeStamp": "2021-12-09T21:21:13.579Z",
+        "userId": "0058G000000NARmQAO",
+        "userName": "mdshariquen@google.com.fiberv3.devpro",
+        "userProfile": "Google System Admin",
+        "userTimeZone": -480,
+        "userCurrencyCode": "USD",
+        "tour": "",
+        "sfdcIFrameOrigin": "https://fiber-v3--devpro.lightning.force.com",
+        "sfdcIFrameHost": "web",
+        "nonce": "1f40c827b1efc8a1db08dcf8d482569f0daaa605989eab0d35359316c5ee6760",
+        "ltn_app_id": "06m8G0000004QlPQAU",
+        "isdtp": "p1",
+        "id": "02i8G000000BHSMQA4",
+        "clc": "0",
+        "vlcPersistentComponent": {},
+        "moveInAccountId": "0018G000008xDZkQAM",
+        "moveOutAccountId": "0018G000008xDZkQAM",
+        "assetId": "02i8G000000BHSMQA4",
+        "showAssetList": true,
+        "error": "OK",
+        "success": true,
+        "OrderId": "8018G0000005CgBQAU",
+        "ObjectId": "8018G0000005CgBQAU",
+        "AllAssets": [
+            {
+                "One Time Total": "$0.00",
+                "Recurring Total": "$70.00",
+                "Provisioning Status": "Active",
+                "Product Name": "1 Gig",
+                "Status": null,
+                "Quantity": 1,
+                "Serial Number": null,
+                "Activation Date": null,
+                "Asset Name": "1 Gig",
+                "RootItemId": "02i8G000000BHSMQA4",
+                "LineNumber": "0001",
+                "Id": "02i8G000000BHSMQA4"
+            },
+            {
+                "One Time Total": "$0.00",
+                "Recurring Total": "$0.00",
+                "Provisioning Status": "Active",
+                "Product Name": "Additional Storage",
+                "Status": null,
+                "Quantity": 1,
+                "Serial Number": null,
+                "Activation Date": null,
+                "Asset Name": "Additional Storage",
+                "RootItemId": "02i8G000000BHSMQA4",
+                "LineNumber": "0001.0001",
+                "Id": "02i8G000000BHSNQA4"
+            },
+            {
+                "One Time Total": "$0.00",
+                "Recurring Total": "$0.00",
+                "Provisioning Status": "Active",
+                "Product Name": "Google Wifi",
+                "Status": null,
+                "Quantity": 1,
+                "Serial Number": null,
+                "Activation Date": null,
+                "Asset Name": "Google Wifi",
+                "RootItemId": "02i8G000000BHSMQA4",
+                "LineNumber": "0001.0002",
+                "Id": "02i8G000000BHSOQA4"
+            },
+            {
+                "One Time Total": "$0.00",
+                "Recurring Total": "$0.00",
+                "Provisioning Status": "Active",
+                "Product Name": "Google Wifi",
+                "Status": null,
+                "Quantity": 1,
+                "Serial Number": null,
+                "Activation Date": null,
+                "Asset Name": "Google Wifi",
+                "RootItemId": "02i8G000000BHSMQA4",
+                "LineNumber": "0001.0003",
+                "Id": "02i8G000000BHSPQA4"
+            }
+        ]
+    },
+    {
+        "preTransformBundle": "",
+        "postTransformBundle": "",
+        "JSON Node": "SelectAsset",
+        "Elem Name": "AllAssets",
+        "vlcClass": "OmniMoveAssetWrapper"
+    }
+]

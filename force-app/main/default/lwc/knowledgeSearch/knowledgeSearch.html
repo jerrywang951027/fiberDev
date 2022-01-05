@@ -1,0 +1,53 @@
+<template>
+  <lightning-card title="Knowledge Base" icon-name="standard:knowledge">
+    <lightning-button-icon
+        icon-name="utility:expand"
+        variant="brand"
+        size="small"
+        alternative-text="Expand"
+        title="Expand"
+        slot="actions"
+        onclick={expandArticles}
+        disabled={isDisableExpandBtn}>
+    </lightning-button-icon>
+    <div class="slds-m-around_medium">
+      <lightning-layout>
+        <lightning-layout-item flexibility="auto">
+          <lightning-input
+              class="slds-m-right_small"
+              name="knowledge-search"
+              label=""
+              type="search"
+              placeholder="Search Knowledge"
+              variant="label-hidden"
+              onchange={handleChange}>
+          </lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item>
+          <lightning-button
+              variant="brand"
+              label="Search"
+              type="submit"
+              onclick={handleSubmit}>
+          </lightning-button>
+        </lightning-layout-item>
+      </lightning-layout>
+      <c-knowledge-search-results
+          if:true={isSearchResults}
+          search-key={searchKey}
+          is-expand-view="false"
+          profile-name={profileName}
+          ontoggle_expand_button={toggleExpand}>
+      </c-knowledge-search-results>
+      <div if:false={isTicket}>
+        <c-linked-articles
+            if:false={isTechnician}>
+        </c-linked-articles>
+      </div>
+      <c-issue-ticket-knowledge-article
+          if:true={isTicket}
+          record-id={recordId}>
+      </c-issue-ticket-knowledge-article>
+    </div>
+  </lightning-card>
+</template>

@@ -1,0 +1,695 @@
+update {
+    products_to_select {
+      id: "01t18000002oQjvAAE"
+      name: "Multi-Gig Router"
+      description: "Multi-Gig Router"
+      product_code: "network_box_2g"
+      type: STANDARD
+      product_family: "Hardware"
+      rate_plans {
+        id: "a1v18000001gn7kAAA"
+        product_id: "01t18000002oQjvAAE"
+        charges {
+          id: "a1u18000000kTi9AAE"
+          name: "Upfront charge for 2g Network Box device"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003eZyvAAE"
+            name: "Google owned 2g Network Box"
+            ending_unit: 1
+            price_cents: 28000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+              is_bundled: true
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        charges {
+          id: "a1u18000000kTiEAAU"
+          name: "Upfront waiver for 2g Network Box device"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003ea0MAAQ"
+            name: "Google owned 2g Network Box waived"
+            ending_unit: 1
+            price_cents: -28000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+              is_bundled: true
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        name: "[Tool] 2g Network Box Rate Plan"
+        rate_plan_code: "prp_network_box_2g"
+      }
+      product_line: DEVICE
+      product_subline: "Network Box"
+      hardware_info {
+        type: NETWORK_BOX
+        model: "GFRG300"
+        cost_cents: 28000
+        network_device_properties {
+          min_supported_static_ipv4_subnet_prefix: 30
+          min_supported_static_ipv6_subnet_prefix: 127
+        }
+      }
+    }
+    products_to_select {
+      id: "01t18000001y6CeAAI"
+      name: "drive_quota_1_tb"
+      description: "drive_quota_1_tb"
+      product_code: "drive_quota_1_tb"
+      type: STANDARD
+      product_family: "Additional Service"
+      rate_plans {
+        id: "a1v18000000uc5xAAA"
+        product_id: "01t18000001y6CeAAI"
+        name: "drive_quota_1_tb"
+        rate_plan_code: "prp_drive_quota_1_tb"
+      }
+      product_line: DRIVE_QUOTA
+      zuora_product_id: "2c92c0f87129861601713723ed173de1"
+    }
+    products_to_select {
+      id: "01t18000002nrzoAAA"
+      name: "Mesh Extender"
+      description: "Mesh Extender"
+      product_code: "tch_extender_network_box"
+      type: STANDARD
+      product_family: "Hardware"
+      rate_plans {
+        id: "a1v18000001gnL4AAI"
+        product_id: "01t18000002nrzoAAA"
+        charges {
+          id: "a1u18000000kTptAAE"
+          name: "Upfront waiver for first device"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003egTyAAI"
+            name: "First one waived"
+            ending_unit: 1
+            price_cents: -18000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+              is_bundled: true
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        charges {
+          id: "a1u18000000kTpoAAE"
+          name: "Upfront charge for Extender devices"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003egToAAI"
+            name: "First Google-owned"
+            ending_unit: 1
+            price_cents: 18000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+              is_bundled: true
+            }
+          }
+          tiers {
+            id: "a1t18000003egTtAAI"
+            name: "Customer-owned"
+            starting_unit: 2
+            ending_unit: 6
+            price_cents: 18000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_ACCOUNT
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        name: "[Tool] Extender Rate Plan"
+        rate_plan_code: "prp_tch_extender_network_box"
+      }
+      product_line: DEVICE
+      product_subline: "Wifi Extender"
+      hardware_info {
+        type: WIFI_EXTENDER
+        cost_cents: 18000
+      }
+      zuora_product_id: "2c92c0f9712998a401713717759054ba"
+    }
+    products_to_deselect {
+      id: "01t18000001y6D8AAI"
+      name: "Network Box"
+      description: "Network Box"
+      product_code: "network_box"
+      type: STANDARD
+      product_family: "Hardware"
+      rate_plans {
+        id: "a1v18000000uc3pAAA"
+        product_id: "01t18000001y6D8AAI"
+        charges {
+          id: "a1u18000000ZpCHAA0"
+          name: "fiber_network_box"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003IpAhAAK"
+            name: "fiber_network_box"
+            ending_unit: 1
+            price_cents: 20000
+            format: FLAT_FEE
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              is_bundled: true
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        charges {
+          id: "a1u18000000ZpMUAA0"
+          name: "fiber_network_box_exemption"
+          type: ONE_TIME
+          model: FLAT_FEE
+          tiers {
+            id: "a1t18000003IpP7AAK"
+            name: "fiber_network_box_exemption"
+            price_cents: -20000
+            format: FLAT_FEE
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        name: "fiber_network_box"
+        rate_plan_code: "prp_network_box"
+      }
+      product_line: DEVICE
+      product_subline: "Network Box"
+      hardware_info {
+        type: NETWORK_BOX
+        cost_cents: 20000
+        network_device_properties {
+          min_supported_static_ipv4_subnet_prefix: 30
+          min_supported_static_ipv6_subnet_prefix: 127
+        }
+      }
+      zuora_product_id: "2c92c0f87129861601713729702f6243"
+    }
+    products_to_deselect {
+      id: "01t18000002JbiUAAS"
+      name: "Google Wifi"
+      description: "Google Wifi"
+      product_code: "wifi_network_box"
+      type: STANDARD
+      product_family: "Hardware"
+      rate_plans {
+        id: "a1v18000001ge5fAAA"
+        product_id: "01t18000002JbiUAAS"
+        charges {
+          id: "a1u18000000kMK0AAM"
+          name: "Upfront waiver for first 2 devices"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003MENdAAO"
+            name: "First two waived"
+            ending_unit: 2
+            price_cents: -10000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        charges {
+          id: "a1u18000000kMJvAAM"
+          name: "Upfront charge for Google Wifi devices"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003MENOAA4"
+            name: "First Bundled Google-owned"
+            ending_unit: 1
+            price_cents: 10000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+              is_bundled: true
+            }
+          }
+          tiers {
+            id: "a1t18000003MENTAA4"
+            name: "Second Google-owned"
+            starting_unit: 2
+            ending_unit: 2
+            price_cents: 10000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+            }
+          }
+          tiers {
+            id: "a1t18000003MENYAA4"
+            name: "Customer-owned"
+            starting_unit: 3
+            ending_unit: 6
+            price_cents: 10000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_ACCOUNT
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        name: "Google Wifi Rate Plan"
+        rate_plan_code: "prp_wifi_network_box"
+      }
+      product_line: DEVICE
+      product_subline: "Network Box"
+      hardware_info {
+        type: NETWORK_BOX
+        model: "GOOGLE_WIFI_1"
+        cost_cents: 10000
+        network_device_properties {
+          min_supported_static_ipv4_subnet_prefix: 30
+          min_supported_static_ipv6_subnet_prefix: 127
+        }
+      }
+      zuora_product_id: "2c92c0f8712986230171371f5ccc3345"
+    }
+    products_to_show {
+      id: "01t18000002oQjvAAE"
+      name: "Multi-Gig Router"
+      description: "Multi-Gig Router"
+      product_code: "network_box_2g"
+      type: STANDARD
+      product_family: "Hardware"
+      rate_plans {
+        id: "a1v18000001gn7kAAA"
+        product_id: "01t18000002oQjvAAE"
+        charges {
+          id: "a1u18000000kTi9AAE"
+          name: "Upfront charge for 2g Network Box device"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003eZyvAAE"
+            name: "Google owned 2g Network Box"
+            ending_unit: 1
+            price_cents: 28000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+              is_bundled: true
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        charges {
+          id: "a1u18000000kTiEAAU"
+          name: "Upfront waiver for 2g Network Box device"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003ea0MAAQ"
+            name: "Google owned 2g Network Box waived"
+            ending_unit: 1
+            price_cents: -28000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+              is_bundled: true
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        name: "[Tool] 2g Network Box Rate Plan"
+        rate_plan_code: "prp_network_box_2g"
+      }
+      product_line: DEVICE
+      product_subline: "Network Box"
+      hardware_info {
+        type: NETWORK_BOX
+        model: "GFRG300"
+        cost_cents: 28000
+        network_device_properties {
+          min_supported_static_ipv4_subnet_prefix: 30
+          min_supported_static_ipv6_subnet_prefix: 127
+        }
+      }
+    }
+    products_to_show {
+      id: "01t18000001y6CeAAI"
+      name: "drive_quota_1_tb"
+      description: "drive_quota_1_tb"
+      product_code: "drive_quota_1_tb"
+      type: STANDARD
+      product_family: "Additional Service"
+      rate_plans {
+        id: "a1v18000000uc5xAAA"
+        product_id: "01t18000001y6CeAAI"
+        name: "drive_quota_1_tb"
+        rate_plan_code: "prp_drive_quota_1_tb"
+      }
+      product_line: DRIVE_QUOTA
+      zuora_product_id: "2c92c0f87129861601713723ed173de1"
+    }
+    products_to_show {
+      id: "01t18000002nrzoAAA"
+      name: "Mesh Extender"
+      description: "Mesh Extender"
+      product_code: "tch_extender_network_box"
+      type: STANDARD
+      product_family: "Hardware"
+      rate_plans {
+        id: "a1v18000001gnL4AAI"
+        product_id: "01t18000002nrzoAAA"
+        charges {
+          id: "a1u18000000kTptAAE"
+          name: "Upfront waiver for first device"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003egTyAAI"
+            name: "First one waived"
+            ending_unit: 1
+            price_cents: -18000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+              is_bundled: true
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        charges {
+          id: "a1u18000000kTpoAAE"
+          name: "Upfront charge for Extender devices"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003egToAAI"
+            name: "First Google-owned"
+            ending_unit: 1
+            price_cents: 18000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+              is_bundled: true
+            }
+          }
+          tiers {
+            id: "a1t18000003egTtAAI"
+            name: "Customer-owned"
+            starting_unit: 2
+            ending_unit: 6
+            price_cents: 18000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_ACCOUNT
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        name: "[Tool] Extender Rate Plan"
+        rate_plan_code: "prp_tch_extender_network_box"
+      }
+      product_line: DEVICE
+      product_subline: "Wifi Extender"
+      hardware_info {
+        type: WIFI_EXTENDER
+        cost_cents: 18000
+      }
+      zuora_product_id: "2c92c0f9712998a401713717759054ba"
+    }
+    products_to_hide {
+      id: "01t18000001y6D8AAI"
+      name: "Network Box"
+      description: "Network Box"
+      product_code: "network_box"
+      type: STANDARD
+      product_family: "Hardware"
+      rate_plans {
+        id: "a1v18000000uc3pAAA"
+        product_id: "01t18000001y6D8AAI"
+        charges {
+          id: "a1u18000000ZpCHAA0"
+          name: "fiber_network_box"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003IpAhAAK"
+            name: "fiber_network_box"
+            ending_unit: 1
+            price_cents: 20000
+            format: FLAT_FEE
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              is_bundled: true
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        charges {
+          id: "a1u18000000ZpMUAA0"
+          name: "fiber_network_box_exemption"
+          type: ONE_TIME
+          model: FLAT_FEE
+          tiers {
+            id: "a1t18000003IpP7AAK"
+            name: "fiber_network_box_exemption"
+            price_cents: -20000
+            format: FLAT_FEE
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        name: "fiber_network_box"
+        rate_plan_code: "prp_network_box"
+      }
+      product_line: DEVICE
+      product_subline: "Network Box"
+      hardware_info {
+        type: NETWORK_BOX
+        cost_cents: 20000
+        network_device_properties {
+          min_supported_static_ipv4_subnet_prefix: 30
+          min_supported_static_ipv6_subnet_prefix: 127
+        }
+      }
+      zuora_product_id: "2c92c0f87129861601713729702f6243"
+    }
+    products_to_hide {
+      id: "01t18000002JbiUAAS"
+      name: "Google Wifi"
+      description: "Google Wifi"
+      product_code: "wifi_network_box"
+      type: STANDARD
+      product_family: "Hardware"
+      rate_plans {
+        id: "a1v18000001ge5fAAA"
+        product_id: "01t18000002JbiUAAS"
+        charges {
+          id: "a1u18000000kMK0AAM"
+          name: "Upfront waiver for first 2 devices"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003MENdAAO"
+            name: "First two waived"
+            ending_unit: 2
+            price_cents: -10000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        charges {
+          id: "a1u18000000kMJvAAM"
+          name: "Upfront charge for Google Wifi devices"
+          type: ONE_TIME
+          model: TIERED
+          unit_type: DEVICE
+          tiers {
+            id: "a1t18000003MENOAA4"
+            name: "First Bundled Google-owned"
+            ending_unit: 1
+            price_cents: 10000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+              is_bundled: true
+            }
+          }
+          tiers {
+            id: "a1t18000003MENTAA4"
+            name: "Second Google-owned"
+            starting_unit: 2
+            ending_unit: 2
+            price_cents: 10000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_FIBER
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+            }
+          }
+          tiers {
+            id: "a1t18000003MENYAA4"
+            name: "Customer-owned"
+            starting_unit: 3
+            ending_unit: 6
+            price_cents: 10000
+            format: PER_UNIT
+            hardware_policy {
+              ownership: OWNED_BY_ACCOUNT
+              remorse_return_window {
+                display_days: 30
+                enforced_days: 60
+              }
+            }
+          }
+          taxable: true
+          tax_code: "04"
+          tax_mode: TAX_EXCLUSIVE
+        }
+        name: "Google Wifi Rate Plan"
+        rate_plan_code: "prp_wifi_network_box"
+      }
+      product_line: DEVICE
+      product_subline: "Network Box"
+      hardware_info {
+        type: NETWORK_BOX
+        model: "GOOGLE_WIFI_1"
+        cost_cents: 10000
+        network_device_properties {
+          min_supported_static_ipv4_subnet_prefix: 30
+          min_supported_static_ipv6_subnet_prefix: 127
+        }
+      }
+      zuora_product_id: "2c92c0f8712986230171371f5ccc3345"
+    }
+  }
+  

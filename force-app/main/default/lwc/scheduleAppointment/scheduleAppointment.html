@@ -1,0 +1,47 @@
+<template>
+  <lightning-spinner
+      if:false={isAppointments}
+      variant="brand"
+      alternative-text="Loading"
+      size="small"></lightning-spinner>
+  <lightning-input
+      if:true={isAppointments}
+      type="radio"
+      label={noAppointmentSelected}
+      name="lgt-datatable-1-options"
+      class="slds-m-around_x-small custom-radio-style"
+      onchange={getSelectedRow}></lightning-input>
+  <div style="height: 410px;">
+    <lightning-datatable
+        if:true={isAppointments}
+        max-row-selection="1"
+        key-field="id"
+        data={appointmentDetails}
+        columns={columns}
+        onrowselection={getSelectedRow}
+        resize-column-disabled="true">
+    </lightning-datatable>
+  </div>
+  <div class="slds-m-top_medium">
+    <lightning-button
+        variant="brand"
+        label="Load More"
+        title="Load More"
+        onclick={loadMoreRecords}></lightning-button>
+  </div>
+  <div if:true={isError} class="slds-m-top_large">
+    <vlocity_cmt-alert
+        theme="slds"
+        variation="error"
+        icon="utility:error"
+        message={errorMessage}></vlocity_cmt-alert>
+  </div>
+  <div class="slds-m-top_large slds-text-align_right">
+    <lightning-button
+        variant="brand"
+        label="Schedule"
+        title="Schedule"
+        onclick={bookAppointment}
+        class="slds-m-left_x-small"></lightning-button>
+  </div>
+</template>

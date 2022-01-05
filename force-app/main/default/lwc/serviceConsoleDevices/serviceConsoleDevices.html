@@ -1,0 +1,43 @@
+<template>
+  <template if:true={isDevices}>
+    <lightning-layout horizontal-align="center" multiple-rows>
+      <template iterator:device={deviecRecords}>
+        <lightning-layout-item key={device.value.id} size="12" padding="around-small">
+          <template if:true={device.value.id}>
+            <div if:true={device.last}>
+              <c-service-console-device device={device.value}>
+              </c-service-console-device>
+            </div>
+            <div if:false={device.last} class="slds-border_bottom">
+              <c-service-console-device device={device.value}>
+              </c-service-console-device>
+            </div> 
+          </template> 
+        </lightning-layout-item>
+      </template>
+    </lightning-layout>
+    <template if:true={isPrevButton}>
+      <lightning-button
+          variant="brand-outline"
+          label="Previous"
+          title="Previous"
+          class="slds-var-m-around_small slds-float_left"
+          onclick={loadPreviousDevices}>
+      </lightning-button>
+    </template>
+    <template if:true={isNextButton}>
+      <lightning-button
+          variant="brand-outline"
+          label="Next"
+          title="Next"
+          class="slds-var-m-around_small slds-float_right"
+          onclick={loadNextDevices}>
+      </lightning-button>
+    </template>
+  </template>
+  <template if:false={isDevices}>
+    <div class="slds-var-p-around_medium slds-var-m-around_medium">
+      <lightning-formatted-text value={noRecordsFoundMessage} class="slds-var-p-around_small"></lightning-formatted-text>
+    </div>
+  </template>
+</template>

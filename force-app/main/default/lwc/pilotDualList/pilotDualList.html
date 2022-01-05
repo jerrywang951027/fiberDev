@@ -1,0 +1,15 @@
+<template>
+  <div class="slds-m-bottom_medium">
+    <lightning-dual-listbox
+      id="selectOptions"
+      name="Pilot"
+      label="Pilot"
+      source-label="Available Options"
+      selected-label="Selected Options"
+      options={options}
+      value={listValues}
+      onchange={handleChange}
+    >
+    </lightning-dual-listbox>
+  </div>
+</template>

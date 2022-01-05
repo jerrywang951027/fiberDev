@@ -1,0 +1,510 @@
+<template>
+  <lightning-spinner if:false={isDataFetched} alternative-text="Loading" size="large">
+  </lightning-spinner>
+  <lightning-card if:true={isDataFetched} variant="Narrow"
+      title={bugafiberTicketId} icon-name="utility:bug">
+    <lightning-layout multiple-rows>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Type"
+              value={bugafiberTicketDetails.type} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Title"
+              value={bugafiberTicketDetails.title} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Status"
+              value={bugafiberTicketDetails.status} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Assignee"
+              value={bugafiberTicketDetails.assignee} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">Alert Received Time</span>
+            <span class="slds-input custom-date-time-style">
+              <lightning-formatted-date-time 
+                  value={bugafiberTicketDetails.alert_received_time} month="short"
+                  year="numeric"  day="2-digit" hour="2-digit"
+                  minute="2-digit" hour12="true" time-zone='GMT'>
+              </lightning-formatted-date-time>
+            </span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Approval Status"
+              value={bugafiberTicketDetails.approval_status} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="CSAT ID"
+              value={bugafiberTicketDetails.csat_id} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="CallCopy ID"
+              value={bugafiberTicketDetails.callcopy_id} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Clear Code L2"
+              value={bugafiberTicketDetails.clear_code_l2} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Clear Code L3"
+              value={bugafiberTicketDetails.clear_code_l3} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Clear Code L4"
+              value={bugafiberTicketDetails.clear_code_l4} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Compute Premium SMB Data"
+            value={bugafiberTicketDetails.compute_premium_smb_data} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Current Pending Approval Group"
+            value={bugafiberTicketDetails.current_pending_approval_group}
+                disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Customers Impacted"
+              value={bugafiberTicketDetails.customers_impacted}
+            disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Customer Impacted Phone"
+            value={bugafiberTicketDetails.customer_impacted_phone} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Customer Impacted Video"
+            value={bugafiberTicketDetails.customer_impacted_video} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-textarea type="text" label="Description"
+              value={bugafiberTicketDetails.description} disabled>
+          </lightning-textarea>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Dispatch Site Id"
+              value={bugafiberTicketDetails.dispatch_site_id}
+            disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Drive Folder Id"
+              value={bugafiberTicketDetails.drive_folder_id} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">ETR</span>
+            <span class="slds-input custom-date-time-style">
+              <lightning-formatted-date-time value={bugafiberTicketDetails.etr} month="short" year="numeric"  day="2-digit" hour="2-digit"
+              minute="2-digit" hour12="true" time-zone='GMT'></lightning-formatted-date-time></p></span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-textarea type="text" label="Escalation Notes"
+              value={bugafiberTicketDetails.escalation_notes} disabled>
+          </lightning-textarea>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Event Duration"
+              value={bugafiberTicketDetails.event_duration} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">Event End Time</span>
+            <span class="slds-input custom-date-time-style">
+                <lightning-formatted-date-time 
+                  value={bugafiberTicketDetails.event_end_time} month="short"
+                  year="numeric"  day="2-digit" hour="2-digit"
+                  minute="2-digit" hour12="true" time-zone='GMT'>
+                </lightning-formatted-date-time>
+            </span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">Event Start Time</span>
+            <span class="slds-input custom-date-time-style">
+                <lightning-formatted-date-time 
+                  value={bugafiberTicketDetails.event_start_time} month="short"
+                  year="numeric"  day="2-digit" hour="2-digit"
+                  minute="2-digit" hour12="true" time-zone='GMT'>
+                </lightning-formatted-date-time>
+            </span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">Alert Received Time</span>
+            <span class="slds-input custom-date-time-style">
+                <lightning-formatted-date-time 
+                  value={bugafiberTicketDetails.alert_received_time} month="short"
+                  year="numeric"  day="2-digit" hour="2-digit"
+                  minute="2-digit" hour12="true" time-zone='GMT'>
+                </lightning-formatted-date-time>
+            </span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Glue Ticket Id"
+              value={bugafiberTicketDetails.glue_ticket_id} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Held up By"
+              value={bugafiberTicketDetails.held_up_by} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="checkbox" label="Hilbert Focus Manual Customers Impacted"
+            value={bugafiberTicketDetails.hilbert_focus_manual_customers_impacted} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="IRC Channel"
+              value={bugafiberTicketDetails.irc_channel} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Impact"
+              value={bugafiberTicketDetails.impact} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Impacting Premium SMB Customer"
+              value={bugafiberTicketDetails.impacting_premium_smb_customer} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="checkbox" label="Known Issue"
+              value={bugafiberTicketDetails.known_issue} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">Last Approved Date</span>
+            <span class="slds-input custom-date-time-style">
+                <lightning-formatted-date-time 
+                  value={bugafiberTicketDetails.last_approved_date} month="short"
+                  year="numeric"  day="2-digit" hour="2-digit"
+                  minute="2-digit" hour12="true" time-zone='GMT'>
+                </lightning-formatted-date-time>
+            </span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Last Escaltion Log"
+              value={bugafiberTicketDetails.last_escaltion_log}
+            disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Market" value={bugafiberTicketDetails.market} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">Migrated Ticket Closed Date</span>
+            <span class="slds-input custom-date-time-style">
+                <lightning-formatted-date-time 
+                  value={bugafiberTicketDetails.migrated_ticket_closed_date} month="short"
+                  year="numeric"  day="2-digit" hour="2-digit"
+                  minute="2-digit" hour12="true" time-zone='GMT'>
+                </lightning-formatted-date-time>
+            </span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">Migrated Ticket Creation Date</span>
+            <span class="slds-input custom-date-time-style">
+                <lightning-formatted-date-time 
+                  value={bugafiberTicketDetails.migrated_ticket_creation_date} month="short"
+                  year="numeric"  day="2-digit" hour="2-digit"
+                  minute="2-digit" hour12="true" time-zone='GMT'>
+                </lightning-formatted-date-time>
+            </span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Noc Group"
+              value={bugafiberTicketDetails.noc_group} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">Noc Ticket Closed Date</span>
+            <span class="slds-input custom-date-time-style">
+                <lightning-formatted-date-time 
+                  value={bugafiberTicketDetails.noc_ticket_closed_date} month="short"
+                  year="numeric"  day="2-digit" hour="2-digit"
+                  minute="2-digit" hour12="true" time-zone='GMT'>
+                </lightning-formatted-date-time>
+            </span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">Noc Ticket Closed Time</span>
+            <span class="slds-input custom-date-time-style">
+                <lightning-formatted-date-time 
+                  value={bugafiberTicketDetails.noc_ticket_closed_time} month="short"
+                  year="numeric"  day="2-digit" hour="2-digit"
+                  minute="2-digit" hour12="true" time-zone='GMT'>
+                </lightning-formatted-date-time>
+            </span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">Noc Ticket Created Date</span>
+            <span class="slds-input custom-date-time-style"><lightning-formatted-date-time value={bugafiberTicketDetails.noc_ticket_created_date} month="short" year="numeric"  day="2-digit" hour="2-digit"
+              minute="2-digit" hour12="true" time-zone='GMT'></lightning-formatted-date-time></span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">Noc Ticket Created Time</span>
+            <span class="slds-input custom-date-time-style">
+                <lightning-formatted-date-time 
+                  value={bugafiberTicketDetails.noc_ticket_created_time} month="short"
+                  year="numeric"  day="2-digit" hour="2-digit"
+                  minute="2-digit" hour12="true" time-zone='GMT'>
+                </lightning-formatted-date-time>
+            </span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Noc Ticket Status"
+              value={bugafiberTicketDetails.noc_ticket_status} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Notes" value={bugafiberTicketDetails.notes} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="OMG" value={bugafiberTicketDetails.omg} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="RMA" value={bugafiberTicketDetails.rma} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Reference"
+              value={bugafiberTicketDetails.reference} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Referred To"
+              value={bugafiberTicketDetails.referred_to} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Root Cause"
+              value={bugafiberTicketDetails.root_cause} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Scope Service Attached"
+            value={bugafiberTicketDetails.scope_service_attached} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Site Id"
+              value={bugafiberTicketDetails.site_id} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Sub Ticket Rediness"
+              value={bugafiberTicketDetails.sub_ticket_rediness} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Sympton"
+              value={bugafiberTicketDetails.sympton} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Ticket Category"
+              value={bugafiberTicketDetails.ticket_category} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Type" value={bugafiberTicketDetails.type} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Viewership Video"
+              value={bugafiberTicketDetails.viewership_video} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <div>
+            <span class="slds-form-element__label">Wipeout Time</span>
+            <span class="slds-input custom-date-time-style">
+                <lightning-formatted-date-time 
+                  value={bugafiberTicketDetails.wipeout_time} month="short"
+                  year="numeric"  day="2-digit" hour="2-digit"
+                  minute="2-digit" hour12="true" time-zone='GMT'>
+                </lightning-formatted-date-time>
+            </span>
+          </div>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Workaround"
+              value={bugafiberTicketDetails.workaround} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+      <lightning-layout-item size="4" padding="around-xxx-small">
+        <div class="slds-p-around_small">
+          <lightning-input type="text" label="Workflow"
+              value={bugafiberTicketDetails.workflow} disabled>
+          </lightning-input>
+        </div>
+      </lightning-layout-item>
+    </lightning-layout>
+    <lightning-card title="Comments">
+      <div class="slds-p-around_small">
+        <vlocity_cmt-data-table theme="slds" issortavailable="true" issearchable="true" pagesize="2"
+            columns={commentsColumns} records={bugafiberTicketComments}>
+        </vlocity_cmt-data-table>
+      </div>
+    </lightning-card>
+  </lightning-card>
+</template>

@@ -1,0 +1,454 @@
+<template>
+            <div class="slds-grid slds-wrap slds-is-relative">
+            <div if:false={cardLoaded} class="slds-is-absolute vloc-loader_override" style="height: 100%; width: 100%; min-height:50px; background: white; z-index: 99;">
+  <div>
+   <vlocity_cmt-spinner
+      variant="brand"
+      alternative-text="Loading content..."
+      size="medium"
+      theme="slds"
+      ></vlocity_cmt-spinner>
+  </div>
+</div>
+            <template if:false={hasPermission}>
+              You don't have required permissions to view this card.
+            </template>
+            <template if:true={hasPermission}>
+              <template if:true={hasRecords}>
+                        <template for:each={_records} for:item="record" for:index="rindex">
+                            <vlocity_cmt-flex-card-state key={record.uniqueKey} data-recordid={record.Id} record={record} data-statue="true"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  card={card}  record={record}  label="Device"  collapsible="true"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col    slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3ENetwork%20Port%20Id%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BnetworkPortID%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3ELast%20ACS%20Check%20In%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BlastACSCheckin%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EUptime%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7Buptime%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ECPU%20Temp%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BcpuTemp%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ECPU%20Usage%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BcpuUsage%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ERAM%20Usage%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BramUsage%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ECertificate%20Status%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BcertifcateStatus%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EConfig%20Status%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BconfigStatus%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  card={card}  record={record}  label="Optical"  collapsible="true"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col    slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EOptical%20Signal%20Level%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BopticalSignalLevel%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ETransmit%20Signal%20Level%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BtransmitSignalLevel%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  card={card}  record={record}  label="Network"  collapsible="true"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col    slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EIP%20Address%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BipAdderess%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EUnified%20Circuit%20ID%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BuniCircuitID%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3Euni%20Status%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BuniStatus%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3Euni%20Actual%20Bit%20Rate%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BuniActualBitRate%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3Ewan%20Status%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BwanStatus%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3Ewan%20Actual%20Bit%20Rate%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BwanActualBitRate%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EVLAN%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BVLAN%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  card={card}  record={record}  label="Device Info"  collapsible="true"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col    slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EModel%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7Bmodel%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ESerial%20Number%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BserialNumber%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EDevice%20Type%20%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BdeviceType%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EHardware%20Version%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BhardwareVersion%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ESoftware%20Version%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BsoftwareVersion%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ERouter%20LAN%20IPv4%20address%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BrouterLANIPAddress%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EUpgrade%20Status%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BupgradeStatus%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                        </template>
+                      </template>
+                      <template if:false={hasRecords}>
+                            <vlocity_cmt-flex-card-state  record={record} data-statue="false"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  card={card}  record={record}  label="Device"  collapsible="true"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col    slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3ENetwork%20Port%20Id%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BnetworkPortID%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3ELast%20ACS%20Check%20In%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BlastACSCheckin%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EUptime%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7Buptime%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ECPU%20Temp%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BcpuTemp%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ECPU%20Usage%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BcpuUsage%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ERAM%20Usage%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BramUsage%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ECertificate%20Status%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BcertifcateStatus%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EConfig%20Status%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BconfigStatus%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  card={card}  record={record}  label="Optical"  collapsible="true"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col    slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EOptical%20Signal%20Level%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BopticalSignalLevel%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ETransmit%20Signal%20Level%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BtransmitSignalLevel%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  card={card}  record={record}  label="Network"  collapsible="true"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col    slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EIP%20Address%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BipAdderess%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EUnified%20Circuit%20ID%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BuniCircuitID%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3Euni%20Status%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BuniStatus%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3Euni%20Actual%20Bit%20Rate%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BuniActualBitRate%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3Ewan%20Status%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BwanStatus%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3Ewan%20Actual%20Bit%20Rate%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BwanActualBitRate%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EVLAN%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BVLAN%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  card={card}  record={record}  label="Device Info"  collapsible="true"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col    slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EModel%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7Bmodel%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ESerial%20Number%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BserialNumber%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EDevice%20Type%20%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BdeviceType%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EHardware%20Version%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BhardwareVersion%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ESoftware%20Version%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BsoftwareVersion%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3ERouter%20LAN%20IPv4%20address%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BrouterLANIPAddress%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_xx-small  slds-size_12-of-12  " style="     : #ccc 1px solid; 
+         ">
+    <vlocity_cmt-block  card={card}  record={record}  label="Block"  collapsible="false"  collapsed-by-default="false"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-weight:%20400;%22%3EUpgrade%20Status%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-size_6-of-12  " style=""><vlocity_cmt-output-field     card={card}  record={record}  merge-field="%3Cdiv%3E%7BupgradeStatus%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                      </template>
+            </template>
+            <template if:true={hasError}>
+            {error}
+            </template>
+            
+      <vlocity_cmt-action action-wrapperclass="slds-hide" re-render-flyout class="action-trigger slds-col" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+      
+      </vlocity_cmt-action>
+  
+            <vlocity_cmt-action class="execute-action" re-render-flyout action-wrapperclass="slds-hide" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+            
+            </vlocity_cmt-action>
+            </div>
+          </template>

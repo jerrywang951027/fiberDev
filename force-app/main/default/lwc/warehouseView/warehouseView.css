@@ -1,0 +1,20 @@
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-smallChild {
+    width: 20%;
+    float: left;
+    padding: 20px;
+}  
+
+.float-largeChild {
+    /*width: 80%;*/
+    padding: 20px;
+} 
+
+
+/*.slds-template_default {
+background: white;
+}*/

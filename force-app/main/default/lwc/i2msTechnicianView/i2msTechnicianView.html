@@ -1,0 +1,323 @@
+<template>
+    <!--Device Notifications-->
+    <div if:true={showDeviceSuccessAlert} class="slds-notify slds-notify_alert"
+        style="background-color: #dff0d8;color:#3c763d;background-image:none;padding:20px" role="alert">
+        <h2>{successAlertMessage}</h2>
+    </div>
+
+    <div if:true={showDeviceWarningAlert} class="slds-notify slds-notify_alert"
+        style="background-color: #fcf8e3; color:#8a6d3b;background-image:none;padding:20px" role="alert">
+        <h2>{warningAlertMessage}</h2>
+    </div>
+    <!--Inbound Devices-->
+    <lightning-card>
+
+        <!--Buttons-->
+        <div if:false={loadingInboundDevicesData}>
+            <lightning-layout if:true={showInboundDeviceTable}>
+                <lightning-button disabled={disableAllButtons} label="Accept" variant="Brand" style="background-color: #f5f5f5;
+            color: rgb(133, 133, 133);margin-left:10px;margin-right:10px" onclick={acceptDevices}></lightning-button>
+                <lightning-button disabled={disableAllButtons} label="Reject" variant="Brand" style="background-color: #f5f5f5;
+            color: rgb(133, 133, 133);" onclick={rejectDevices}></lightning-button>
+            </lightning-layout>
+        </div>
+
+        <!--Inbound Devices Table Start-->
+        <div style="padding:20px;padding-top:0">
+            <lightning-card class="" title='Inbound Devices'>
+                <div if:false={loadingInboundDevicesData}>
+                    <div if:false={showInboundDeviceTable}>No Results</div>
+                    <div if:true={showInboundDeviceTable}>
+                        <table if:true={showInboundDeviceTable} aria-describedby="device list for technician"
+                            class="slds-table slds-table_bordered">
+                            <!--Header of the table-->
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="slds-size_1-of-20" scope="col">
+                                        <div class="slds-truncate " title=""></div>
+                                    </th>
+                                    <th class="slds-size_1-of-20" scope="col">
+                                        <div class="slds-truncate " title="Serial Number">Serial Number</div>
+                                    </th>
+                                    <th class="slds-size_1-of-20" scope="col">
+                                        <div class="slds-truncate" title="Description">Description</div>
+                                    </th>
+                                    <th class="slds-size_1-of-20" scope="col">
+                                        <div class="slds-truncate" title="from">From</div>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr for:each={inboundDeviceTableDataToShow} for:item="item" key={serialNumber}
+                                    class="slds-hint-parent">
+                                    <td class="slds-size_1-of-20">
+                                        <div>
+                                            <input type="checkbox" value={item.serialKey.serialNumber} name="deviceCheckbox"
+                                                onchange={updateSelectedDevice} checked={item.selected}
+                                                class="checkbox" />
+                                        </div>
+                                    </td>
+                                    <td class="slds-size_1-of-20">
+                                        <div>{item.serialKey.serialNumber}</div>
+                                    </td>
+                                    <td class="slds-size_1-of-20">
+                                        <div>{item.description}</div>
+                                    </td>
+                                    <td class="slds-size_1-of-20">
+                                        <div>{item.deviceOwnership.currentAttribute.from}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="display: inline-block;padding:10px">
+                            <a onclick={gotoInboundDeviceTablePreviousPage}>previous</a>
+                            <span style="margin-left: 10px; margin-right: 10px">Page
+                                {selectedinboundDeviceTablePageNumber}
+                                of
+                                {totalinboundDeviceTablePages}</span>
+                            <a onclick={gotoInboundDeviceTableNextPage}>next</a>
+                        </div>
+                    </div>
+                </div>
+            </lightning-card>
+
+        </div>
+        <!--Device Table END-->
+    </lightning-card>
+
+    <!-- My Devices -->
+    <lightning-card style="margin:5px">
+        <div if:false={loadingMyDevicesData}>
+            <div if:true={showMyDevicesTable}>
+                <input data-my-id="deviceTechnicianNameInput" name="technician" type="text"
+                    style="border:revert;width:18%;height:30px;margin-left:11px;margin-right:2px"
+                    placeholder="Tech to Transfer" value="" onkeypress={handleKeypress} />
+                <lightning-button label="Transfer" disabled={disableAllButtons} variant="Neutral" style="background-color: #f5f5f5;
+                        color: rgb(133, 133, 133);" onclick={handleDeviceTransferClick}></lightning-button>
+
+                <lightning-button label="Report DOA" disabled={disableAllButtons} variant="Neutral" style="background-color: #f5f5f5;
+            color: rgb(133, 133, 133);margin-left:140px;margin-right:10px" onclick={showModal1}>
+                </lightning-button>
+                <lightning-button label="Report Lost" disabled={disableAllButtons} variant="Neutral" style="background-color: #f5f5f5;
+            color: rgb(133, 133, 133);" onclick={showModal2}></lightning-button>
+                <lightning-button disabled={disableAllButtons} label="Report Surplus" variant="Neutral" style="background-color: #f5f5f5;
+            color: rgb(133, 133, 133);margin-left:10px;margin-right:10px;" onclick={reportSurplus_Click}>
+                </lightning-button>
+            </div>
+        </div>
+
+        <div style="padding:0px 20px 0px 0px;padding-top:0;margin-left:17px;">
+
+            <lightning-card title="My Devices" style="margin:0px">
+                <div if:false={loadingMyDevicesData} class="slds-table_bordered slds-grow">
+                    <div if:false={showMyDevicesTable}>
+                        <p style="margin-left: 4px;">No Results</p>
+                    </div>
+                    <div if:true={showMyDevicesTable}>
+                        <table aria-describedby="device list for technician" class="slds-table slds-table_bordered"
+                            style="margin-left:5px;margin-right:5px">
+                            <!--Header of the table-->
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="slds-size_1-of-20" scope="col">
+                                        <div class="slds-truncate " title=""></div>
+                                    </th>
+                                    <th class="slds-size_1-of-20" scope="col">
+                                        <div class="slds-truncate " title="Serial Number">Serial Number</div>
+                                    </th>
+                                    <th class="slds-size_1-of-20" scope="col">
+                                        <div class="slds-truncate" title="Description">Description</div>
+                                    </th>
+                                    <th class="slds-size_1-of-20" scope="col">
+                                        <div class="slds-truncate" title="status">Status</div>
+                                    </th>
+                                    <th class="slds-size_1-of-20" scope="col">
+                                        <div class="slds-truncate " title="ticketID">Ticket ID</div>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr for:each={myDeviceTableDataToShow} for:item="item" key={serialNumber}
+                                    class="slds-hint-parent">
+                                    <td class="slds-size_1-of-20">
+                                        <div>
+                                            <input type="checkbox" value={item.serialKey.serialNumber} name="deviceCheckbox"
+                                                checked={item.selected} onchange={updateMySelectedDevice}
+                                                class="checkbox" />
+                                        </div>
+                                    </td>
+                                    <td class="slds-size_1-of-20">
+                                        <div>{item.serialKey.serialNumber}</div>
+                                    </td>
+                                    <td class="slds-size_1-of-20">
+                                        <div>{item.description}</div>
+                                    </td>
+                                    <td class="slds-size_1-of-20">
+                                        <div>{item.deviceOwnership.currentAttribute.ownershipStatus}</div>
+                                    </td>
+                                    <td class="slds-size_1-of-20">
+                                        <div>{item.ticketId}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="display: inline-block;padding:10px">
+                            <a onclick={gotoMyDeviceTablePreviousPage}>previous</a>
+                            <span style="margin-left: 10px; margin-right: 10px">Page {selectedMyDeviceTablePageNumber}
+                                of
+                                {totalMyDeviceTablePages}</span>
+                            <a onclick={gotoMyDeviceTableNextPage}>next</a>
+                        </div>
+                    </div>
+                </div>
+            </lightning-card>
+        </div>
+
+    </lightning-card>
+
+    <!-- MODAL 1 TEMPLATE FOR REPORT DOA -->
+    <template if:true={openModal1}>
+        <div class="slds-modal slds-fade-in-open slds-backdrop">
+            <div class="slds-modal__container">
+                <!--HEADER Section-->
+                <div class="slds-modal__header">
+                    <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"
+                        variant="bare-inverse" onclick={closeModal1} class="slds-modal__close">
+                    </lightning-button-icon>
+                    <h2>Report DOA</h2>
+                </div>
+                <!--Body Section-->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="slds-m-around--xx-large">
+                        <div class="container-fluid">
+                            <div class="form-group">
+                                <lightning-combobox label="Status" value={selectedDOALEDStatus}
+                                    placeholder="--- Select ---" options={doaLedStatusList}
+                                    onchange={handleDoaLedStatusChange} required="true">
+                                </lightning-combobox>
+                            </div>
+
+                            <br /><br />
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <lightning-combobox name="progress" label="Reason Code"
+                                        value={selectedDOAReasonCode} placeholder="--- Select ---"
+                                        options={doaReasonCodeList} onchange={handleReasonCodeChange} required="true">
+                                    </lightning-combobox>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="form-group">
+                                <lightning-textarea name="doareasondesc" label="Reason Description" required="true">
+                                </lightning-textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Footer Section-->
+                <div class="slds-modal__footer">
+                    <lightning-button label="Report DOA" variant="neutral" onclick={reportDOA_Click}></lightning-button>
+                    &nbsp;&nbsp;
+                    <lightning-button label="Close" variant="neutral" onclick={closeModal1}> </lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- MODAL 2 TEMPLATE FOR REPORT LOST -->
+    <template if:true={openModal2}>
+        <div class="slds-modal slds-fade-in-open slds-backdrop">
+            <div class="slds-modal__container">
+                <!--HEADER Section-->
+                <div class="slds-modal__header">
+                    <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"
+                        variant="bare-inverse" onclick={closeModal2} class="slds-modal__close">
+                    </lightning-button-icon>
+                    <h2>Report LOST</h2>
+                </div>
+                <!--Body Section-->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="slds-m-around--xx-large">
+                        <div class="container-fluid">
+                            <div class="form-group">
+                                <lightning-textarea name="reasondeslost" label="Reason Description" required="true">
+                                </lightning-textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--Footer Section-->
+                <div class="slds-modal__footer">
+                    <lightning-button label="Report Lost" variant="neutral" onclick={reportLost_Click}>
+                    </lightning-button>
+                    &nbsp;&nbsp;
+                    <lightning-button label="Close" variant="neutral" onclick={closeModal2}> </lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!--OUTBOUND Devices-->
+    <lightning-card style="margin:5px">
+        <!--Outbound Devices Table Start-->
+        <div style="padding:20px;padding-top:0">
+            <lightning-card class="" title='Outbound Devices'>
+                <div if:false={loadingMyDevicesData}>
+                    <div if:false={showOutboundDevicesTable}>No Results</div>
+                    <div if:true={showOutboundDevicesTable}>
+
+                        <table aria-describedby="device list for technician" class="slds-table slds-table_bordered">
+                            <!--Header of the table-->
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="slds-size_1-of-20" scope="col">
+                                        <div class="slds-truncate " title="Serial Number">Serial Number</div>
+                                    </th>
+                                    <th class="slds-size_1-of-20" scope="col">
+                                        <div class="slds-truncate" title="Description">Description</div>
+                                    </th>
+                                    <th class="slds-size_1-of-20" scope="col">
+                                        <div class="slds-truncate" title="to">To</div>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr for:each={outboundDeviceTableDataToShow} for:item="item" key={serialNumber}
+                                    class="slds-hint-parent">
+
+                                    <td class="slds-size_1-of-20">
+                                        <div>{item.serialNumber}</div>
+                                    </td>
+                                    <td class="slds-size_1-of-20">
+                                        <div>{item.description}</div>
+                                    </td>
+                                    <td class="slds-size_1-of-20">
+                                        <div>{item.to}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!--pagnation-->
+                        <div style="display: inline-block;padding:10px">
+                            <a onclick={gotoOutboundDeviceTablePreviousPage}>previous</a>
+                            <span style="margin-left: 10px; margin-right: 10px">Page
+                                {selectedoutboundDeviceTablePageNumber}
+                                of
+                                {totaloutboundDeviceTablePages}</span>
+                            <a onclick={gotoOutboundDeviceTableNextPage}>next</a>
+                        </div>
+                    </div>
+                </div>
+            </lightning-card>
+        </div>
+        <!--Device Table END-->
+    </lightning-card>
+
+</template>

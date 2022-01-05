@@ -1,0 +1,112 @@
+<template>
+            <div class="slds-grid slds-wrap slds-is-relative">
+            <div if:false={cardLoaded} class="slds-is-absolute vloc-loader_override" style="height: 100%; width: 100%; min-height:50px; background: white; z-index: 99;">
+  <div>
+   <vlocity_cmt-spinner
+      variant="brand"
+      alternative-text="Loading content..."
+      size="medium"
+      theme="slds"
+      ></vlocity_cmt-spinner>
+  </div>
+</div>
+            <template if:false={hasPermission}>
+              You don't have required permissions to view this card.
+            </template>
+            <template if:true={hasPermission}>
+              <template if:true={hasRecords}>
+                        <template for:each={_records} for:item="record" for:index="rindex">
+                            <vlocity_cmt-flex-card-state key={record.uniqueKey} data-recordid={record.Id} record={record} data-statue="true"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div class="slds-col  slds-p-around_small  slds-size_12-of-12  " style="background-color:#f3f2f2;     : #dddbda 1px solid; 
+    border-radius:5px 5px 0 0;     "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%20class=%22slds-text-heading_medium%22%3ETicket%20Details%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-border_top slds-border_right slds-border_bottom slds-border_left slds-p-around_x-small  slds-size_12-of-12  " style="     border-top: #cccccc 1px solid;border-right: #cccccc 1px solid;border-bottom: #cccccc 1px solid;border-left: #cccccc 1px solid; 
+    border-radius:0 0 5px 5px;    color:#dddbda; ">
+    <vlocity_cmt-block  record={record}  card={card}  collapsed-by-default="false"  collapsible="false"  label="Block"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%20font-size:%2010pt;%22%3EBugafiber%20Ticket%20Id%3C/span%3E%3C/div%3E%0A%3Cdiv%20class=%22slds-text-heading_small%22%3E%3Cspan%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E%7BissueId%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EGroup%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20class=%22slds-text-heading_small%22%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E--n/a--%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EStatus%3C/span%3E%3C/div%3E%0A%3Cdiv%20class=%22slds-text-heading_small%22%3E%3Cspan%20style=%22color:%20#000000;%22%3E%7Bstatus%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EType%3C/span%3E%3C/div%3E%0A%3Cdiv%20class=%22slds-text-heading_small%22%3E%3Cspan%20style=%22color:%20#000000;%22%3E%7Btype%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3ESub%20Type%3C/span%3E%3C/div%3E%0A%3Cdiv%20class=%22slds-text-heading_small%22%3E%3Cspan%20style=%22color:%20#000000;%22%3E%7BsubType%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3ESeverity%20Level%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20class=%22slds-text-heading_small%22%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E--n/a--%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3ESymptom%3C/span%3E%3C/div%3E%0A%3Cdiv%20class=%22slds-text-heading_small%22%3E%3Cspan%20style=%22color:%20#000000;%22%3E%7Bsymptom%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3ETicket%20Created%20Date%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E--n/a--%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EAssignee%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20class=%22slds-text-heading_small%22%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E--n/a--%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3ETicket%20Update%20Date%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20class=%22slds-text-heading_small%22%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E--n/a--%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EResolution%20Code%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20style=%22color:%20#000000;%20font-size:%2012pt;%22%3E%7BresolutionCode%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EEscalation%20Reason%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20class=%22slds-text-heading_small%22%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E--n/a--%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EPremises%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20class=%22slds-text-heading_small%22%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E%7BpremisesId%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                        </template>
+                      </template>
+                      <template if:false={hasRecords}>
+                            <vlocity_cmt-flex-card-state  record={record} data-statue="false"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div class="slds-col  slds-p-around_small  slds-size_12-of-12  " style="background-color:#f3f2f2;     : #dddbda 1px solid; 
+    border-radius:5px 5px 0 0;     "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%20class=%22slds-text-heading_medium%22%3ETicket%20Details%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col   slds-border_top slds-border_right slds-border_bottom slds-border_left slds-p-around_x-small  slds-size_12-of-12  " style="     border-top: #cccccc 1px solid;border-right: #cccccc 1px solid;border-bottom: #cccccc 1px solid;border-left: #cccccc 1px solid; 
+    border-radius:0 0 5px 5px;    color:#dddbda; ">
+    <vlocity_cmt-block  record={record}  card={card}  collapsed-by-default="false"  collapsible="false"  label="Block"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%20font-size:%2010pt;%22%3EBugafiber%20Ticket%20Id%3C/span%3E%3C/div%3E%0A%3Cdiv%20class=%22slds-text-heading_small%22%3E%3Cspan%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E%7BissueId%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EGroup%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20class=%22slds-text-heading_small%22%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E--n/a--%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EStatus%3C/span%3E%3C/div%3E%0A%3Cdiv%20class=%22slds-text-heading_small%22%3E%3Cspan%20style=%22color:%20#000000;%22%3E%7Bstatus%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EType%3C/span%3E%3C/div%3E%0A%3Cdiv%20class=%22slds-text-heading_small%22%3E%3Cspan%20style=%22color:%20#000000;%22%3E%7Btype%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3ESub%20Type%3C/span%3E%3C/div%3E%0A%3Cdiv%20class=%22slds-text-heading_small%22%3E%3Cspan%20style=%22color:%20#000000;%22%3E%7BsubType%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3ESeverity%20Level%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20class=%22slds-text-heading_small%22%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E--n/a--%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3ESymptom%3C/span%3E%3C/div%3E%0A%3Cdiv%20class=%22slds-text-heading_small%22%3E%3Cspan%20style=%22color:%20#000000;%22%3E%7Bsymptom%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3ETicket%20Created%20Date%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E--n/a--%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EAssignee%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20class=%22slds-text-heading_small%22%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E--n/a--%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3ETicket%20Update%20Date%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20class=%22slds-text-heading_small%22%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E--n/a--%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EResolution%20Code%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20style=%22color:%20#000000;%20font-size:%2012pt;%22%3E%7BresolutionCode%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EEscalation%20Reason%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20class=%22slds-text-heading_small%22%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E--n/a--%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-border_bottom slds-p-around_small  slds-size_6-of-12  " style="     border-bottom: #dddbda 1px solid; 
+      min-height:50px; max-height:60px;  "><vlocity_cmt-output-field     record={record}  card={card}  merge-field="%3Cdiv%3E%3Cspan%20style=%22color:%20#34495e;%22%3EPremises%3C/span%3E%3C/div%3E%0A%3Cdiv%3E%3Cspan%20class=%22slds-text-heading_small%22%20style=%22font-size:%2012pt;%20color:%20#000000;%22%3E%7BpremisesId%7D%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                      </template>
+            </template>
+            <template if:true={hasError}>
+            {error}
+            </template>
+            
+      <vlocity_cmt-action action-wrapperclass="slds-hide" re-render-flyout class="action-trigger slds-col" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+      
+      </vlocity_cmt-action>
+  
+            <vlocity_cmt-action class="execute-action" re-render-flyout action-wrapperclass="slds-hide" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+            
+            </vlocity_cmt-action>
+            </div>
+          </template>

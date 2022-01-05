@@ -1,0 +1,54 @@
+<template>
+  <template if:true={isOpenContact}>
+    <lightning-card title="Send To Email" icon-name="custom:custom56">
+      <div class="slds-m-around_medium">
+        <lightning-input type="text" value={folder} label="Folder Name" style="width:70%;"></lightning-input>
+      </div>
+      <div class="slds-m-around_medium" if:true={TypeOptions}>
+        <lightning-combobox name="progress" required label="Select Template" value={value} options={TypeOptions} onchange={changeTemplate} style="width:70%;"></lightning-combobox>
+      </div>
+      <div class="slds-m-around_medium">
+        <lightning-input required type="text" value={email} onchange={emailChange} label="Email" style="width:70%;"></lightning-input>
+      </div>
+      <div class="slds-m-around_medium" if:true={subject}>
+        <lightning-input required type="text" value={subject} label="Subject" style="width:70%;"></lightning-input>
+      </div>
+      <lightning-layout vertical-align="center" if:true={emailBody}>
+        <lightning-input-rich-text value={emailBody} title="Body" onchange={bodyChange} style="margin-left:1%;width:70%;color:black"></lightning-input-rich-text>
+      </lightning-layout>
+      <div class="slds-m-top_large slds-align_absolute-center">
+        <lightning-button style="margin-left:35%;" variant="brand" label="Send Mail" title="Save" onclick={onSave}></lightning-button>
+      </div>
+    </lightning-card>
+  </template>
+  <template if:true={isCloseContact}>
+    <center>
+      <p>
+        <lightning-formatted-text value="Please open a contact ticket"></lightning-formatted-text>
+      </p>
+    </center>
+  </template>
+  <template if:true={flag}>
+    <div if:true={showLoading} class="demo-only" style="height:6rem;position:relative">
+      <div class="slds-spinner_container">
+        <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+          <span class="slds-assistive-text">Loading</span>
+          <div class="slds-spinner__dot-a"></div>
+          <div class="slds-spinner__dot-b"></div>
+        </div>
+      </div>
+    </div>
+    <div if:false={showLoading}>
+      <center>
+        <p if:false={isError}> Email sent to <lightning-formatted-text value={email}></lightning-formatted-text>
+        </p>
+      </center>
+    </div>
+  </template>
+  <template if:true={errorMessage}>
+    <center>
+      <p> Could not sent email to - <lightning-formatted-text value={errorMessage}></lightning-formatted-text>
+      </p>
+    </center>
+  </template>
+</template>

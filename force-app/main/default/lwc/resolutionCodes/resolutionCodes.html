@@ -1,0 +1,19 @@
+<template>
+  <lightning-radio-group name="Resolution Codes"
+    if-true={options}
+    class="validation-required"
+    label="Resolution Codes"
+    options={options}
+    value={value}
+    type="radio"
+    required
+    message-when-value-missing="Please select resolution code."
+    onchange={handleOnChange}>
+ </lightning-radio-group>
+ <p class="slds-float_right slds-m-top_large">
+   <lightning-button label="Resolve"
+     variant="brand"
+     onclick={onResolve}>
+   </lightning-button>
+ </p>
+</template>

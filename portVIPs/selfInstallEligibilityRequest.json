@@ -1,0 +1,14 @@
+{
+    "addressID": "1e5971e7-bd18-42b1-be02-7a6cf77c927e",
+    "internetOffer": "fiber_2g",
+    "Equipment": [
+        {
+            "equipmentCode": "tch_extender_network_box",
+            "quantity": "2"
+        },
+        {
+            "equipmentCode": "phone_battery",
+            "quantity": "2"
+        }
+    ]
+}

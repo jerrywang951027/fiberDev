@@ -1,0 +1,54 @@
+<template>
+  <lightning-spinner
+      if:true={isSpinnerLoaded}
+      variant="brand"
+      alternative-text="Loading"
+      size="small">
+  </lightning-spinner>
+  <div class="slds-m-vertical_medium slds-border_left slds-border_right
+      slds-border_top slds-border_bottom">
+    <h2 class="slds-p-vertical_x-small slds-p-horizontal_x-small slds-text-heading_small
+        slds-theme_shade">Common Knowledge Base Articles</h2>
+    <div class="slds-p-vertical_x-small slds-p-horizontal_x-small">
+      <ul if:true={isData}>
+        <template iterator:article={data}>
+          <li key={article.value.name} if:true={article.first}>
+            <p class="break-word">
+              <lightning-formatted-url
+                  value={article.value.url}
+                  label={article.value.name}
+                  target="_blank">
+              </lightning-formatted-url>
+            </p>
+            <p class="slds-m-top_xx-small">
+              <lightning-formatted-rich-text
+                  value={article.value.description}>
+              </lightning-formatted-rich-text>
+            </p>
+          </li>
+          <li key={article.value.name} if:false={article.first} class="slds-m-top_small
+              slds-p-top_small slds-border_top">
+            <p class="break-word">
+              <lightning-formatted-url
+                  value={article.value.url}
+                  label={article.value.name}
+                  target="_blank">
+              </lightning-formatted-url>
+            </p>
+            <p class="slds-m-top_xx-small">
+              <lightning-formatted-rich-text
+                  value={article.value.description}>
+              </lightning-formatted-rich-text>
+            </p>
+          </li>
+        </template>
+      </ul>
+      <div if:false={isData}>
+        <lightning-formatted-text value={noRecordsFoundMessage}></lightning-formatted-text>
+      </div>
+      <div if:true={error}>
+        <lightning-formatted-text value={error}></lightning-formatted-text>
+      </div>
+    </div>
+  </div>
+</template>

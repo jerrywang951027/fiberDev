@@ -1,0 +1,2342 @@
+# proto-file: java/com/google/access/bss/crm/product/tool/sfdc/migration_script.proto
+# proto-message: MigrationScript
+
+# Rule to disable phone when basic internet is selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_phone"
+      name: "No Phone for Basic Internet"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_basic"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_free_basic"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_family {
+            equal: "Phone"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_box"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_battery_ups_power_unit_1"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_battery_ups_power_unit_2"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_battery_ups_power_unit_3"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_battery_ups_external_battery_1"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_battery_ups_external_battery_2"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_battery_ups_external_battery_3"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to disable phone when neighborhood 100 is selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_phone_for_neighborhood_100"
+      name: "No Phone for Neighborhood 100 Meg"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      criteria: "!(hasAccount && account.servicePlan.internetService.type.name().equals('NEIGHBORHOOD_100') && account.servicePlan.hasVoiceService())"
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "neighborhood_100"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_family {
+            equal: "Phone"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_box"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_battery_ups_power_unit_1"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_battery_ups_power_unit_2"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_battery_ups_power_unit_3"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_battery_ups_external_battery_1"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_battery_ups_external_battery_2"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "phone_battery_ups_external_battery_3"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to disable linear TV, Youtube TV, Fubo TV, Philo TV and Sling TV when broadband or basic is selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_tv_for_certain_internet"
+      name: "No TV for Basic and Broadband"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_broadband"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_basic"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_family {
+            equal: "TV"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_youtube_base"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_youtube_showtime"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_youtube_fox_sports"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_fubo"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_philo"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_sling"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_box"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_storage_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Add rule to disable local/limited/limited legacy TV
+# for fiber 100, fiber 500.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_local_tv_for_certain_internet"
+      name: "No local/limited/limited legacy TV for F100 and F500"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_100"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_500"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_local"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_limited"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_limited_legacy"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to disable:
+#   family
+#   movies
+#   sports
+#   latino
+#   all in packages
+# for local/limited/limited legacy TV.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "premium_for_non_full_tv"
+      name: "Only Premium for non Full TV"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_local"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_limited"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_limited_legacy"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_family"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_movies"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_sports"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_hispanic"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_bundle_all_in"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to disable wifi_network_box when TV / Phone, or Basic (excluding Rescue
+# Basic) Internet was selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_wifi_network_box_for_tv_or_basic"
+      name: "No Fiber Network Box for TV Service or Basic Internet"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      markets: SAN_ANTONIO
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_basic"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_full"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_local"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_limited_legacy"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_limited"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "wifi_network_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# TODO(hiepdinh): Rule to select fiber_bundled_wifi_network_box when Internet is
+# selected but no TV. Need condition with product_line to make it works: i.e.
+# Rule1:
+# evaluation_type = ALL,
+# condition[product_line=internet_service]
+# condition[product_line=tv_service]
+# action[select=network_box]
+# Rule2:
+# evaluation_type = ALL,
+# condition[product_line=internet_service]
+# condition[product_line!=tv_service]
+# action[select=wifi_network_box]
+
+# Rule to select smb_network_box when certain SMB internet_service is
+# selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "smb_nb_for_internet"
+      name: "SMB Network Box for SMB Internet Service"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_100"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_legacy"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_250"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_1000"
+        }
+      }
+      actions {
+        types: SHOW
+        types: SELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "smb_network_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to select certain network_boxes when SMB 500 and SMB 1 Gig are selected
+# without 2G Network Box in account.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "smb_network_box_for_internet_upgrade_downgrade"
+      name: "SMB Network Box for Upgrade and Downgrade"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      criteria: "hasAccount && !util.hasInUseDevice(account.servicePlan, 'GFRG300')"
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_500"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_1g"
+        }
+      }
+      actions {
+        types: SHOW
+        types: SELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "smb_network_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to deselect 2G Network Box for SMB 1G for non-CSA request when
+# account has SMB Network Box
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_2g_nb_upgrade_downgrade"
+      name: "No 2G Network Box for Upgrade and Downgrade (Non-CSA)"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      criteria: "hasAccount && !util.hasInUseDevice(account.servicePlan, 'GFRG300') && !includeCsrOffers"
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_1g"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "network_box_2g"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+# Rule to disable TV Box & Storage & Channels when tv_no is selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_tv_box_for_no_tv"
+      name: "No TV Box/Storage for no TV"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ALL
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_no"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_box"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_storage_box"
+          }
+        }
+      }
+      # TODO(hiepdinh): support condition with product_line to make these
+      # actions shotrter with:
+      # condition { source: PRODUCT product_line { equal: "TV_CHANNEL" }}
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_family"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_movies"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_sports"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_hbo"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_bundle_all_in"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_hispanic"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_starz"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_showtime"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_cinemax"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_bundle_premium"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to for selection of storage & tv box when tv_service (other than tv_no).
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "tv_box_for_tv_service"
+      name: "TV Box/Storage for TV Service"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_full"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_local"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_limited_legacy"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_limited"
+        }
+      }
+      actions {
+        types: SHOW
+        types: SELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_box"
+          }
+        }
+      }
+      actions {
+        types: SHOW
+        types: SELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_storage_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to disable HBO_NOW when some TV is selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_hbo_now_for_tv"
+      name: "No HBO_NOW for TV"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_full"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_local"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_limited_legacy"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "tv_limited"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "streaming_hbo_now"
+          }
+        }
+
+      }
+    }
+  }
+}
+
+# Add rule to disable Drive Quota 1TB when Internet service is not F1000 and 2G
+# in markets other than Stanford.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_drive_quota_for_certain_internet"
+      name: "No Drive Quota 1TB for except Fiber 1000 and 2G"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_100"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_500"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "gigabit_ebbp"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_basic"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_broadband"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "neighborhood_100"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_nonpay"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_retention"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_free_basic"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "drive_quota_1_tb"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to select Drive Quota 1TB when Internet service is F1000 and 2G in
+# markets other than Stanford.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "drive_quota_for_certain_internet"
+      name: "Drive Quota 1TB for Fiber 1000 and 2G"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_1000"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "gigabit_ebbp"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_2g"
+        }
+      }
+      actions {
+        types: SHOW
+        types: SELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "drive_quota_1_tb"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to disable SMB Network Box and add 2G Network Box when Internet service
+# is SMB 1 Gig if during signup.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_smb_network_box_for_internet_in_signup"
+      name: "No SMB Network Box for Certain Internet in Signup"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      criteria: "!hasAccount && !util.isInList(address.projectId, 'mxu_special_project_list')"
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_1g"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "smb_network_box"
+          }
+        }
+      }
+      actions {
+        types: SHOW
+        types: SELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "network_box_2g"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to disable Gwifi, BYOR and Network Box when fiber_2g is selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "excluded_network_boxes_for_2g"
+      name: "No Gwifi, BYOR and Network Box for Residential 2G"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_2g"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "wifi_network_box"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "network_box"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "byor_network_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Add rule to disable Extender when 2G Network Box not selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_extender_except_for_2g_nb"
+      name: "No Extender Except For 2G Network Work"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      criteria: "!hasAccount || !util.hasInUseDevice(account.servicePlan, 'GFRG300')"
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_100"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_legacy"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_250"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_1000"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_100"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_500"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "gigabit_ebbp"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_basic"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_broadband"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "neighborhood_100"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_nonpay"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_retention"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_free_basic"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tch_extender_network_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to select Extender when 2G Network Box is selected for CSA only.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "extender_for_2g_nb"
+      name: "Extender for 2G Network Box (CSA)"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      criteria: "includeCsrOffers"
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "network_box_2g"
+        }
+      }
+      actions {
+        types: SHOW
+        types: SELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tch_extender_network_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to deselect Extender when SMB Network Box is selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_extender_for_smb_network_box"
+      name: "No Extender for SMB Network Box"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "smb_network_box"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tch_extender_network_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Add rule to disable all linear TV for rescue products, neighborhood 100 Meg and 2G.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_linear_tv_for_certain_internet"
+      name: "No linear TV for 100 Meg and 2G"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_nonpay"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_retention"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_free_basic"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_2g"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "gigabit_ebbp"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "neighborhood_100"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_full"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_local"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_limited"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tv_limited_legacy"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Add rule to select network_box when phone is selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "network_box_for_phone"
+      name: "Network Box For Phone"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_family {
+          equal: "Phone"
+        }
+      }
+      actions {
+        types: SHOW
+        types: SELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "network_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to select 2G Network Box and Extender and deselect SMB Network Box when
+# Internet service is Residential 2G and SMB 2G.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "2g_nb_for_internet"
+      name: "2G Network Box and Extender for Residential 2G and SMB 2G"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_2g"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_2g"
+        }
+      }
+      actions {
+        types: SHOW
+        types: SELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "network_box_2g"
+          }
+        }
+      }
+      actions {
+        types: SHOW
+        types: SELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tch_extender_network_box"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "smb_network_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to remove extender for Portal only when Internet Service is SMB 1G
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_extender_for_smb_1g"
+      name: "No Extender for SMB 1G (Non-CSA)"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      criteria: "!includeCsrOffers"
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_1g"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tch_extender_network_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to select 2G Network Box for certain Internet services when 2G Network
+# Box is in account.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "2g_nb_for_2g_nb_in_account"
+      name: "2G Network Box For 2G Network Box In Account"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      criteria: "hasAccount && util.hasInUseDevice(account.servicePlan, 'GFRG300')"
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_500"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_1g"
+        }
+      }
+      actions {
+        types: SHOW
+        types: SELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "network_box_2g"
+          }
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "smb_network_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Add rule to disable 2G Network Box when Internet service is or 2G or there is no 2G Network Box in account.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_2g_nb"
+      name: "No 2G Network Box Except For 2G Or 2G Network Box In Account"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      criteria: "!hasAccount || !util.hasInUseDevice(account.servicePlan, 'GFRG300')"
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_100"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_500"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_legacy"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_250"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_smb_1000"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_1000"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "gigabit_ebbp"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_basic"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_broadband"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "neighborhood_100"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_nonpay"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_retention"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_free_basic"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "network_box_2g"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to disable BYOR for Linear TV or Phone.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_byor_for_tv_or_phone"
+      name: "No BYOR for Linear TV or Phone"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_family {
+          equal: "TV"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_family {
+          equal: "Phone"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "byor_network_box"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to select chromecast when Google Wifi is selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "chromecast_select"
+      name: "Chromecast for Google Wifi"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: LOUISVILLE
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_ANTONIO
+      markets: SAN_JOSE
+      markets: STANFORD
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "wifi_network_box"
+        }
+      }
+      actions {
+        types: SHOW
+        types: SELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "chromecast"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to disable Chromecast when TV is selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_chromecast_for_tv"
+      name: "No Chromecast for TV Service"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ALL
+      conditions {
+        source: PRODUCT
+        product_family {
+          equal: "TV"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "chromecast"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to disable Chromecast when Network Box is selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_chromecast_for_nb"
+      name: "No Chromecast for Network Box"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ALL
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "network_box"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "chromecast"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to disable Chromecast for certain internet.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_chromecast_except_for_certain_internet"
+      name: "No chromecast except for certain internet"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_100"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "gigabit_ebbp"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "neighborhood_100"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_nonpay"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_retention"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "rescue_free_basic"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_basic"
+        }
+      }
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "fiber_broadband"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "chromecast"
+          }
+        }
+      }
+    }
+  }
+}
+
+# Rule to disable Chromecast when Google Wifi is not selected.
+#actions {
+#  modify_rule_record {
+#    action_type: CREATE
+#    product_rule {
+#      rule_code: "chromecast_deselect"
+#      name: "No Chromecast for other products except Google Wifi"
+#      markets: ATLANTA
+#      markets: AUSTIN
+#      markets: CHARLOTTE
+#      markets: HUNTSVILLE
+#      markets: KCK
+#      markets: KCMO
+#      markets: NASHVILLE
+#      markets: ORANGE_COUNTY
+#      markets: PROVO
+#      markets: SALT_LAKE_CITY
+#      markets: SAN_JOSE
+#      markets: TRIANGLE
+#      markets: WEST_DES_MOINES
+#      type: SELECTION
+#      evaluation_type: ALL
+#      conditions {
+#        source: PRODUCT
+#        product_code {
+#          not_equal: "wifi_network_box"
+#        }
+#      }
+#      actions {
+#        types: HIDE
+#        types: DESELECT
+#        condition {
+#          source: PRODUCT
+#          product_code {
+#            equal: "chromecast"
+#          }
+#        }
+#      }
+#    }
+#  }
+#}
+
+# Rule to disable Extender when Google Wifi is selected.
+actions {
+  modify_rule_record {
+    action_type: CREATE
+    product_rule {
+      rule_code: "no_extender_for_gwifi"
+      name: "No Extender for Google Wifi"
+      markets: ATLANTA
+      markets: AUSTIN
+      markets: CHARLOTTE
+      markets: HUNTSVILLE
+      markets: KCK
+      markets: KCMO
+      markets: NASHVILLE
+      markets: ORANGE_COUNTY
+      markets: PROVO
+      markets: SALT_LAKE_CITY
+      markets: SAN_JOSE
+      markets: TRIANGLE
+      markets: WEST_DES_MOINES
+      type: SELECTION
+      evaluation_type: ANY
+      conditions {
+        source: PRODUCT
+        product_code {
+          equal: "wifi_network_box"
+        }
+      }
+      actions {
+        types: HIDE
+        types: DESELECT
+        condition {
+          source: PRODUCT
+          product_code {
+            equal: "tch_extender_network_box"
+          }
+        }
+      }
+    }
+  }
+}

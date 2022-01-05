@@ -1,0 +1,315 @@
+<template>
+  <lightning-spinner
+    if:true={isSpinnerLoaded}
+    variant="brand"
+    alternative-text="Loading"
+    size="large">
+  </lightning-spinner>
+  <lightning-card
+    title="Customer/Address search"
+    icon-name="standard:search">
+    <div if:true={isTechnician} class="slds-clearfix">
+      <div class="slds-float_right">
+        <lightning-button variant="neutral"
+          label="Create Contact Ticket"
+          title="Create Contact Ticket"
+          onclick={handleNavigationToContactTicket}
+          class="slds-m-left_x-small slds-button-position-right">
+        </lightning-button>
+      </div>
+    </div>
+    <div class="slds-p-horizontal_small slds-m-top_medium slds-m-bottom_medium">
+      <!-- Server error message: Start-->
+      <div
+        class="error uiMessage"
+        if:true={isServerError}
+        role="alert">
+        <div class="uiBlock">
+          <div class="bBody">
+            <h4>Error</h4>
+            <lightning-formatted-text
+               value="We are unable to process your request now. Please try again after sometime.">
+            </lightning-formatted-text>
+          </div>
+        </div>
+      </div>
+      <div
+        class="error uiMessage"
+        if:true={isSearchError}
+        role="alert">
+        <div class="uiBlock">
+          <div class="bBody">
+            <lightning-formatted-text
+              value="No record found">
+            </lightning-formatted-text>
+          </div>
+        </div>
+      </div>
+      <!-- Server error message: End-->
+      <lightning-input
+        name="enter-search"
+        label="Enter search text here"
+        type="text" autocomplete="off"
+        placeholder="Search (Email, Phone, Address)"
+        value={inputAddress}
+        onchange={handleChange}
+        class="input-address">
+      </lightning-input>
+      <!-- List of addresses to display: Start-->
+      <div if:true={isSuggestions}>
+        <div class="slds-box">
+          <template if:true={isLoader}>
+            <lightning-spinner
+              variant="brand"
+              alternative-text="Loading"
+              size="small">
+            </lightning-spinner>
+          </template>
+          <ul>
+            <template iterator:item={suggestions}>
+              <li
+                key={item.value.suggestion}
+                if:true={item.first}
+                title={item.value.suggestion}
+                class="slds-p-horizontal_xx-small slds-clearfix">
+                <template if:false={item.value.isEntries}>
+                  <a href="#/" onclick={selectAddress}
+                  data-index={item.index}
+                  class="slds-m-vertical_xx-small">
+                  {item.value.suggestion}
+                  </a>
+                </template>
+                <div if:true={item.value.isEntries}>
+                  <a href="#/"
+                    onclick={selectEntries}
+                    data-index={item.index}
+                    class="slds-m-vertical_xx-small">
+                    {item.value.suggestion}
+                    <lightning-icon
+                      icon-name="utility:chevronright"
+                      size="x-small"
+                      alternative-text="chevron right"
+                      title="More entries"
+                      class="slds-float_right slds-m-vertical_xxx-small">
+                    </lightning-icon>
+                  </a>
+                </div>
+              </li>
+              <li
+                key={item.value.suggestion}
+                if:false={item.first}
+                title={item.value.suggestion}
+                class="slds-p-horizontal_xx-small
+                    slds-m-top_x-small slds-p-top_x-small
+                    slds-border_top slds-clearfix">
+                <div if:false={item.value.isEntries}>
+                  <a href="#/"
+                    onclick={selectAddress}
+                    data-index={item.index}
+                    class="slds-m-vertical_xx-small">
+                    {item.value.suggestion}
+                  </a>
+                </div>
+                <div if:true={item.value.isEntries}>
+                  <a href="#/"
+                    onclick={selectEntries}
+                    data-index={item.index}
+                    class="slds-m-vertical_xx-small">
+                    {item.value.suggestion}
+                    <lightning-icon
+                      icon-name="utility:chevronright"
+                      size="x-small"
+                      alternative-text="chevron right"
+                      title="More entries"
+                      class="slds-float_right slds-m-vertical_xxx-small">
+                    </lightning-icon>
+                  </a>
+                </div>
+              </li>
+            </template>
+            <!-- If no address found: Start-->
+            <li
+              class="slds-item"
+              if:true={isNoMatchFoundError}>
+              <lightning-formatted-text
+                value="No match is found for the specified search criteria.">
+              </lightning-formatted-text>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="slds-p-horizontal_small">
+      <lightning-radio-group
+        if:true={isNoAddressId}
+        name="radioGroup"
+        label={noAddressIdLabel}
+        options={noAddressIdOptions}
+        value={noAddressIdValue}
+        onchange={onRadioSelection}
+        type="radio">
+      </lightning-radio-group>
+      <lightning-radio-group
+        if:true={notServiceable}
+        name="radioGroup"
+        label={nonServiceableRadioLabel}
+        options={notServiceableOptions}
+        value={notServiceableValue}
+        onchange={onRadioSelection}
+        type="radio">
+      </lightning-radio-group>
+    </div>
+    <div
+      class="slds-p-horizontal_small slds-m-top_large"
+      if:true={isEmptySearchText}>
+      <!-- if next is clicked without clicking any record -->
+      <p class="slds-m-bottom_x-small slds-text-color_error slds-text-title_bold">
+       Please enter search text</p>
+    </div>
+    <div
+      class="slds-p-horizontal_small slds-m-top_large"
+      if:true={showSearchFlag}>
+      <!-- if next is clicked without selecting the search button -->
+      <p class="slds-m-bottom_x-small slds-text-color_error slds-text-title_bold">
+        Please click on search button to see search results</p>
+    </div>
+    <div
+      class="slds-p-horizontal_small slds-m-top_large"
+      if:true={recordSelectionFlag}>
+      <!-- if next is clicked without clicking any record -->
+      <p class="slds-m-bottom_x-small slds-text-color_error slds-text-title_bold">
+        Please select a record</p>
+    </div>
+    <div
+      if:true={isSearchResponse}
+      class="">
+      <div
+        if:true={isAccountCorrect}
+        class="slds-borderThin">
+        <lightning-card class="slds-text-title_bold">
+          <lightning-input
+            class="slds-checkboxMargin"
+            type="checkbox"
+            label={actualAccountCheckboxLabel}
+            onchange={onCheckboxChange}>
+          </lightning-input>
+        </lightning-card>
+      </div>
+      <div
+        if:true={isLeadCorrect}
+        class="slds-borderThin">
+        <lightning-card class="slds-text-title_bold">
+          <lightning-input
+            class="slds-checkboxMargin"
+            type="checkbox"
+            label={leadCheckboxLabel}
+            onchange={onCheckboxChange}>
+          </lightning-input>
+        </lightning-card>
+      </div>
+      <div
+        if:true={isAccountEnable}
+        class="slds-p-horizontal_medium">
+        <lightning-card
+          class="slds-text-title_bold"
+          title="Account"
+          variant="narrow"
+          icon-name="standard:account">
+          <lightning-datatable
+            data={responseAccountView}
+            columns={accountColumns}
+            key-field="Id"
+            max-row-selection="1"
+            onrowselection={onSelectRecord}>
+          </lightning-datatable>
+        </lightning-card>
+      </div>
+      <div
+        if:true={isLeadEnable}
+        class="slds-p-horizontal_medium">
+        <lightning-card
+          class="slds-text-title_bold"
+          title="Lead" variant="narrow"
+          icon-name="standard:lead">
+          <lightning-datatable
+            data={responseLeadView}
+            columns={leadColumns}
+            key-field="Id"
+            max-row-selection="1"
+            onrowselection={onSelectRecord}>
+          </lightning-datatable>
+        </lightning-card>
+      </div>
+      <div
+        if:true={isPremisesEnable}
+        class="slds-p-horizontal_medium">
+        <lightning-card
+          class="slds-text-title_bold"
+          title="Premises"
+          variant="narrow"
+          icon-name="standard:home">
+          <lightning-datatable
+            data={responsePremisesView}
+            columns={premisesColumns}
+            key-field="Id"
+            max-row-selection="1"
+            onrowselection={onSelectRecord}>
+          </lightning-datatable>
+        </lightning-card>
+      </div>
+    </div>
+    <div if:true={isSmartyResponse}>
+      <div if:true={isLoader}>
+        <lightning-spinner
+        variant="brand"
+        alternative-text="Loading"
+        size="small">
+      </lightning-spinner>
+      </div>
+    </div>
+    <div
+      class="slds-p-horizontal_small slds-m-top_large"
+      if:true={searchMessage}>
+      <p class="slds-m-bottom_x-small slds-text-color_error">
+        Unable to find the record associated to above criteria. Please click Next.
+      </p>
+    </div>
+   <div
+      class="slds-p-horizontal_small slds-m-top_large"
+      if:true={historyEventMessage}>
+      <p class="slds-m-bottom_x-small slds-text-color_error">
+        {historyEventMessage}
+      </p>
+    </div>
+  </lightning-card>
+  <div class="slds-clearfix">
+    <div class="slds-float_right">
+      <div class="slds-m-top_small slds-m-bottom_medium">
+      <lightning-button
+          variant="neutral"
+          if:true={historyEventMessage}
+          label="Navigate to"
+          title="Non-primary action"
+          onclick={navigateToSelectedRecord}
+          class="slds-m-left_small">
+        </lightning-button>
+        <lightning-button
+          variant="neutral"
+          if:true={showSearchButton}
+          label="Search"
+          title="Non-primary action"
+          onclick={getAddressDetails}
+          class="slds-m-left_small">
+        </lightning-button>
+        <lightning-button
+          variant="brand"
+          id="Back"
+          label="Next"
+          title="Next"
+          onclick={handleNext}
+          class="slds-m-left_small">
+        </lightning-button>
+      </div>
+    </div>
+  </div>
+</template>

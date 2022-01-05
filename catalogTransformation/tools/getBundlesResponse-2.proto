@@ -1,0 +1,2870 @@
+bundles {
+  id: "01t18000002oQjvAAE"
+  name: "Multi-Gig Router"
+  description: "Multi-Gig Router"
+  product_code: "network_box_2g"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000001gn7kAAA"
+    product_id: "01t18000002oQjvAAE"
+    charges {
+      id: "a1u18000000kTi9AAE"
+      name: "Upfront charge for 2g Network Box device"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003eZyvAAE"
+        name: "Google owned 2g Network Box"
+        ending_unit: 1
+        price_cents: 28000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+          is_bundled: true
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    charges {
+      id: "a1u18000000kTiEAAU"
+      name: "Upfront waiver for 2g Network Box device"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003ea0MAAQ"
+        name: "Google owned 2g Network Box waived"
+        ending_unit: 1
+        price_cents: -28000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+          is_bundled: true
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "[Tool] 2g Network Box Rate Plan"
+    rate_plan_code: "prp_network_box_2g"
+  }
+  product_line: DEVICE
+  product_subline: "Network Box"
+  hardware_info {
+    type: NETWORK_BOX
+    model: "GFRG300"
+    cost_cents: 28000
+    network_device_properties {
+      min_supported_static_ipv4_subnet_prefix: 30
+      min_supported_static_ipv6_subnet_prefix: 127
+    }
+  }
+}
+bundles {
+  id: "01t18000002oevcAAA"
+  name: "Sling TV"
+  description: "Sling TV"
+  product_code: "tv_sling"
+  type: STANDARD
+  product_family: "Streaming"
+  rate_plans {
+    id: "a1v18000001grXXAAY"
+    product_id: "01t18000002oevcAAA"
+    name: "[Tool] tv_sling rate plan"
+    rate_plan_code: "prp_tv_sling"
+  }
+  product_line: SLING_SERVICE
+  product_subline: "Sling Service"
+}
+bundles {
+  id: "01t18000002W7BlAAK"
+  name: "Fubo TV"
+  description: "Fubo TV"
+  product_code: "tv_fubo"
+  type: STANDARD
+  product_family: "Streaming"
+  effective_start_date: 1609531200000
+  effective_end_date: 4070980800000
+  rate_plans {
+    id: "a1v18000001gc5nAAA"
+    product_id: "01t18000002W7BlAAK"
+    name: "[Tool] tv_fubo rate plan"
+    rate_plan_code: "prp_tv_fubo"
+  }
+  product_line: FUBO_SERVICE
+  product_subline: "Fubo Service"
+  zuora_product_id: "2c92c0f87129861a0171369fe90b7424"
+}
+bundles {
+  id: "01t18000002ns4LAAQ"
+  name: "2 Gig"
+  description: "2 Gig"
+  product_code: "fiber_2g"
+  type: STANDARD
+  product_family: "Internet"
+  rate_plans {
+    id: "a1v18000001gmiTAAQ"
+    product_id: "01t18000002ns4LAAQ"
+    charges {
+      id: "a1u18000000kTZKAA2"
+      name: "fiber_2g rate plan charge"
+      type: RECURRING
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003NcmIAAS"
+        name: "fiber_2g rate plan charge tier"
+        price_cents: 10000
+        format: FLAT_FEE
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "[Tool] fiber_2g rate plan"
+    rate_plan_code: "prp_fiber_2g"
+  }
+  product_line: INTERNET_SERVICE
+  product_subline: "Residential 2g"
+  internet_product_info {
+    type: RESIDENTIAL_2G
+  }
+  zuora_product_id: "2c92c0f872125aee017214c5305a48d2"
+}
+bundles {
+  id: "01t18000002nrzoAAA"
+  name: "Mesh Extender"
+  description: "Mesh Extender"
+  product_code: "tch_extender_network_box"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000001gnL4AAI"
+    product_id: "01t18000002nrzoAAA"
+    charges {
+      id: "a1u18000000kTptAAE"
+      name: "Upfront waiver for first device"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003egTyAAI"
+        name: "First one waived"
+        ending_unit: 1
+        price_cents: -18000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+          is_bundled: true
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    charges {
+      id: "a1u18000000kTpoAAE"
+      name: "Upfront charge for Extender devices"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003egToAAI"
+        name: "First Google-owned"
+        ending_unit: 1
+        price_cents: 18000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+          is_bundled: true
+        }
+      }
+      tiers {
+        id: "a1t18000003egTtAAI"
+        name: "Customer-owned"
+        starting_unit: 2
+        ending_unit: 6
+        price_cents: 18000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_ACCOUNT
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "[Tool] Extender Rate Plan"
+    rate_plan_code: "prp_tch_extender_network_box"
+  }
+  product_line: DEVICE
+  product_subline: "Wifi Extender"
+  hardware_info {
+    type: WIFI_EXTENDER
+    cost_cents: 18000
+  }
+  zuora_product_id: "2c92c0f9712998a401713717759054ba"
+}
+bundles {
+  id: "01t18000002JbiUAAS"
+  name: "Google Wifi"
+  description: "Google Wifi"
+  product_code: "wifi_network_box"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000001ge5fAAA"
+    product_id: "01t18000002JbiUAAS"
+    charges {
+      id: "a1u18000000kMK0AAM"
+      name: "Upfront waiver for first 2 devices"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003MENdAAO"
+        name: "First two waived"
+        ending_unit: 2
+        price_cents: -10000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    charges {
+      id: "a1u18000000kMJvAAM"
+      name: "Upfront charge for Google Wifi devices"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003MENOAA4"
+        name: "First Bundled Google-owned"
+        ending_unit: 1
+        price_cents: 10000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+          is_bundled: true
+        }
+      }
+      tiers {
+        id: "a1t18000003MENTAA4"
+        name: "Second Google-owned"
+        starting_unit: 2
+        ending_unit: 2
+        price_cents: 10000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      tiers {
+        id: "a1t18000003MENYAA4"
+        name: "Customer-owned"
+        starting_unit: 3
+        ending_unit: 6
+        price_cents: 10000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_ACCOUNT
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "Google Wifi Rate Plan"
+    rate_plan_code: "prp_wifi_network_box"
+  }
+  product_line: DEVICE
+  product_subline: "Network Box"
+  hardware_info {
+    type: NETWORK_BOX
+    model: "GOOGLE_WIFI_1"
+    cost_cents: 10000
+    network_device_properties {
+      min_supported_static_ipv4_subnet_prefix: 30
+      min_supported_static_ipv6_subnet_prefix: 127
+    }
+  }
+  zuora_product_id: "2c92c0f8712986230171371f5ccc3345"
+}
+bundles {
+  id: "01t18000001y6CeAAI"
+  name: "drive_quota_1_tb"
+  description: "drive_quota_1_tb"
+  product_code: "drive_quota_1_tb"
+  type: STANDARD
+  product_family: "Additional Service"
+  rate_plans {
+    id: "a1v18000000uc5xAAA"
+    product_id: "01t18000001y6CeAAI"
+    name: "drive_quota_1_tb"
+    rate_plan_code: "prp_drive_quota_1_tb"
+  }
+  product_line: DRIVE_QUOTA
+  zuora_product_id: "2c92c0f87129861601713723ed173de1"
+}
+bundles {
+  id: "01t18000001y6D3AAI"
+  name: "Phone Box"
+  description: "Phone Box"
+  product_code: "phone_box"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000000uc6dAAA"
+    product_id: "01t18000001y6D3AAI"
+    charges {
+      id: "a1u18000000ZpCBAA0"
+      name: "phone_box_exemption"
+      type: ONE_TIME
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003IpOOAA0"
+        name: "phone_box_exemption"
+        price_cents: -5000
+        format: FLAT_FEE
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    charges {
+      id: "a1u18000000ZpA1AAK"
+      name: "phone_box"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003IpB5AAK"
+        name: "phone_box"
+        ending_unit: 1
+        price_cents: 5000
+        format: FLAT_FEE
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          is_bundled: true
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "phone_box"
+    rate_plan_code: "prp_phone_box"
+  }
+  product_line: DEVICE
+  product_subline: "Voice Box"
+  hardware_info {
+    type: VOICE_BOX
+    cost_cents: 5000
+  }
+  zuora_product_id: "2c92c0f9712998b00171372890e42fbe"
+}
+bundles {
+  id: "01t18000001y6D8AAI"
+  name: "Network Box"
+  description: "Network Box"
+  product_code: "network_box"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000000uc3pAAA"
+    product_id: "01t18000001y6D8AAI"
+    charges {
+      id: "a1u18000000ZpCHAA0"
+      name: "fiber_network_box"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003IpAhAAK"
+        name: "fiber_network_box"
+        ending_unit: 1
+        price_cents: 20000
+        format: FLAT_FEE
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          is_bundled: true
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    charges {
+      id: "a1u18000000ZpMUAA0"
+      name: "fiber_network_box_exemption"
+      type: ONE_TIME
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003IpP7AAK"
+        name: "fiber_network_box_exemption"
+        price_cents: -20000
+        format: FLAT_FEE
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "fiber_network_box"
+    rate_plan_code: "prp_network_box"
+  }
+  product_line: DEVICE
+  product_subline: "Network Box"
+  hardware_info {
+    type: NETWORK_BOX
+    cost_cents: 20000
+    network_device_properties {
+      min_supported_static_ipv4_subnet_prefix: 30
+      min_supported_static_ipv6_subnet_prefix: 127
+    }
+  }
+  zuora_product_id: "2c92c0f87129861601713729702f6243"
+}
+bundles {
+  id: "01t18000001y68wAAA"
+  name: "Basic Internet"
+  description: "Basic Internet"
+  product_code: "fiber_basic"
+  type: STANDARD
+  product_family: "Internet"
+  rate_plans {
+    id: "a1v18000000ubyyAAA"
+    product_id: "01t18000001y68wAAA"
+    name: "fiber_basic"
+    rate_plan_code: "prp_fiber_basic"
+  }
+  product_line: INTERNET_SERVICE
+  product_subline: "Free"
+  internet_product_info {
+    type: FREE
+  }
+  zuora_product_id: "2c92c0f9712998b00171372d759a45a2"
+}
+bundles {
+  id: "01t18000001y6BMAAY"
+  name: "tv_sports"
+  description: "tv_sports"
+  product_code: "tv_sports"
+  type: STANDARD
+  product_family: "TV"
+  rate_plans {
+    id: "a1v18000000uc44AAA"
+    product_id: "01t18000001y6BMAAY"
+    charges {
+      id: "a1u18000000Zp8GAAS"
+      name: "tv_sports"
+      type: RECURRING
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003Ip9iAAC"
+        name: "tv_sports"
+        price_cents: 1000
+        format: FLAT_FEE
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "tv_sports"
+    rate_plan_code: "prp_tv_sports"
+  }
+  product_line: TV_CHANNEL
+  product_subline: "Sports"
+  cms_info {
+    package_id: 7535
+  }
+  zuora_product_id: "2c92c0f9712998b001713730de6b5d30"
+}
+bundles {
+  id: "01t18000001y6CjAAI"
+  name: "tv_starz"
+  description: "tv_starz"
+  product_code: "tv_starz"
+  type: STANDARD
+  product_family: "TV"
+  rate_plans {
+    id: "a1v18000000uc6QAAQ"
+    product_id: "01t18000001y6CjAAI"
+    charges {
+      id: "a1u18000000ZpA6AAK"
+      name: "tv_starz"
+      type: RECURRING
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003IpBAAA0"
+        name: "tv_starz"
+        price_cents: 1000
+        format: FLAT_FEE
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "tv_starz"
+    rate_plan_code: "prp_tv_starz"
+  }
+  product_line: TV_CHANNEL
+  product_subline: "Starz"
+  cms_info {
+    package_id: 7558
+  }
+  zuora_product_id: "2c92c0f9712998b001713733208b6c55"
+}
+bundles {
+  id: "01t18000001y6DDAAY"
+  name: "tv_movies"
+  description: "tv_movies"
+  product_code: "tv_movies"
+  type: STANDARD
+  product_family: "TV"
+  rate_plans {
+    id: "a1v18000000ucCRAAY"
+    product_id: "01t18000001y6DDAAY"
+    charges {
+      id: "a1u18000000Zp7TAAS"
+      name: "tv_movies"
+      type: RECURRING
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003IpDkAAK"
+        name: "tv_movies"
+        price_cents: 1000
+        format: FLAT_FEE
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "tv_movies"
+    rate_plan_code: "prp_tv_movies"
+  }
+  product_line: TV_CHANNEL
+  product_subline: "Movies"
+  cms_info {
+    package_id: 88514
+  }
+  zuora_product_id: "2c92c0f8712986230171373833023847"
+}
+bundles {
+  id: "01t18000001y6DIAAY"
+  name: "Storage Box"
+  description: "Storage Box"
+  product_code: "tv_storage_box"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000000ucStAAI"
+    product_id: "01t18000001y6DIAAY"
+    charges {
+      id: "a1u18000000ZpC8AAK"
+      name: "tv_storage_box"
+      type: RECURRING
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003IpD3AAK"
+        name: "tv_storage_box"
+        ending_unit: 1
+        price_cents: 1250
+        format: FLAT_FEE
+        hardware_policy {
+          ownership: OWNED_BY_ACCOUNT
+          is_bundled: true
+        }
+      }
+      recurrences: 24
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    charges {
+      id: "a1u18000000ZpPBAA0"
+      name: "tv_storage_box_exemption"
+      type: RECURRING
+      model: TIERED
+      tiers {
+        id: "a1t18000003IpPXAA0"
+        name: "tv_storage_box_exemption"
+        ending_unit: 1
+        price_cents: -1250
+        format: FLAT_FEE
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+        }
+      }
+      recurrences: 24
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "tv_storage_box_exemption"
+    rate_plan_code: "prp_tv_storage_box_exemption_1"
+  }
+  product_line: DEVICE
+  product_subline: "Storage Box"
+  hardware_info {
+    type: STORAGE_BOX
+  }
+  zuora_product_id: "2c92c0f9712998a401713739c9450540"
+}
+bundles {
+  id: "01t18000001y6DNAAY"
+  name: "tv_bundle_premium"
+  description: "tv_bundle_premium"
+  product_code: "tv_bundle_premium"
+  type: BUNDLE
+  product_family: "TV"
+  options {
+    product_id: "01t18000001y6DXAAY"
+    type: REQUIRED
+    feature_id: "a2d18000000Jtq0AAC"
+    id: "a2e18000000C1evAAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6CjAAI"
+    type: REQUIRED
+    feature_id: "a2d18000000Jtq0AAC"
+    id: "a2e18000000C1eqAAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  rate_plans {
+    id: "a1v18000000uc2XAAQ"
+    product_id: "01t18000001y6DNAAY"
+    charges {
+      id: "a1u18000000Zp74AAC"
+      name: "tv_bundle_premium"
+      type: RECURRING
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003IpEEAA0"
+        name: "tv_bundle_premium"
+        format: FLAT_FEE
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "tv_bundle_premium"
+    rate_plan_code: "prp_tv_bundle_premium"
+  }
+  features {
+    id: "a2d18000000Jtq0AAC"
+    name: "a2d18000000Jtq0"
+    max_option_count: 4
+  }
+  product_line: TV_CHANNEL
+  product_subline: "Premium Add On"
+  cms_info {
+    package_id: 7538
+  }
+  zuora_product_id: "2c92c0f871298616017137351c1b2b53"
+}
+bundles {
+  id: "01t18000001y6DSAAY"
+  name: "tv_family"
+  description: "tv_family"
+  product_code: "tv_family"
+  type: STANDARD
+  product_family: "TV"
+  rate_plans {
+    id: "a1v18000000ucEmAAI"
+    product_id: "01t18000001y6DSAAY"
+    charges {
+      id: "a1u18000000ZpDzAAK"
+      name: "tv_family"
+      type: RECURRING
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003IpD2AAK"
+        name: "tv_family"
+        price_cents: 1000
+        format: FLAT_FEE
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "tv_family"
+    rate_plan_code: "prp_tv_family"
+  }
+  product_line: TV_CHANNEL
+  product_subline: "Family"
+  cms_info {
+    package_id: 201248
+  }
+  zuora_product_id: "2c92c0f87129861a0171373a92705eaa"
+}
+bundles {
+  id: "01t18000001y6DXAAY"
+  name: "tv_showtime"
+  description: "tv_showtime"
+  product_code: "tv_showtime"
+  type: STANDARD
+  product_family: "TV"
+  rate_plans {
+    id: "a1v18000000ucExAAI"
+    product_id: "01t18000001y6DXAAY"
+    charges {
+      id: "a1u18000000ZpFzAAK"
+      name: "tv_showtime"
+      type: RECURRING
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003IpH3AAK"
+        name: "tv_showtime"
+        price_cents: 1000
+        format: FLAT_FEE
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "tv_showtime"
+    rate_plan_code: "prp_tv_showtime"
+  }
+  product_line: TV_CHANNEL
+  product_subline: "Showtime"
+  cms_info {
+    package_id: 7542
+  }
+  zuora_product_id: "2c92c0f9721269f70172153525163cee"
+}
+bundles {
+  id: "01t18000001y6DmAAI"
+  name: "Google Fiber Phone"
+  description: "Google Fiber Phone"
+  product_code: "phone"
+  type: BUNDLE
+  product_family: "Phone"
+  options {
+    product_id: "01t18000001y6E1AAI"
+    type: OPTIONAL
+    id: "a2e18000000C1fJAAS"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6D3AAI"
+    type: REQUIRED
+    id: "a2e18000000C1ZaAAK"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  rate_plans {
+    id: "a1v18000000ucKGAAY"
+    product_id: "01t18000001y6DmAAI"
+    charges {
+      id: "a1u18000000ZpGiAAK"
+      name: "phone"
+      type: RECURRING
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003IpI6AAK"
+        name: "phone"
+        price_cents: 1000
+        format: FLAT_FEE
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "phone"
+    rate_plan_code: "prp_phone"
+  }
+  product_line: VOICE_SERVICE
+  product_subline: "Voice Residential"
+  zuora_product_id: "2c92c0f871b036d80171b991af4d398e"
+}
+bundles {
+  id: "01t18000001y6DwAAI"
+  name: "phone_battery_ups_power_unit_2"
+  description: "phone_battery_ups_power_unit_2"
+  product_code: "phone_battery_ups_power_unit_2"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000000ucKaAAI"
+    product_id: "01t18000001y6DwAAI"
+    charges {
+      id: "a1u18000000ZpGYAA0"
+      name: "phone_battery_ups_power_unit_2"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003IpHmAAK"
+        name: "phone_battery_ups_power_unit_2"
+        ending_unit: 1
+        price_cents: 24000
+        format: FLAT_FEE
+        hardware_policy {
+          ownership: OWNED_BY_ACCOUNT
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "phone_battery_ups_power_unit_2"
+    rate_plan_code: "prp_phone_battery_ups_power_unit_2"
+  }
+  product_line: DEVICE
+  product_subline: "Ups Power Unit"
+  hardware_info {
+    type: UPS_POWER_UNIT
+    cost_cents: 24000
+  }
+  zuora_product_id: "2c92c0f872125af201721538007a1a3a"
+}
+bundles {
+  id: "01t18000001y6E1AAI"
+  name: "phone_battery"
+  description: "phone_battery"
+  product_code: "phone_battery"
+  type: BUNDLE
+  product_family: "Phone"
+  options {
+    product_id: "01t18000001y6BRAAY"
+    type: REQUIRED
+    id: "a2e18000000C1ZGAA0"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6DrAAI"
+    type: REQUIRED
+    id: "a2e18000000C1aJAAS"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6EBAAY"
+    type: REQUIRED
+    id: "a2e18000000C1aiAAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6DwAAI"
+    type: REQUIRED
+    id: "a2e18000000C1ZQAA0"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6E6AAI"
+    type: REQUIRED
+    id: "a2e18000000C1ZpAAK"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6EGAAY"
+    type: REQUIRED
+    id: "a2e18000000C1fOAAS"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  rate_plans {
+    id: "a1v18000000ucNZAAY"
+    product_id: "01t18000001y6E1AAI"
+    charges {
+      id: "a1u18000000ZpJDAA0"
+      name: "phone_battery"
+      type: ONE_TIME
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003IpKCAA0"
+        name: "phone_battery"
+        price_cents: 123000
+        format: FLAT_FEE
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "phone_battery"
+    rate_plan_code: "prp_phone_battery"
+  }
+  product_line: VOICE_SERVICE
+  product_subline: "Battery Backup 8h"
+  zuora_product_id: "2c92c0f872125aeb01721538fd3d3c9a"
+}
+bundles {
+  id: "01t18000001y6E6AAI"
+  name: "phone_battery_ups_external_battery_3"
+  description: "phone_battery_ups_external_battery_3"
+  product_code: "phone_battery_ups_external_battery_3"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000000uc8jAAA"
+    product_id: "01t18000001y6E6AAI"
+    charges {
+      id: "a1u18000000ZpJSAA0"
+      name: "phone_battery_ups_external_battery_3"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003IpKWAA0"
+        name: "phone_battery_ups_external_battery_3"
+        ending_unit: 1
+        price_cents: 17000
+        format: FLAT_FEE
+        hardware_policy {
+          ownership: OWNED_BY_ACCOUNT
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "phone_battery_ups_external_battery_3"
+    rate_plan_code: "prp_phone_battery_ups_external_battery_3"
+  }
+  product_line: DEVICE
+  product_subline: "Ups External Battery"
+  hardware_info {
+    type: UPS_EXTERNAL_BATTERY
+    cost_cents: 17000
+  }
+  zuora_product_id: "2c92c0f872125aeb0172153977c93f89"
+}
+bundles {
+  id: "01t18000001y6EBAAY"
+  name: "phone_battery_ups_external_battery_2"
+  description: "phone_battery_ups_external_battery_2"
+  product_code: "phone_battery_ups_external_battery_2"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000000uc5RAAQ"
+    product_id: "01t18000001y6EBAAY"
+    charges {
+      id: "a1u18000000ZpJmAAK"
+      name: "phone_battery_ups_external_battery_2"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003IpKlAAK"
+        name: "phone_battery_ups_external_battery_2"
+        ending_unit: 1
+        price_cents: 17000
+        format: FLAT_FEE
+        hardware_policy {
+          ownership: OWNED_BY_ACCOUNT
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "phone_battery_ups_external_battery_2"
+    rate_plan_code: "prp_phone_battery_ups_external_battery_2"
+  }
+  product_line: DEVICE
+  product_subline: "Ups External Battery"
+  hardware_info {
+    type: UPS_EXTERNAL_BATTERY
+    cost_cents: 17000
+  }
+  zuora_product_id: "2c92c0f972126a0701721539e8cc44b0"
+}
+bundles {
+  id: "01t18000001y6EGAAY"
+  name: "phone_battery_ups_external_battery_1"
+  description: "phone_battery_ups_external_battery_1"
+  product_code: "phone_battery_ups_external_battery_1"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000000uc60AAA"
+    product_id: "01t18000001y6EGAAY"
+    charges {
+      id: "a1u18000000Zp8EAAS"
+      name: "phone_battery_ups_external_battery_1"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003IpCtAAK"
+        name: "phone_battery_ups_external_battery_1"
+        ending_unit: 1
+        price_cents: 17000
+        format: FLAT_FEE
+        hardware_policy {
+          ownership: OWNED_BY_ACCOUNT
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "phone_battery_ups_external_battery_1"
+    rate_plan_code: "prp_phone_battery_ups_external_battery_1"
+  }
+  product_line: DEVICE
+  product_subline: "Ups External Battery"
+  hardware_info {
+    type: UPS_EXTERNAL_BATTERY
+    cost_cents: 17000
+  }
+  zuora_product_id: "2c92c0f872125af20172153a4d1b2a91"
+}
+bundles {
+  id: "01t18000001y6ELAAY"
+  name: "Residential Bundle"
+  description: "Residential Bundle"
+  product_code: "bundle_residential"
+  type: BUNDLE
+  options {
+    product_id: "01t18000001y6CeAAI"
+    type: OPTIONAL
+    id: "a2e18000000C1iXAAS"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000002VLDyAAO"
+    type: OPTIONAL
+    id: "a2e18000001jO6oAAE"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6AdAAI"
+    type: OPTIONAL
+    id: "a2e18000000C1hKAAS"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y68hAAA"
+    type: OPTIONAL
+    id: "a2e18000000C1fdAAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6DmAAI"
+    type: OPTIONAL
+    id: "a2e18000000C1hAAAS"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  top_level: true
+  zuora_product_id: "2c92c0f8712986160171373760f23890"
+}
+bundles {
+  id: "01t18000001y6DrAAI"
+  name: "phone_battery_ups_power_unit_1"
+  description: "phone_battery_ups_power_unit_1"
+  product_code: "phone_battery_ups_power_unit_1"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000000ucG6AAI"
+    product_id: "01t18000001y6DrAAI"
+    charges {
+      id: "a1u18000000ZpBlAAK"
+      name: "phone_battery_ups_power_unit_1"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003Ip3cAAC"
+        name: "phone_battery_ups_power_unit_1"
+        ending_unit: 1
+        price_cents: 24000
+        format: FLAT_FEE
+        hardware_policy {
+          ownership: OWNED_BY_ACCOUNT
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "phone_battery_ups_power_unit_1"
+    rate_plan_code: "prp_phone_battery_ups_power_unit_1"
+  }
+  product_line: DEVICE
+  product_subline: "Ups Power Unit"
+  hardware_info {
+    type: UPS_POWER_UNIT
+    cost_cents: 24000
+  }
+  zuora_product_id: "2c92c0f872125af2017215408cc0641f"
+}
+bundles {
+  id: "01t18000001y69QAAQ"
+  name: "1 Gig"
+  description: "1 Gig"
+  product_code: "fiber_1000"
+  type: STANDARD
+  product_family: "Internet"
+  effective_start_date: 1262376000000
+  effective_end_date: 4070980800000
+  rate_plans {
+    id: "a1v18000000uc0MAAQ"
+    product_id: "01t18000001y69QAAQ"
+    charges {
+      id: "a1u18000000ZozcAAC"
+      name: "fiber_1000"
+      type: RECURRING
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003Ip07AAC"
+        name: "fiber_1000"
+        price_cents: 7000
+        format: FLAT_FEE
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "fiber_1000"
+    rate_plan_code: "prp_ fiber_1000"
+  }
+  product_line: INTERNET_SERVICE
+  product_subline: "Gigabit"
+  line_item_message: "DATA_GIGABIT"
+  internet_product_info {
+    type: GIGABIT
+  }
+  zuora_product_id: "2c92c0f9712998a4017136798ab7190e"
+}
+bundles {
+  id: "01t18000001y6AdAAI"
+  name: "Residential TV"
+  description: "Residential TV"
+  product_code: "singleton_tv"
+  type: BUNDLE
+  product_family: "TV"
+  options {
+    product_id: "01t18000001y6DIAAY"
+    type: OPTIONAL
+    id: "a2e18000000C1hZAAS"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6CtAAI"
+    type: OPTIONAL
+    feature_id: "a2d18000000JtqPAAS"
+    id: "a2e18000000C1hyAAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6DDAAY"
+    type: OPTIONAL
+    feature_id: "a2d18000000JtqPAAS"
+    id: "a2e18000000C1hjAAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6AxAAI"
+    type: OPTIONAL
+    feature_id: "a2d18000000JtpvAAC"
+    id: "a2e18000000C1YhAAK"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6BCAAY"
+    type: AUTOMATIC
+    feature_id: "a2d18000000JtqPAAS"
+    id: "a2e18000000C1htAAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6CoAAI"
+    type: OPTIONAL
+    id: "a2e18000000C1hPAAS"
+    min_quantity: 1
+    max_quantity: 6
+  }
+  options {
+    product_id: "01t18000001y6BMAAY"
+    type: OPTIONAL
+    feature_id: "a2d18000000JtqPAAS"
+    id: "a2e18000000C1hoAAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6DNAAY"
+    type: AUTOMATIC
+    feature_id: "a2d18000000JtqPAAS"
+    id: "a2e18000000C1iNAAS"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6DSAAY"
+    type: OPTIONAL
+    feature_id: "a2d18000000JtqPAAS"
+    id: "a2e18000000C1heAAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6CjAAI"
+    type: OPTIONAL
+    feature_id: "a2d18000000JtqPAAS"
+    id: "a2e18000000C1i8AAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6DXAAY"
+    type: OPTIONAL
+    feature_id: "a2d18000000JtqPAAS"
+    id: "a2e18000000C1iDAAS"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  features {
+    id: "a2d18000000JtpvAAC"
+    name: "TV"
+    min_option_count: 1
+    max_option_count: 1
+  }
+  features {
+    id: "a2d18000000JtqPAAS"
+    name: "TV Channels"
+    max_option_count: 10
+  }
+  zuora_product_id: "2c92c0f9721269f7017215423bcf6fa4"
+}
+bundles {
+  id: "01t18000001y6BCAAY"
+  name: "tv_bundle_all_in"
+  description: "tv_bundle_all_in"
+  product_code: "tv_bundle_all_in"
+  type: BUNDLE
+  product_family: "TV"
+  options {
+    product_id: "01t18000001y6DSAAY"
+    type: REQUIRED
+    feature_id: "a2d18000000Jtq5AAC"
+    id: "a2e18000000C1fTAAS"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6DDAAY"
+    type: REQUIRED
+    feature_id: "a2d18000000Jtq5AAC"
+    id: "a2e18000000C1cfAAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6DNAAY"
+    type: REQUIRED
+    feature_id: "a2d18000000Jtq5AAC"
+    id: "a2e18000000C1csAAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y6BMAAY"
+    type: REQUIRED
+    feature_id: "a2d18000000Jtq5AAC"
+    id: "a2e18000000C1fYAAS"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  rate_plans {
+    id: "a1v18000000ucALAAY"
+    product_id: "01t18000001y6BCAAY"
+    charges {
+      id: "a1u18000000Zp85AAC"
+      name: "tv_bundle_all_in"
+      type: RECURRING
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003Ip8kAAC"
+        name: "tv_bundle_all_in"
+        price_cents: -1000
+        format: FLAT_FEE
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "tv_bundle_all_in"
+    rate_plan_code: "prp_tv_bundle_all_in"
+  }
+  features {
+    id: "a2d18000000Jtq5AAC"
+    name: "a2d18000000Jtq5"
+    max_option_count: 4
+  }
+  product_line: TV_CHANNEL
+  product_subline: "All In"
+  cms_info {
+    package_id: 201241
+  }
+  zuora_product_id: "2c92c0f872125aeb01721544718721ca"
+}
+bundles {
+  id: "01t18000001y6C5AAI"
+  name: "tv_youtube_base"
+  description: "tv_youtube_base"
+  product_code: "tv_youtube_base"
+  type: STANDARD
+  product_family: "Streaming"
+  rate_plans {
+    id: "a1v18000000ucB4AAI"
+    product_id: "01t18000001y6C5AAI"
+    name: "tv_youtube_base"
+    rate_plan_code: "prp_tv_youtube_base"
+  }
+  product_line: YOUTUBE_SERVICE
+  product_subline: "Yttv Base Service"
+  zuora_product_id: "2c92c0f872125aee0172154734b33e12"
+}
+bundles {
+  id: "01t18000001y68hAAA"
+  name: "Residential Fiber"
+  description: "Residential Fiber"
+  product_code: "singleton_fiber"
+  type: BUNDLE
+  product_family: "Internet"
+  options {
+    product_id: "01t18000002nrzoAAA"
+    type: OPTIONAL
+    id: "a2e18000001jlIMAAY"
+    min_quantity: 1
+    max_quantity: 6
+  }
+  options {
+    product_id: "01t18000001y68wAAA"
+    type: OPTIONAL
+    feature_id: "a2d18000000JtplAAC"
+    id: "a2e18000000C1WgAAK"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000002oQjvAAE"
+    type: OPTIONAL
+    feature_id: "a2d18000000JtqAAAS"
+    id: "a2e18000001jlIHAAY"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000002ns4LAAQ"
+    type: OPTIONAL
+    feature_id: "a2d18000000JtplAAC"
+    id: "a2e18000001jXt9AAE"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000001y69QAAQ"
+    type: OPTIONAL
+    feature_id: "a2d18000000JtplAAC"
+    id: "a2e18000000C1XeAAK"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000002JbiUAAS"
+    type: RECOMMENDED
+    feature_id: "a2d18000000JtqAAAS"
+    id: "a2e18000000C2yfAAC"
+    min_quantity: 1
+    max_quantity: 6
+  }
+  options {
+    product_id: "01t18000001y6D8AAI"
+    type: OPTIONAL
+    feature_id: "a2d18000000JtqAAAS"
+    id: "a2e18000000C1fnAAC"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  features {
+    id: "a2d18000000JtplAAC"
+    name: "Internet"
+    min_option_count: 1
+    max_option_count: 1
+  }
+  features {
+    id: "a2d18000000JtqAAAS"
+    name: "Network Box"
+    max_option_count: 1
+  }
+  zuora_product_id: "2c92c0f872125aee0172154bb9ef531c"
+}
+bundles {
+  id: "01t18000001y6AxAAI"
+  name: "tv_no"
+  description: "tv_no"
+  product_code: "tv_no"
+  type: STANDARD
+  product_family: "TV"
+  rate_plans {
+    id: "a1v18000000uc3FAAQ"
+    product_id: "01t18000001y6AxAAI"
+    name: "tv_no"
+    rate_plan_code: "prp_tv_no"
+  }
+  product_line: TV_SERVICE
+  product_subline: "No Tv"
+  zuora_product_id: "2c92c0f9721269f70172154d110c26bd"
+}
+bundles {
+  id: "01t18000001y6BRAAY"
+  name: "phone_battery_ups_power_unit_3"
+  description: "phone_battery_ups_power_unit_3"
+  product_code: "phone_battery_ups_power_unit_3"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000000uc2jAAA"
+    product_id: "01t18000001y6BRAAY"
+    charges {
+      id: "a1u18000000Zp7NAAS"
+      name: "phone_battery_ups_power_unit_3"
+      type: ONE_TIME
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003Ip9dAAC"
+        name: "phone_battery_ups_power_unit_3"
+        ending_unit: 1
+        price_cents: 24000
+        format: FLAT_FEE
+        hardware_policy {
+          ownership: OWNED_BY_ACCOUNT
+          remorse_return_window {
+            display_days: 30
+            enforced_days: 60
+          }
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "phone_battery_ups_power_unit_3"
+    rate_plan_code: "prp_phone_battery_ups_power_unit_3"
+  }
+  product_line: DEVICE
+  product_subline: "Ups Power Unit"
+  hardware_info {
+    type: UPS_POWER_UNIT
+    cost_cents: 24000
+  }
+  zuora_product_id: "2c92c0f872125aee0172154db42856ef"
+}
+bundles {
+  id: "01t18000001y6CoAAI"
+  name: "TV Box"
+  description: "TV Box"
+  product_code: "tv_box"
+  type: STANDARD
+  product_family: "Hardware"
+  rate_plans {
+    id: "a1v18000000ucEbAAI"
+    product_id: "01t18000001y6CoAAI"
+    charges {
+      id: "a1u18000000Zp9NAAS"
+      name: "tv_free_tv_box"
+      type: RECURRING
+      model: TIERED
+      unit_type: DEVICE
+      tiers {
+        id: "a1t18000003Ip7eAAC"
+        name: "tv_free_tv_box"
+        starting_unit: 1
+        ending_unit: 1
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+          is_bundled: true
+        }
+      }
+      tiers {
+        id: "a1t18000003IpTJAA0"
+        name: "tv_additional_tv_box"
+        starting_unit: 2
+        ending_unit: 6
+        price_cents: 1000
+        format: PER_UNIT
+        hardware_policy {
+          ownership: OWNED_BY_FIBER
+        }
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "tv_free_tv_box"
+    rate_plan_code: "prp_tv_box"
+  }
+  product_line: DEVICE
+  product_subline: "Tv Box"
+  hardware_info {
+    type: TV_BOX
+  }
+  zuora_product_id: "2c92c0f872125af20172155223a33f88"
+}
+bundles {
+  id: "01t18000001y6CtAAI"
+  name: "tv_hispanic"
+  description: "tv_hispanic"
+  product_code: "tv_hispanic"
+  type: STANDARD
+  product_family: "TV"
+  rate_plans {
+    id: "a1v18000000uc6PAAQ"
+    product_id: "01t18000001y6CtAAI"
+    charges {
+      id: "a1u18000000Zp9XAAS"
+      name: "tv_hispanic"
+      type: RECURRING
+      model: FLAT_FEE
+      tiers {
+        id: "a1t18000003IpAWAA0"
+        name: "tv_hispanic"
+        price_cents: 500
+        format: FLAT_FEE
+      }
+      taxable: true
+      tax_code: "04"
+      tax_mode: TAX_EXCLUSIVE
+    }
+    name: "tv_hispanic"
+    rate_plan_code: "prp_tv_hispanic"
+  }
+  product_line: TV_CHANNEL
+  product_subline: "Hispanic"
+  cms_info {
+    package_id: 7554
+  }
+  zuora_product_id: "2c92c0f872125aee017215527744664a"
+}
+bundles {
+  id: "01t18000002VLDyAAO"
+  name: "Residential Streaming"
+  description: "Residential Streaming"
+  product_code: "residential_streaming"
+  type: BUNDLE
+  product_family: "Streaming"
+  options {
+    product_id: "01t18000001y6C5AAI"
+    type: OPTIONAL
+    feature_id: "a2d18000000Rd04AAC"
+    id: "a2e18000001jO6tAAE"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000002oevcAAA"
+    type: OPTIONAL
+    feature_id: "a2d18000000Rd04AAC"
+    id: "a2e18000001jpIqAAI"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000002W7BlAAK"
+    type: OPTIONAL
+    feature_id: "a2d18000000Rd04AAC"
+    id: "a2e18000001jQo5AAE"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  options {
+    product_id: "01t18000002oUQrAAM"
+    type: OPTIONAL
+    feature_id: "a2d18000000Rd04AAC"
+    id: "a2e18000001jmTGAAY"
+    min_quantity: 1
+    max_quantity: 1
+  }
+  features {
+    id: "a2d18000000Rd04AAC"
+    name: "Streaming"
+    max_option_count: 1000
+  }
+  zuora_product_id: "2c92c0f972126a0701721552d25f5e68"
+}
+bundles {
+  id: "01t18000002oUQrAAM"
+  name: "Philo TV"
+  description: "Philo TV"
+  product_code: "tv_philo"
+  type: STANDARD
+  product_family: "Streaming"
+  rate_plans {
+    id: "a1v18000001goiFAAQ"
+    product_id: "01t18000002oUQrAAM"
+    name: "[Tool] tv_philo rate plan"
+    rate_plan_code: "prp_tv_philo"
+  }
+  product_line: PHILO_SERVICE
+  product_subline: "Philo Service"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_basic"
+    }
+    id: "a2D18000001Euv6EAC"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_free_basic"
+    }
+    id: "a2D18000001EuvBEAS"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_family {
+        equal: "Phone"
+      }
+    }
+    id: "a2a18000000OyeJAAS"
+  }
+  id: "a2f18000000fxSpAAI"
+  name: "No Phone for Basic Internet"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_broadband"
+    }
+    id: "a2D18000001EwR4EAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "wifi_network_box"
+      }
+    }
+    id: "a2a18000000P6hSAAS"
+  }
+  id: "a2f18000000fxVgAAI"
+  name: "No Fiber Network Box for Broadband Internet"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "wifi_network_box"
+    }
+    id: "a2D18000001EzEuEAK"
+  }
+  actions {
+    types: SHOW
+    types: SELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "chromecast"
+      }
+    }
+    id: "a2a18000000bvchAAA"
+  }
+  id: "a2f18000000fzPPAAY"
+  name: "Chromecast for Google Wifi"
+  rule_code: "chromecast_select"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "wifi_network_box"
+    }
+    id: "a2D18000001EznzEAC"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tch_extender_network_box"
+      }
+    }
+    id: "a2a18000000bxzcAAA"
+  }
+  id: "a2f18000000fzfmAAA"
+  name: "No Extender for Google Wifi"
+  rule_code: "no_extender_for_gwifi"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_100"
+    }
+    id: "a2D18000001EsU8EAK"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_500"
+    }
+    id: "a2D18000001EsUDEA0"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_local"
+      }
+    }
+    id: "a2a18000000OIC6AAO"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_limited"
+      }
+    }
+    id: "a2a18000000OICBAA4"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_limited_legacy"
+      }
+    }
+    id: "a2a18000000OICGAA4"
+  }
+  id: "a2f18000000XYqeAAG"
+  name: "No local/limited/limited legacy TV for F100 and F500"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_500"
+    }
+    id: "a2D18000001EvGSEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_nonpay"
+    }
+    id: "a2D18000001EvITEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_basic"
+    }
+    id: "a2D18000001EvIrEAK"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_broadband"
+    }
+    id: "a2D18000001EvIwEAK"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_free_basic"
+    }
+    id: "a2D18000001EvJBEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_1000"
+    }
+    id: "a2D18000001EvImEAK"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_retention"
+    }
+    id: "a2D18000001EvJ6EAK"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "neighborhood_100"
+    }
+    id: "a2D18000001EvJ1EAK"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_100"
+    }
+    id: "a2D18000001EvIhEAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tch_extender_network_box"
+      }
+    }
+    id: "a2a18000000P0OrAAK"
+  }
+  id: "a2f18000000fxU7AAI"
+  name: "No Extender Except For 2G Network Work"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_1000"
+    }
+    id: "a2D18000001EsXhEAK"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_2g"
+    }
+    id: "a2D18000001EsXdEAK"
+  }
+  actions {
+    types: SHOW
+    types: SELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "drive_quota_1_tb"
+      }
+    }
+    id: "a2a18000000OIh2AAG"
+  }
+  id: "a2f18000000XYqzAAG"
+  name: "Drive Quota 1TB for Fiber 1000 and 2G"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_full"
+    }
+    id: "a2D18000001EJ4UEAW"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_local"
+    }
+    id: "a2D18000001EJ4ZEAW"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_limited"
+    }
+    id: "a2D18000001EJ4jEAG"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_limited_legacy"
+    }
+    id: "a2D18000001EJ4eEAG"
+  }
+  actions {
+    types: SHOW
+    types: SELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_box"
+      }
+    }
+    id: "a2a18000000O1SmAAK"
+  }
+  actions {
+    types: SHOW
+    types: SELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_storage_box"
+      }
+    }
+    id: "a2a18000000O1SrAAK"
+  }
+  id: "a2f18000000XNhmAAG"
+  name: "TV Box/Storage for TV Service"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_2g"
+    }
+    id: "a2D18000001EtTeEAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "wifi_network_box"
+      }
+    }
+    id: "a2a18000000ORAIAA4"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "network_box"
+      }
+    }
+    id: "a2a18000000ORAJAA4"
+  }
+  id: "a2f18000000XYvEAAW"
+  name: "No Gwifi and Network Box for Residential 2G"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_smb_1000"
+    }
+    id: "a2D18000001EJ4AEAW"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_smb_100"
+    }
+    id: "a2D18000001EJ45EAG"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_smb_250"
+    }
+    id: "a2D18000001EJ4FEAW"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_smb_legacy"
+    }
+    id: "a2D18000001EJ4KEAW"
+  }
+  actions {
+    types: SHOW
+    types: SELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "smb_network_box"
+      }
+    }
+    id: "a2a18000000O1RyAAK"
+  }
+  id: "a2f18000000XNhcAAG"
+  name: "Network Box for SMB Internet Service"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_2g"
+    }
+    id: "a2D18000001EtTjEAK"
+  }
+  actions {
+    types: SHOW
+    types: SELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "network_box_2g"
+      }
+    }
+    id: "a2a18000000ORANAA4"
+  }
+  id: "a2f18000000XYvJAAW"
+  name: "2G Network Box for Residential 2G"
+  rule_code: "2g_nb_for_2g"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_broadband"
+    }
+    id: "a2D18000001EwfBEAS"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_basic"
+    }
+    id: "a2D18000001EwfCEAS"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_youtube_fox_sports"
+      }
+    }
+    id: "a2a18000000P8dqAAC"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_philo"
+      }
+    }
+    id: "a2a18000000P8e0AAC"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_youtube_base"
+      }
+    }
+    id: "a2a18000000P8dgAAC"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_box"
+      }
+    }
+    id: "a2a18000000P8eAAAS"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_storage_box"
+      }
+    }
+    id: "a2a18000000P8eFAAS"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_youtube_showtime"
+      }
+    }
+    id: "a2a18000000P8dlAAC"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_sling"
+      }
+    }
+    id: "a2a18000000P8e5AAC"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_family {
+        equal: "TV"
+      }
+    }
+    id: "a2a18000000P8dbAAC"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_fubo"
+      }
+    }
+    id: "a2a18000000P8dvAAC"
+  }
+  id: "a2f18000000fxY6AAI"
+  name: "No TV for Basic and Broadband"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_broadband"
+    }
+    id: "a2D18000001EvIUEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_100"
+    }
+    id: "a2D18000001EvJGEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_500"
+    }
+    id: "a2D18000001EvJLEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_retention"
+    }
+    id: "a2D18000001EvJfEAK"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_free_basic"
+    }
+    id: "a2D18000001EvJkEAK"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_1000"
+    }
+    id: "a2D18000001EvJQEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_nonpay"
+    }
+    id: "a2D18000001EvJaEAK"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "neighborhood_100"
+    }
+    id: "a2D18000001EvJVEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_basic"
+    }
+    id: "a2D18000001EvIdEAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "network_box_2g"
+      }
+    }
+    id: "a2a18000000P0OwAAK"
+  }
+  id: "a2f18000000fxUCAAY"
+  name: "No 2G Network Box Except For 2G Or 2G Network Box In Account"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_retention"
+    }
+    id: "a2D18000001EwsJEAS"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "neighborhood_100"
+    }
+    id: "a2D18000001EwsKEAS"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_nonpay"
+    }
+    id: "a2D18000001EwsEEAS"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_free_basic"
+    }
+    id: "a2D18000001EwsOEAS"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_2g"
+    }
+    id: "a2D18000001EwsTEAS"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_full"
+      }
+    }
+    id: "a2a18000000P95XAAS"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_local"
+      }
+    }
+    id: "a2a18000000P95cAAC"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_limited_legacy"
+      }
+    }
+    id: "a2a18000000P95mAAC"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_limited"
+      }
+    }
+    id: "a2a18000000P95hAAC"
+  }
+  id: "a2f18000000fxb0AAA"
+  name: "No linear TV for 100 Meg and 2G"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_local"
+    }
+    id: "a2D18000001EJ3MEAW"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_limited_legacy"
+    }
+    id: "a2D18000001EJ3WEAW"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_limited"
+    }
+    id: "a2D18000001EJ3REAW"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_sports"
+      }
+    }
+    id: "a2a18000000O1ReAAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_hispanic"
+      }
+    }
+    id: "a2a18000000O1RjAAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_movies"
+      }
+    }
+    id: "a2a18000000O1RZAA0"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_bundle_all_in"
+      }
+    }
+    id: "a2a18000000O1RoAAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_family"
+      }
+    }
+    id: "a2a18000000O1RUAA0"
+  }
+  id: "a2f18000000XNhSAAW"
+  name: "Only Premium for non Full TV"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ALL
+  conditions {
+    source: PRODUCT
+    product_family {
+      equal: "TV"
+    }
+    id: "a2D18000001F0UFEA0"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "chromecast"
+      }
+    }
+    id: "a2a18000000byMaAAI"
+  }
+  id: "a2f18000000fzpnAAA"
+  name: "No Chromecast for TV Service"
+  rule_code: "no_chromecast_for_tv"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_nonpay"
+    }
+    id: "a2D18000001EvISEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_broadband"
+    }
+    id: "a2D18000001EvINEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_500"
+    }
+    id: "a2D18000001EvIDEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "neighborhood_100"
+    }
+    id: "a2D18000001EvIEEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_basic"
+    }
+    id: "a2D18000001EvIIEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_free_basic"
+    }
+    id: "a2D18000001EvIcEAK"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_retention"
+    }
+    id: "a2D18000001EvIXEA0"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_100"
+    }
+    id: "a2D18000001EvI9EAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "drive_quota_1_tb"
+      }
+    }
+    id: "a2a18000000P0OmAAK"
+  }
+  id: "a2f18000000fxU2AAI"
+  name: "No Drive Quota 1TB for except Fiber 1000 and 2G"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_limited_legacy"
+    }
+    id: "a2D18000001EPV0EAO"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_local"
+    }
+    id: "a2D18000001EPUvEAO"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_full"
+    }
+    id: "a2D18000001EPUqEAO"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_limited"
+    }
+    id: "a2D18000001EPV5EAO"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "streaming_hbo_now"
+      }
+    }
+    id: "a2a18000000O4WCAA0"
+  }
+  id: "a2f18000000XUFyAAO"
+  name: "No HBO_NOW for TV"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ALL
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_no"
+    }
+    id: "a2D18000001EJ4PEAW"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_starz"
+      }
+    }
+    id: "a2a18000000O1SSAA0"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_bundle_all_in"
+      }
+    }
+    id: "a2a18000000O1RGAA0"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_hispanic"
+      }
+    }
+    id: "a2a18000000O1SNAA0"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_family"
+      }
+    }
+    id: "a2a18000000O1S8AAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_storage_box"
+      }
+    }
+    id: "a2a18000000O1RpAAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_hbo"
+      }
+    }
+    id: "a2a18000000O1RqAAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_showtime"
+      }
+    }
+    id: "a2a18000000O1SXAA0"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_box"
+      }
+    }
+    id: "a2a18000000O1S3AAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_movies"
+      }
+    }
+    id: "a2a18000000O1SDAA0"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_cinemax"
+      }
+    }
+    id: "a2a18000000O1ScAAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_sports"
+      }
+    }
+    id: "a2a18000000O1SIAA0"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tv_bundle_premium"
+      }
+    }
+    id: "a2a18000000O1ShAAK"
+  }
+  id: "a2f18000000XNhhAAG"
+  name: "No TV Box/Storage for no TV"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_local"
+    }
+    id: "a2D18000001EriZEAS"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_limited_legacy"
+    }
+    id: "a2D18000001ErieEAC"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "fiber_basic"
+    }
+    id: "a2D18000001EriKEAS"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_full"
+    }
+    id: "a2D18000001EriUEAS"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "tv_limited"
+    }
+    id: "a2D18000001ErijEAC"
+  }
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "rescue_free_basic"
+    }
+    id: "a2D18000001EriPEAS"
+  }
+  conditions {
+    source: PRODUCT
+    product_family {
+      equal: "Phone"
+    }
+    id: "a2D18000001EyVyEAK"
+  }
+  actions {
+    types: HIDE
+    types: DESELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "wifi_network_box"
+      }
+    }
+    id: "a2a18000000OBR3AAO"
+  }
+  id: "a2f18000000XYjTAAW"
+  name: "No Fiber Network Box for TV Service or Phone or Basic Internet"
+}
+rules {
+  type: SELECTION
+  evaluation_type: ANY
+  conditions {
+    source: PRODUCT
+    product_code {
+      equal: "network_box_2g"
+    }
+    id: "a2D18000001EtYvEAK"
+  }
+  actions {
+    types: SHOW
+    types: SELECT
+    condition {
+      source: PRODUCT
+      product_code {
+        equal: "tch_extender_network_box"
+      }
+    }
+    id: "a2a18000000ORAXAA4"
+  }
+  id: "a2f18000000XYvsAAG"
+  name: "Extender for 2G Network Box"
+}

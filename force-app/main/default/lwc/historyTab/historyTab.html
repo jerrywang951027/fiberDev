@@ -1,0 +1,34 @@
+<template>
+  <lightning-card variant="Narrow">
+    <div slot="actions">
+      <c-multi-select-drop-down options={types} label="Types" data-id="filterMultiSelect"
+          onclickedoutside={filterByTypes}></c-multi-select-drop-down>
+      <br/>
+    </div>
+    <lightning-spinner if:true={isSpinnerLoaded}
+        alternative-text="Loading"
+        size="small"></lightning-spinner>
+    <vlocity_cmt-data-table
+        if:true={historyDetails}
+        theme="slds"
+        issortavailable="true"
+        columns={columns}
+        pagelimit="3"
+        pagesize="6"
+        records={historyDetails}>
+      <vlocity_cmt-data-table-cell
+          data-field-name="createdDate"
+          class="dataTableCell column-width slds-p-vertical_xx-small"></vlocity_cmt-data-table-cell>
+      <c-icon-data-table-cell
+          data-field-name="iconName"
+          class="dataTableCell slds-p-vertical_x-small slds-p-horizontal_xx-small"
+          size="small"></c-icon-data-table-cell>
+      <c-history-tab-summary-data-table-cell
+          data-field-name="eventType"
+          class="dataTableCell"></c-history-tab-summary-data-table-cell>
+      <c-ticket-id-data-table-cell
+          data-field-name="displayLabel"
+          class="dataTableCell slds-p-vertical_xx-small"></c-ticket-id-data-table-cell>
+    </vlocity_cmt-data-table>
+  </lightning-card>
+</template>

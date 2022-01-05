@@ -1,0 +1,29 @@
+<template>
+  <template if:true={isSpinnerLoaded}>
+    <lightning-spinner
+        alternative-text="Loading"
+        size="small"
+        variant="brand"></lightning-spinner>
+  </template>
+  <lightning-combobox
+      class="slds-m-bottom_x-large"
+      name="selectanorder"
+      label="Select an Order"
+      value={selectedOrder}
+      options={orders}
+      onchange={handleOrderChange}></lightning-combobox>
+  <lightning-layout>
+    <lightning-layout-item size=6>
+      <c-order-details if:true={selectedOrder}
+          order-data={selectedOrder}></c-order-details>
+    </lightning-layout-item>
+  </lightning-layout>
+  <template if:true={showTable}>
+    <lightning-tree-grid
+        columns={gridColumns}
+        data={orderLineItems}
+        hide-checkbox-column="false"
+        resize-column-disabled="true"
+        key-field="productName"></lightning-tree-grid>
+  </template>
+</template>

@@ -1,0 +1,82 @@
+<template>
+            <div class="slds-grid slds-wrap slds-is-relative">
+            <div if:false={cardLoaded} class="slds-is-absolute vloc-loader_override" style="height: 100%; width: 100%; min-height:50px; background: white; z-index: 99;">
+  <div>
+   <vlocity_cmt-spinner
+      variant="brand"
+      alternative-text="Loading content..."
+      size="medium"
+      theme="slds"
+      ></vlocity_cmt-spinner>
+  </div>
+</div>
+            <template if:false={hasPermission}>
+              You don't have required permissions to view this card.
+            </template>
+            <template if:true={hasPermission}>
+              <template if:true={hasRecords}>
+                        <template for:each={_records} for:item="record" for:index="rindex">
+                            <vlocity_cmt-flex-card-state key={record.uniqueKey} data-recordid={record.Id} record={record} data-statue="true"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  record={record}  card={card}  collapsed-by-default="false"  collapsible="false"  label="Block"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="             background: Gainsboro;"><vlocity_cmt-output-field     record={record}  card={card}  data-conditions='\{"group":[{"field":"AccountTicket","id":"state-new-condition-3","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2014pt;%22%3ERelated%20Account%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="             "><vlocity_cmt-data-table     cell-level-edit="true"  columns='\[{"fieldName":"TicketAccountId","label":"          Customer Id","searchable":true,"sortable":true,"type":"text"},{"fieldName":"TicketAccountName","label":"          Customer Name","searchable":true,"sortable":true,"type":"text"},{"fieldName":"ContactEmail","label":"Contact","searchable":true,"sortable":true},{"fieldName":"PremiseAddress","label":"Address","searchable":true,"sortable":true}]'  data-conditions='\{"group":[{"field":"AccountTicket","id":"state-new-condition-15","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  group-order="asc"  issearchavailable="false"  issortavailable="true"  pagelimit="3"  records={records}  styles='\{"cellBorderColor":"#1F0101","cellBorderType":["border_top","border_right","border_bottom","border_left"],"cellBorderWidth":"2","cellMargin":[],"cellPadding":[],"tableBorderType":["border_top","border_right","border_bottom","border_left"],"tableBorderWidth":"2"}'  theme="slds"  ></vlocity_cmt-data-table>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  record={record}  card={card}  collapsed-by-default="false"  collapsible="false"  label="Block"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="             background: Gainsboro;"><vlocity_cmt-output-field     record={record}  card={card}  data-conditions='\{"group":[{"field":"LeadTicket","id":"state-new-condition-27","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2014pt;%22%3ERelated%20Lead%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="             "><vlocity_cmt-data-table     cell-level-edit="true"  columns='\[{"fieldName":"TicketLeadName","label":"Customer Name","searchable":false,"sortable":true,"type":"text"},{"fieldName":"TicketAddress","label":"Address","searchable":false,"sortable":true,"type":"text"},{"fieldName":"TicketLeadEmail","label":"Contact","searchable":false,"sortable":true,"type":"text"}]'  data-conditions='\{"group":[{"field":"LeadTicket","id":"state-new-condition-36","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  group-order="asc"  issearchavailable="false"  issortavailable="true"  pagelimit="3"  records={records}  styles='\{"cellBorderColor":"#1F0101","cellBorderType":["border_top","border_right","border_bottom","border_left"],"cellBorderWidth":"2","cellMargin":[],"cellPadding":[],"tableBorderType":["border_top","border_right","border_bottom","border_left"],"tableBorderWidth":"2"}'  theme="slds"  ></vlocity_cmt-data-table>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  record={record}  card={card}  collapsed-by-default="false"  collapsible="false"  label="Block"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="             background: Gainsboro;"><vlocity_cmt-output-field     record={record}  card={card}  data-conditions='\{"group":[{"field":"PremiseTicket","id":"state-new-condition-45","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2014pt;%22%3ERelated%20Premises%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="             "><vlocity_cmt-data-table     cell-level-edit="true"  columns='\[{"fieldName":"TicketPremisesId","label":"Premises Id","searchable":false,"sortable":true,"type":"text"},{"fieldName":"PremiseAddress","label":"Address","searchable":false,"sortable":true,"type":"text"},{"fieldName":"TicketPremisesStatus","label":"Status","searchable":false,"sortable":true,"type":"text"}]'  data-conditions='\{"group":[{"field":"PremiseTicket","id":"state-new-condition-54","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  group-order="asc"  issearchavailable="false"  issortavailable="true"  pagelimit="3"  records={records}  styles='\{"cellBorderColor":"#1F0101","cellBorderType":["border_top","border_right","border_bottom","border_left"],"cellBorderWidth":"2","cellMargin":[],"cellPadding":[],"tableBorderType":["border_top","border_right","border_bottom","border_left"],"tableBorderWidth":"2"}'  theme="slds"  ></vlocity_cmt-data-table>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                        </template>
+                      </template>
+                      <template if:false={hasRecords}>
+                            <vlocity_cmt-flex-card-state  record={record} data-statue="false"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12"  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-p-around_x-small slds-m-bottom_x-small" style="">
+          <div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  record={record}  card={card}  collapsed-by-default="false"  collapsible="false"  label="Block"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="             background: Gainsboro;"><vlocity_cmt-output-field     record={record}  card={card}  data-conditions='\{"group":[{"field":"AccountTicket","id":"state-new-condition-3","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2014pt;%22%3ERelated%20Account%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="             "><vlocity_cmt-data-table     cell-level-edit="true"  columns='\[{"fieldName":"TicketAccountId","label":"          Customer Id","searchable":true,"sortable":true,"type":"text"},{"fieldName":"TicketAccountName","label":"          Customer Name","searchable":true,"sortable":true,"type":"text"},{"fieldName":"ContactEmail","label":"Contact","searchable":true,"sortable":true},{"fieldName":"PremiseAddress","label":"Address","searchable":true,"sortable":true}]'  data-conditions='\{"group":[{"field":"AccountTicket","id":"state-new-condition-15","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  group-order="asc"  issearchavailable="false"  issortavailable="true"  pagelimit="3"  records={records}  styles='\{"cellBorderColor":"#1F0101","cellBorderType":["border_top","border_right","border_bottom","border_left"],"cellBorderWidth":"2","cellMargin":[],"cellPadding":[],"tableBorderType":["border_top","border_right","border_bottom","border_left"],"tableBorderWidth":"2"}'  theme="slds"  ></vlocity_cmt-data-table>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  record={record}  card={card}  collapsed-by-default="false"  collapsible="false"  label="Block"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="             background: Gainsboro;"><vlocity_cmt-output-field     record={record}  card={card}  data-conditions='\{"group":[{"field":"LeadTicket","id":"state-new-condition-27","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2014pt;%22%3ERelated%20Lead%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="             "><vlocity_cmt-data-table     cell-level-edit="true"  columns='\[{"fieldName":"TicketLeadName","label":"Customer Name","searchable":false,"sortable":true,"type":"text"},{"fieldName":"TicketAddress","label":"Address","searchable":false,"sortable":true,"type":"text"},{"fieldName":"TicketLeadEmail","label":"Contact","searchable":false,"sortable":true,"type":"text"}]'  data-conditions='\{"group":[{"field":"LeadTicket","id":"state-new-condition-36","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  group-order="asc"  issearchavailable="false"  issortavailable="true"  pagelimit="3"  records={records}  styles='\{"cellBorderColor":"#1F0101","cellBorderType":["border_top","border_right","border_bottom","border_left"],"cellBorderWidth":"2","cellMargin":[],"cellPadding":[],"tableBorderType":["border_top","border_right","border_bottom","border_left"],"tableBorderWidth":"2"}'  theme="slds"  ></vlocity_cmt-data-table>
+      </div>
+        </div></vlocity_cmt-block>
+    </div><div class="slds-col   slds-p-around_x-small slds-size_12-of-12 " style="">
+    <vlocity_cmt-block  record={record}  card={card}  collapsed-by-default="false"  collapsible="false"  label="Block"  theme="slds" ><div class="slds-grid slds-wrap">
+          <div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="             background: Gainsboro;"><vlocity_cmt-output-field     record={record}  card={card}  data-conditions='\{"group":[{"field":"PremiseTicket","id":"state-new-condition-45","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  merge-field="%3Cdiv%3E%3Cspan%20style=%22font-size:%2014pt;%22%3ERelated%20Premises%3C/span%3E%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div><div class="slds-col  slds-p-around_small  slds-size_12-of-12  condition-element" style="             "><vlocity_cmt-data-table     cell-level-edit="true"  columns='\[{"fieldName":"TicketPremisesId","label":"Premises Id","searchable":false,"sortable":true,"type":"text"},{"fieldName":"PremiseAddress","label":"Address","searchable":false,"sortable":true,"type":"text"},{"fieldName":"TicketPremisesStatus","label":"Status","searchable":false,"sortable":true,"type":"text"}]'  data-conditions='\{"group":[{"field":"PremiseTicket","id":"state-new-condition-54","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  group-order="asc"  issearchavailable="false"  issortavailable="true"  pagelimit="3"  records={records}  styles='\{"cellBorderColor":"#1F0101","cellBorderType":["border_top","border_right","border_bottom","border_left"],"cellBorderWidth":"2","cellMargin":[],"cellPadding":[],"tableBorderType":["border_top","border_right","border_bottom","border_left"],"tableBorderWidth":"2"}'  theme="slds"  ></vlocity_cmt-data-table>
+      </div>
+        </div></vlocity_cmt-block>
+    </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                      </template>
+            </template>
+            <template if:true={hasError}>
+            {error}
+            </template>
+            
+      <vlocity_cmt-action action-wrapperclass="slds-hide" re-render-flyout class="action-trigger slds-col" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+      
+      </vlocity_cmt-action>
+  
+            <vlocity_cmt-action class="execute-action" re-render-flyout action-wrapperclass="slds-hide" onupdateos={updateOmniscript} onsetvalue={updateAction}>
+            
+            </vlocity_cmt-action>
+            </div>
+          </template>
