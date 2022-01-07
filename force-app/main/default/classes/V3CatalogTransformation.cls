@@ -1,14 +1,20 @@
+/*This Class is uesd to transform data  modelled from SFI EPC(V3) into the format close
+to current V2 data modelling exposed to integration layer(V2)*/
 global class V3CatalogTransformation extends
     vlocity_cmt.DefaultSystemInterface {
+
+ //Initialize Class Constants.
+ public final String CLASS_NAME = 'V3CatalogTransformation';
+ public final String PRODUCT_TRANSFORM_METHOD_NAME = 'productsTransformation';
  public
   static final String ADJUSTMENT_PRICE_LIST_KEY = 'adjustmentPriceList';
  public
   static final String NON_ADJUSTMENT_PRICE_LIST_KEY = 'nonAdjustmentPriceList';
  public
   static final String ADJUSTMENT_KEY = 'adjustment';
+
+  // This method used to perform products transformation.
   global void productsTransformation() {
-    // key is product code and value is count of non adjustment
-    // productPriceListEntries
     Map<Id, Integer> prdWithNonAdjCount = new Map<Id, Integer>();
     Map<Id, Product2> prdocuctsWithCardinalityChange = new Map<Id, Product2>();
     Map<Id, Product2> nonAdjProducts = new Map<Id, Product2>();
@@ -16,51 +22,65 @@ global class V3CatalogTransformation extends
     Map<Id, Product2> singleRatePlanWithOneCharge = new Map<Id, Product2>();
     Map<Id, Product2> singleRatePlanWithTwoCharge = new Map<Id, Product2>();
     Map<Id, Product2> multiRatePlanCharges = new Map<Id, Product2>();
-    list<vlocity_cmt__PriceListEntry__c> productPriceListEntries =
-        new list<vlocity_cmt__PriceListEntry__c>();
-    list<Product2> productList = new list<Product2>();
-    Map<Id, Product2> productDataMap = new Map<Id, Product2>([
-        SELECT Family,
-          Id,
-          Name,
-          ProductCode,
-          Legacy_Product_Code__c,
-          vlocity_cmt__Type__c,
-          vlocity_cmt__ObjectTypeName__c,
-          vlocity_cmt__SpecificationType__c,
-          vlocity_cmt__ProductSpecName__c,
-          Zuora_Id__c,
-          (SELECT Id, Name, vlocity_cmt__RecurringPrice__c from PricebookEntries),
-          (SELECT vlocity_cmt__ProductId__c,
-              vlocity_cmt__PriceListId__r.Name,
-              vlocity_cmt__OfferId__c,
-              Id,
-              vlocity_cmt__DisplayText__c,
-              vlocity_cmt__PricingElementId__r.vlocity_cmt__DisplayText__c,
-              vlocity_cmt__PricingElementAmount__c,
-              vlocity_cmt__PricingElementId__r.vlocity_cmt__AdjustmentValue__c,
-              vlocity_cmt__PricingElementId__r.vlocity_cmt__PricingVariableId__r.vlocity_cmt__AdjustmentMethod__c,
-              vlocity_cmt__PricingElementId__r.vlocity_cmt__PricingVariableId__r.vlocity_cmt__ChargeType__c,
-              vlocity_cmt__PricingElementId__r.vlocity_cmt__PricingVariableId__r.vlocity_cmt__RecurringFrequency__c,
-              vlocity_cmt__IsVirtualPrice__c,
-              vlocity_cmt__IsBasePrice__c from vlocity_cmt__ProductPriceListEntries__r where vlocity_cmt__IsActive__c = true),
-            (SELECT vlocity_cmt__ParentProductId__c,
-              vlocity_cmt__ParentProductName__c,
-              vlocity_cmt__ChildProductId__c,
-              vlocity_cmt__ChildProductName__c,
-              vlocity_cmt__IsRootProductChildItem__c,
-              vlocity_cmt__Quantity__c,
-              vlocity_cmt__MinQuantity__c,
-              vlocity_cmt__MaxQuantity__c,
-              vlocity_cmt__MinimumChildItemQuantity__c,
-              vlocity_cmt__MaximumChildItemQuantity__c,
-              vlocity_cmt__IsOverride__c,
-              vlocity_cmt__ChildProductId__r.Legacy_Product_Code__c,
-              vlocity_cmt__ParentProductId__r.Legacy_Product_Code__c,
-              vlocity_cmt__MinMaxDefaultQty__c from vlocity_cmt__ProductChildItems__r),
+    try {
+      List<vlocity_cmt__PriceListEntry__c> productPriceListEntries =
+          new list<vlocity_cmt__PriceListEntry__c>();
+      List<Product2> productList = new list<Product2>();
+      Map<Id, Product2> productDataMap = new Map<Id, Product2>([
+          SELECT Family,
+            Id,
+            Name,
+            ProductCode,
+            Legacy_Product_Code__c,
+            vlocity_cmt__Type__c,
+            vlocity_cmt__ObjectTypeName__c,
+            vlocity_cmt__SpecificationType__c,
+            vlocity_cmt__ProductSpecName__c,
+            Zuora_Id__c,
+            (SELECT 
+              Id, Name, vlocity_cmt__RecurringPrice__c 
+            FROM
+              PricebookEntries),
+            (SELECT
+              vlocity_cmt__ProductId__c,
+                vlocity_cmt__PriceListId__r.Name,
+                vlocity_cmt__OfferId__c,
+                Id,
+                vlocity_cmt__DisplayText__c,
+                vlocity_cmt__PricingElementId__r.vlocity_cmt__DisplayText__c,
+                vlocity_cmt__PricingElementAmount__c,
+                vlocity_cmt__PricingElementId__r.vlocity_cmt__AdjustmentValue__c,
+                vlocity_cmt__PricingElementId__r.vlocity_cmt__PricingVariableId__r.vlocity_cmt__AdjustmentMethod__c,
+                vlocity_cmt__PricingElementId__r.vlocity_cmt__PricingVariableId__r.vlocity_cmt__ChargeType__c,
+                vlocity_cmt__PricingElementId__r.vlocity_cmt__PricingVariableId__r.vlocity_cmt__RecurringFrequency__c,
+                vlocity_cmt__IsVirtualPrice__c,
+                vlocity_cmt__IsBasePrice__c
+             FROM 
+               vlocity_cmt__ProductPriceListEntries__r
+             WHERE 
+               vlocity_cmt__IsActive__c = true),
+            (SELECT
+              vlocity_cmt__ParentProductId__c,
+                vlocity_cmt__ParentProductName__c,
+                vlocity_cmt__ChildProductId__c,
+                vlocity_cmt__ChildProductName__c,
+                vlocity_cmt__IsRootProductChildItem__c,
+                vlocity_cmt__Quantity__c,
+                vlocity_cmt__MinQuantity__c,
+                vlocity_cmt__MaxQuantity__c,
+                vlocity_cmt__MinimumChildItemQuantity__c,
+                vlocity_cmt__MaximumChildItemQuantity__c,
+                vlocity_cmt__IsOverride__c,
+                vlocity_cmt__ChildProductId__r.Legacy_Product_Code__c,
+                vlocity_cmt__ParentProductId__r.Legacy_Product_Code__c,
+                vlocity_cmt__MinMaxDefaultQty__c
+             FROM
+             vlocity_cmt__ProductChildItems__r),
             (SELECT vlocity_cmt__Product2Id__r.Name,
                 vlocity_cmt__RelationshipType__c,
-                vlocity_cmt__RelatedProductId__r.Name from vlocity_cmt__RelatedProduct__r),
+                vlocity_cmt__RelatedProductId__r.Name
+             FROM 
+             vlocity_cmt__RelatedProduct__r),
             (SELECT Name,
                 Criteria__c,
                 Fiber_Market__c,
@@ -75,20 +95,22 @@ global class V3CatalogTransformation extends
                 Is_Active__c,
                 GFiber_Min_Pv4_Subnet_Prefix__c,
                 GFiber_Min_IPv6_Subnet_Prefix__c,
-                Product_SubLine__c from Google_Product_Supplemental_Objects__r),
+                Product_SubLine__c
+              FROM
+                Google_Product_Supplemental_Objects__r),
             (SELECT Criteria__c,
                 Fiber_Market__c,
                 Name,
                 V3_Product__c,
                 Root_Container_Product__c,
-                Product_Rate_Plan_Code__c from Google_Product_Rate_Plan_Objects1__r)
-        FROM Product2
-        WHERE IsActive =true
-        AND vlocity_cmt__GlobalKey__c != null
-    ]);
-
-    Map<Id, vlocity_cmt__ProductChildItem__c> productChildItems =
-        new Map<Id, vlocity_cmt__ProductChildItem__c>([
+                Product_Rate_Plan_Code__c
+             FROM Google_Product_Rate_Plan_Objects1__r)
+          FROM Product2
+          WHERE IsActive =true
+          AND vlocity_cmt__GlobalKey__c != null
+      ]);
+      Map<Id, vlocity_cmt__ProductChildItem__c> productChildItems =
+          new Map<Id, vlocity_cmt__ProductChildItem__c>([
             SELECT
               Id,
               Name,
@@ -116,121 +138,85 @@ global class V3CatalogTransformation extends
                  FROM
                   vlocity_cmt__OverrideDefinitions__r)
             FROM vlocity_cmt__ProductChildItem__c ]);
-    productList = productDataMap.values();
-    Integer counter = 0;
-    for (Product2 productRecord : productList) {
-      if (productRecord.Legacy_Product_Code__c != null && productRecord.Legacy_Product_Code__c =='phone') {
-        counter = counter + 1;
-        System.debug('counter=>' + counter + ' ========= Heap Size' +
-                     productRecord.id + '=>' + Limits.getHeapSize());
-        Integer countNonAdjustmentPLE =
-            0;  // what is the use of count check with Jin
-        list<vlocity_cmt__PriceListEntry__c> prodPleRecords =
-            new list<vlocity_cmt__PriceListEntry__c>();
-        ProdPleRecords = productRecord.vlocity_cmt__PriceListEntries__r;
-        for (vlocity_cmt__PriceListEntry__c priceListEntry : ProdPleRecords) {
-          if (priceListEntry.vlocity_cmt__PricingElementId__r
-                  .vlocity_cmt__PricingVariableId__r
-                  .vlocity_cmt__ChargeType__c != 'adjustment') {
-            countNonAdjustmentPLE = countNonAdjustmentPLE + 1;
-            NonAdjProducts.put(productRecord.id, productRecord);
-          }
-        }
-        countNonAdjustmentPLE = 0;
-        ProdPleRecords.clear();
-        // test rot prod id
-        set<id> rootProcutIds = getRootProduct(
-            productChildItems.values(), productRecord.id, productRecord.id);
-        system.debug('@@@' + rootProcutIds);
-        //
-        Boolean isSingleRatePlanWithTwoCharge = false;
-        // getting records from PCI
-        for (vlocity_cmt__ProductChildItem__c productChildItem :
-             productChildItems.values()) {
-          if ((ProductChildItem.vlocity_cmt__ChildProductId__c ==
-               productRecord.id) &&
-              ProductChildItem.vlocity_cmt__IsOverride__c == False) {
-            // system.debug('***'+ProductChildItem.id);
-            list<vlocity_cmt__OverrideDefinition__c> overrideDefinitions =
-                new list<vlocity_cmt__OverrideDefinition__c>();
-            // system.debug('***'+ProductChildItem.vlocity_cmt__OverrideDefinitions__r);
-            if (ProductChildItem.vlocity_cmt__OverrideDefinitions__r != Null &&
-                ProductChildItem.vlocity_cmt__OverrideDefinitions__r.size() >
-                    0) {
-              multiRatePlanCharges.put(productRecord.id, productRecord);
-            }
-            // set < Id > rootProcutIds = new set < Id > ();
-            else if (!multiRatePlanCharges.keySet().contains(
-                         productRecord.id) &&
-                     ProductChildItem.vlocity_cmt__ChildProductId__c ==
-                         productRecord.id) {
-              // for is recursive logic
-              isSingleRatePlanWithTwoCharge = true;
-              rootProcutIds =
-                  getRootProduct(productChildItems.values(), productRecord.id,
-                                 productRecord.id);
-              if (rootProcutIds.size() > 0) {
-                for (Id rootproductId : rootProcutIds) {
-                  product2 rootProduct = productDataMap.get(rootproductId);
-                  list<vlocity_cmt__ProductChildItem__c> rootOfChildProducts =
-                      new list<vlocity_cmt__ProductChildItem__c>();
-                  // system.debug('productDataMap***' +
-                  // JSON.serialize(productDataMap));
-                  system.debug('rootProduct***' + JSON.serialize(rootProduct));
-                  rootOfChildProducts =
-                      rootProduct.vlocity_cmt__ProductChildItems__r;
-                  system.debug('rootOfChildProducts***' +
-                               JSON.serialize(rootOfChildProducts));
-                  Boolean isLegacyProductCodePresentInHierarchy =
-                      isLegacyProductCodePresentInHierarchy(
-                          productChildItems.values(), (String)rootProductId,
-                          (String)productRecord.Id,
-                          productRecord.Legacy_Product_Code__c);
-                  if (IsLegacyProductCodePresentInHierarchy == true &&
-                      !singleRatePlanWithTwoCharge.keySet().contains(
-                          productRecord.id)) {
-                    singleRatePlanWithTwoCharge.put(productRecord.id,
-                                                    productRecord);
-                  } /*else if (!multiRatePlanCharges.containsKey(
-                                 productRecord.id) &&
-                             !singleRatePlanWithTwoCharge.containsKey(
-                                 productRecord.id)) {
-                    singleRatePlanWithOneCharge.put(productRecord.id,
-                                                    productRecord);
-                  }*/
+      productList = productDataMap.values();
+      Integer counter = 0;
+      for (Product2 productRecord : productList) {
+        if (productRecord.Legacy_Product_Code__c != null &&
+            /*productRecord.Google_Product_Supplemental_Objects__r != Null &&
+            productRecord.Google_Product_Rate_Plan_Objects1__r != Null &&*/
+            (productRecord.Legacy_Product_Code__c=='fiber_1000'||
+             productRecord.Legacy_Product_Code__c=='drive_quota_1_tb'||
+             productRecord.Legacy_Product_Code__c=='fiber_2g' ||
+             productRecord.Legacy_Product_Code__c=='neighborhood_100' ||
+             productRecord.Legacy_Product_Code__c=='phone_battery' ||
+             productRecord.ProductCode=='OFR_Equip_Mesh' ||
+             productRecord.ProductCode=='OFR_Equip_GWifi' /*||
+             productRecord.Legacy_Product_Code__c=='phone' */
+            )
+            ) {
+          Set<id> rootProcutIds = getRootProduct(
+              productChildItems.values(), productRecord.id, productRecord.id);
+          Boolean isSingleRatePlanWithTwoCharge = false;
+          for (vlocity_cmt__ProductChildItem__c productChildItem :
+              productChildItems.values()) {
+            if((ProductChildItem.vlocity_cmt__ChildProductId__c ==
+                productRecord.id) &&
+                ProductChildItem.vlocity_cmt__IsOverride__c == False) {
+              List<vlocity_cmt__OverrideDefinition__c> overrideDefinitions =
+                  new List<vlocity_cmt__OverrideDefinition__c>();
+              if (ProductChildItem.vlocity_cmt__OverrideDefinitions__r != Null &&
+                  ProductChildItem.vlocity_cmt__OverrideDefinitions__r.size() >
+                  0) {
+                multiRatePlanCharges.put(productRecord.id, productRecord);
+              }
+              else if (!multiRatePlanCharges.keySet().contains(
+                  productRecord.id) && ProductChildItem.vlocity_cmt__ChildProductId__c ==
+                  productRecord.id) {
+                isSingleRatePlanWithTwoCharge = true;
+                rootProcutIds =
+                    getRootProduct(productChildItems.values(), productRecord.id,
+                    productRecord.id);
+                if (rootProcutIds.size() > 0) {
+                  for (Id rootproductId : rootProcutIds) {
+                    product2 rootProduct = productDataMap.get(rootproductId);
+                    list<vlocity_cmt__ProductChildItem__c> rootOfChildProducts =
+                        new list<vlocity_cmt__ProductChildItem__c>();
+                    rootOfChildProducts =
+                        rootProduct.vlocity_cmt__ProductChildItems__r;
+                    Boolean isLegacyProductCodePresentInHierarchy =
+                        isLegacyProductCodePresentInHierarchy(
+                            productChildItems.values(), (String)rootProductId,
+                            (String)productRecord.Id,
+                            productRecord.Legacy_Product_Code__c);
+                    if (IsLegacyProductCodePresentInHierarchy == true &&
+                        !singleRatePlanWithTwoCharge.keySet().contains(
+                        productRecord.id)) {
+                      singleRatePlanWithTwoCharge.put(productRecord.id, productRecord);
+                    }
+                  }
                 }
               }
             }
           }
-        }
-       if (!multiRatePlanCharges.containsKey(
-                         productRecord.id) &&
-                     !singleRatePlanWithTwoCharge.containsKey(
-                         productRecord.id)) {
-            singleRatePlanWithOneCharge.put(productRecord.id,
-                                            productRecord);
+          if(!multiRatePlanCharges.containsKey(productRecord.id) &&
+              !singleRatePlanWithTwoCharge.containsKey(productRecord.id)) {
+            singleRatePlanWithOneCharge.put(productRecord.id, productRecord);
           }
-}
-
-    }
-    system.debug('multiRatePlanCharges***' +
-                 JSON.serialize(multiRatePlanCharges));
-    system.debug('singleRatePlanWithOneCharge***' +
-                 JSON.serialize(singleRatePlanWithOneCharge));
-    system.debug('singleRatePlanWithTwoCharge***' +
-                 JSON.serialize(singleRatePlanWithTwoCharge));
-    if (singleRatePlanWithOneCharge != Null &&
-        !singleRatePlanWithOneCharge.isEmpty()) {
-      singleRatePlanWithOneCharge(singleRatePlanWithOneCharge,
-                                  productChildItems);
-    }
-    if (singleRatePlanWithTwoCharge != Null &&
-        !singleRatePlanWithTwoCharge.isEmpty()) {
-      multiRatePlan(singleRatePlanWithTwoCharge, productChildItems,
-                    productDataMap);
-    }
-    if (multiRatePlanCharges != Null && !multiRatePlanCharges.isEmpty()) {
-      multiRatePlan(multiRatePlanCharges, productChildItems, productDataMap);
+        }
+      }
+      if(singleRatePlanWithOneCharge != Null && !singleRatePlanWithOneCharge.isEmpty()) {
+        singleRatePlanWithOneCharge(singleRatePlanWithOneCharge,
+            productChildItems);
+      }
+      if(singleRatePlanWithTwoCharge != Null && !singleRatePlanWithTwoCharge.isEmpty()) {
+        multiRatePlan(singleRatePlanWithTwoCharge, productChildItems, productDataMap);
+      }
+      if(multiRatePlanCharges != Null && !multiRatePlanCharges.isEmpty()) {
+        multiRatePlan(multiRatePlanCharges, productChildItems, productDataMap);
+      }
+    } catch(Exception e) {
+      LoggingUtility.insertExceptionLog(CLASS_NAME, PRODUCT_TRANSFORM_METHOD_NAME,
+          e.getMessage());
     }
   }
 
@@ -239,19 +225,16 @@ global class V3CatalogTransformation extends
       map<Id, Product2> singleRatePlanProducts,
       Map<Id, vlocity_cmt__ProductChildItem__c> productChildItems) {
     list<GFQQ_Product2__c> singleRatePlanList = new list<GFQQ_Product2__c>();
+    List<GFQQ_Product_Rate_Plan__c> listProductRatePlans =
+        new list<GFQQ_Product_Rate_Plan__c>();
+    List<GFQQ_Product_Rate_Plan_Charge__c> listRatePlanCharges =
+        new list<GFQQ_Product_Rate_Plan_Charge__c>();
+    List<GFQQ_Product_Rate_Plan_Charge_Tier__c> listRatePlanChargeTiers =
+        new list<GFQQ_Product_Rate_Plan_Charge_Tier__c>();
+    List<GFQQ_Product_Option__c> options = new List<GFQQ_Product_Option__c>();
     list<Sobject> insertSobjectRecords = new list<Sobject>();
     if (singleRatePlanProducts.values().size() > 0) {
       for (product2 productRecord : singleRatePlanProducts.values()) {
-        system.debug(
-            '***' +
-            JSON.serialize(productRecord.vlocity_cmt__ProductPriceListEntries__r
-                               .size()));  // check with Jin
-        List<GFQQ_Product_Rate_Plan__c> listProductRatePlans =
-            new list<GFQQ_Product_Rate_Plan__c>();
-        List<GFQQ_Product_Rate_Plan_Charge__c> listRatePlanCharges =
-            new list<GFQQ_Product_Rate_Plan_Charge__c>();
-        List<GFQQ_Product_Rate_Plan_Charge_Tier__c> listRatePlanChargeTiers =
-            new list<GFQQ_Product_Rate_Plan_Charge_Tier__c>();
         GFQQ_Product2__c singleRatePlan = new GFQQ_Product2__c();
         GFQQ_Product_Rate_Plan__c productRatePlan =
             new GFQQ_Product_Rate_Plan__c();
@@ -259,11 +242,7 @@ global class V3CatalogTransformation extends
             new GFQQ_Product_Rate_Plan_Charge__c();
         GFQQ_Product_Rate_Plan_Charge_Tier__c ratePlanChargeTier =
             new GFQQ_Product_Rate_Plan_Charge_Tier__c();
-        // testing
         GFQQ_Product2__c productReference = new GFQQ_Product2__c();
-        system.debug(
-            '@@@@' +
-            productRecord.Google_Product_Supplemental_Objects__r.size());
         ProductReference.MyExtID__c =
             productRecord.Google_Product_Supplemental_Objects__r[0]
                 .Product_Code__c;
@@ -284,14 +263,13 @@ global class V3CatalogTransformation extends
                 .Product_Code__c;
         singleRatePlan.Component__c =
             productRecord.Google_Product_Supplemental_Objects__r[0]
-                .Is_Component__c;  // inc wrapper
+                .Is_Component__c;
         singleRatePlan.Product_Line__c =
             productRecord.Google_Product_Supplemental_Objects__r[0]
                 .Product_Line__c;
         singleRatePlan.Product_Sub_Line__c =
             productRecord.Google_Product_Supplemental_Objects__r[0]
-                .Product_SubLine__c;  // inc in wrappeer
-        // singleRatePlan.Cms_Lineup_Id__c = ''
+                .Product_SubLine__c;
         singleRatePlan.IsActive__c =
             productRecord.Google_Product_Supplemental_Objects__r[0]
                 .Is_Active__c;
@@ -338,16 +316,10 @@ global class V3CatalogTransformation extends
         RatePlanCharge.MyExtID__c =
             productRecord.Google_Product_Rate_Plan_Objects1__r[0]
                 .Product_Rate_Plan_Code__c;
-                
-                //system.debug('Ctype'+productRecord.vlocity_cmt__ProductPriceListEntries__r[0]);
-                //system.debug('Ctype'+productRecord.vlocity_cmt__ProductPriceListEntries__r[0].vlocity_cmt__PricingElementId__r);
-                //system.debug('Ctype'+productRecord.vlocity_cmt__ProductPriceListEntries__r[0].vlocity_cmt__PricingElementId__r.vlocity_cmt__PricingVariableId__r);
-
-
-        /*RatePlanCharge.Charge_Type__c =
+        RatePlanCharge.Charge_Type__c =
             productRecord.vlocity_cmt__ProductPriceListEntries__r[0]
                 .vlocity_cmt__PricingElementId__r
-                .vlocity_cmt__PricingVariableId__r.vlocity_cmt__ChargeType__c;*/
+                .vlocity_cmt__PricingVariableId__r.vlocity_cmt__ChargeType__c;
         RatePlanCharge.Charge_Model__c = 'Flat Fee';
         RatePlanCharge.Name = productRecord.Legacy_Product_Code__c;
         ratePlanChargeTier.Product_Rate_Plan_Charge__r =
@@ -360,20 +332,25 @@ global class V3CatalogTransformation extends
         listRatePlanCharges.add(RatePlanCharge);
         listRatePlanChargeTiers.add(ratePlanChargeTier);
         singleRatePlanList.add(singleRatePlan);
-        insertSobjectRecords.add(singleRatePlan);
-        insertSobjectRecords.add(productRatePlan);
-        insertSobjectRecords.add(RatePlanCharge);
-        insertSobjectRecords.add(ratePlanChargeTier);
-        insertSobjectRecords.addAll(createProductOptions(productRecord,
-            productRecord.Google_Product_Supplemental_Objects__r[0]));
+        List<Sobject> sobjectsList = createProductOptions(productRecord,
+            productRecord.Google_Product_Supplemental_Objects__r[0]);
+        if(sobjectsList != null && !sobjectsList.isEmpty()) {
+          singleRatePlanList.add((GFQQ_Product2__c)sobjectsList[0]);
+          options.add((GFQQ_Product_Option__c)sobjectsList[1]);
+        }
       }
+      insertSobjectRecords.addAll(singleRatePlanList);
+      insertSobjectRecords.addAll(listProductRatePlans);
+      insertSobjectRecords.addAll(listRatePlanCharges);
+      insertSobjectRecords.addAll(listRatePlanChargeTiers);
+      insertSobjectRecords.addAll(options);
       if (insertSobjectRecords.size() > 0) {
         insert insertSobjectRecords;
       }
     }
     return true;
   }
-
+  // This method creates GFQQ_Product_Option__c records if auxiliary productOption is available.
   private List<Sobject> createProductOptions(Product2 product,
       Google_Product_Supplemental_Object__c productSupplementalObject) {
     List<Sobject> sobjects = new List<Sobject>();
@@ -414,8 +391,10 @@ global class V3CatalogTransformation extends
         option.Required__c = productOption.Required__c;
         option.MaxQuantity__c = productOption.MaxQuantity__c;
         option.MinQuantity__c = productOption.MinQuantity__c;
-        option.ConfiguredSKU__r = setRatePlanProduct(null, productOption.ConfiguredSKU__r.Product_Code__c);
-        option.OptionalSKU__r = setRatePlanProduct(null, productOption.OptionalSKU__r.Product_Code__c);
+        option.ConfiguredSKU__r = setRatePlanProduct(null,
+           productOption.ConfiguredSKU__r.Product_Code__c);
+        option.OptionalSKU__r = setRatePlanProduct(null,
+            productOption.OptionalSKU__r.Product_Code__c);
         GFQQ_Product2__c optionalSkuProduct = setRatePlanProduct(productOption.OptionalSKU__r,
             productOption.OptionalSKU__r.Product_Code__c);
         sobjects.add(optionalSkuProduct);
@@ -425,10 +404,7 @@ global class V3CatalogTransformation extends
     return sobjects;
   }
 
-  // Single rate plan with two charges
-  global void singleRatePlanWithTwoCharge(
-      map<Id, Product2> singleRatePlanProducts,
-      Map<Id, vlocity_cmt__ProductChildItem__c> productChildItems) {}
+// This method will return the all root product ids.
  public
   static Set<Id> getRootProduct(
       List<vlocity_cmt__ProductChildItem__c> productChildItems,
@@ -437,10 +413,6 @@ global class V3CatalogTransformation extends
     for (vlocity_cmt__ProductChildItem__c currentChildItem :
          productChildItems) {
       if (currentChildItem.vlocity_cmt__ChildProductId__c == productId) {
-        System.debug(':::ParentId:::' +
-                     currentChildItem.vlocity_cmt__ParentProductId__c);
-        System.debug(':::ChildId:::' +
-                     currentChildItem.vlocity_cmt__ChildProductId__c);
         rootIds.addAll(getRootProduct(
             productChildItems, currentChildItem.vlocity_cmt__ParentProductId__c,
             oldProductId));
@@ -458,6 +430,8 @@ global class V3CatalogTransformation extends
     }
     return rootIds;
   }
+
+ // This method return true if product is child of any other product.
  private
   static boolean isChildOfAnyProduct(
       List<vlocity_cmt__ProductChildItem__c> productChildItems,
@@ -470,6 +444,8 @@ global class V3CatalogTransformation extends
     }
     return false;
   }
+
+ // This method will returns root product ids where product with same legacy code.
  public
   static Set<Id> filterRootProducts(
       List<vlocity_cmt__ProductChildItem__c> productChildItems,
@@ -482,6 +458,8 @@ global class V3CatalogTransformation extends
     }
     return rootPrdIds;
   }
+
+  // This method returns true if same legacy code presentin hierarchy.
   Public static Boolean isLegacyProductCodePresentInHierarchy(
       List<vlocity_cmt__ProductChildItem__c> productChildItems,
       String productId, String oldProductId, String legacyCode) {
@@ -505,7 +483,8 @@ global class V3CatalogTransformation extends
     }
     return isLegacyCodePresent;
   }
-  // Multi rate plan
+
+  // This method performs multiRatePlan operations.
   global void multiRatePlan(
       map<Id, Product2> multiRatePlanProducts,
       Map<Id, vlocity_cmt__ProductChildItem__c> productChildItems,
@@ -662,10 +641,11 @@ global class V3CatalogTransformation extends
       }
     }
     if (!insertObjectsList.isEmpty()) {
-      System.debug(':::Insert SObject List:::' + insertObjectsList);
       insert insertObjectsList;
     }
   }
+
+ // It retuns the max maxCardinality from the productChildItems of the product.
  private
   Integer getMaxCardinality(
       Map<Id, vlocity_cmt__ProductChildItem__c> productChildItems,
@@ -684,12 +664,10 @@ global class V3CatalogTransformation extends
                productChildItem.vlocity_cmt__OverrideDefinitions__r) {
             if (overrideDefinition.vlocity_cmt__ProductId__c ==
                 rootProduct.Id) {
-              System.debug(':::Inside If Override:::');
               vlocity_cmt__ProductChildItem__c overrideChildItem =
                   productChildItems.get(
                       overrideDefinition
                           .vlocity_cmt__OverridingProductChildItemId__c);
-              System.debug(':::Override Child Item:::' + overrideChildItem);
               maxCardinality = Integer.valueOf(
                   overrideChildItem.vlocity_cmt__MaxQuantity__c);
               isCardinalityFound = true;
@@ -712,6 +690,8 @@ global class V3CatalogTransformation extends
     }
     return 0;
   }
+
+ // This method will return the product with same legacy code.
  private
   Product2 getAddonProductWithLegacyCode(String legacyCode, String oldProductId,
                                          List<Product2> productList) {
@@ -725,6 +705,8 @@ global class V3CatalogTransformation extends
     }
     return addOnProduct;
   }
+
+ // This method sets the fields of GFQQ_Product_Rate_Plan_Charge_Tier__c record.
  private
   GFQQ_Product_Rate_Plan_Charge_Tier__c setChargeTier(
       Integer maxCardinality,
@@ -752,6 +734,8 @@ global class V3CatalogTransformation extends
     }
     return chargeTier;
   }
+
+ // This method calculates the charge tier price based on adjustment method.
  private
   Decimal calculateChargeTierPrice(Decimal nonAdjustmentPrice,
                                    Decimal adjustmentPrice,
@@ -762,6 +746,8 @@ global class V3CatalogTransformation extends
     }
     return result;
   }
+
+  //this method retuns auxiliary rate plan object.
  private
   Google_Product_Rate_Plan_Object__c getRatePlanObject(
       List<Google_Product_Rate_Plan_Object__c> ratePlanObjects,
@@ -774,6 +760,8 @@ global class V3CatalogTransformation extends
     }
     return ratePlan;
   }
+
+  // This method sets the fields of rate plan charge record.
  private
   GFQQ_Product_Rate_Plan_Charge__c setRatePlanCharge(
       String chargeType, String chargeName, String chargeRefernceForeignKey) {
@@ -787,6 +775,8 @@ global class V3CatalogTransformation extends
     charge.MyExtID__c = chargeRefernceForeignKey;
     return charge;
   }
+
+ // This method sets the fields of rate plan record.
  private
   GFQQ_Product_Rate_Plan__c setProductRatePlan(
       Google_Product_Rate_Plan_Object__c ratePlanObject,
@@ -803,6 +793,8 @@ global class V3CatalogTransformation extends
     ratePlan.MyExtID__c = ratePlanReferenceForeignkey;
     return ratePlan;
   }
+
+ // This method retuern the SupplementalObject of the offerd product.
  private
   Google_Product_Supplemental_Object__c getProductSupplementalObject(
       List<Google_Product_Supplemental_Object__c> supplementalObjects,
@@ -816,6 +808,8 @@ global class V3CatalogTransformation extends
     }
     return suppObject;
   }
+
+ // This method sets the fields of rate plan product record.
  private
   GFQQ_Product2__c setRatePlanProduct(
       Google_Product_Supplemental_Object__c supplementalObject,
@@ -844,4 +838,4 @@ global class V3CatalogTransformation extends
     product.MyExtID__c = productReferenceForeignKey;
     return product;
   }
-}  // end of class
+} // end of the class
