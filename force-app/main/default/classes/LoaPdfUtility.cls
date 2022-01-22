@@ -1,24 +1,38 @@
-public without sharing class LoaPdfUtility {
+/**
+ * @group LoaPdf
+ * @description Utility class for generating and uploading letter of authorization pdf
+ * to the bandwidth system.
+ */
+public with sharing class LoaPdfUtility {
 
+  // Initialize class constants.
   public static final String CLASS_NAME = 'LoaPdfUtility';
   public static final String GENERATE_PDF_METHOD_NAME = 'generatePdf';
   public static final String UPLOAD_PDF_FILE_METHOD_NAME = 'uploadPdfFile';
   public static final String LOA_DOCUMENT_NAME = '{0}_LOA_{1}.pdf';
 
+  // Keys for callout.
   public static final String CALLOUT_CONTENT_TYPE_KEY = 'Content-Type';
   public static final String CALLOUT_CONTENT_LENGTH_KEY = 'Content-Length';
 
+  // Keys for input map.
+  public static final String INPUT_MAP_KEY_BODY = 'body';
   public static final String INPUT_MAP_KEY_DOC_ID = 'docId';
+  public static final String INPUT_MAP_KEY_ENDPOINT = 'endpoint';
+  public static final String INPUT_MAP_KEY_FILE_NAME = 'fileName';
   public static final String INPUT_MAP_KEY_ORDER_ID = 'orderId';
   public static final String INPUT_MAP_KEY_ORDER_NUMBER = 'orderNumber';
-  public static final String INPUT_MAP_KEY_BODY = 'body';
-  public static final String INPUT_MAP_KEY_FILE_NAME = 'fileName';
-  public static final String INPUT_MAP_KEY_ENDPOINT = 'endpoint';
 
+  // Keys for output map.
   public static final String OUTPUT_MAP_KEY_PDF_ID = 'pdfId';
 
-  public static final String PAGE_REFERENCE_ID_KEY = 'id';
-
+  /**
+   * @description This method is used to generate letter of authorization pdf and upload it
+   * to the bandwidth system.
+   * @param input
+   * @param output
+   * @param options
+   */
   public static void generatePdf(
       Map<String, Object> input,
       Map<String, Object> output,
@@ -29,71 +43,96 @@ public without sharing class LoaPdfUtility {
         input.get(INPUT_MAP_KEY_ORDER_NUMBER));
     String orderId = String.valueOf(
         input.get(INPUT_MAP_KEY_ORDER_ID));
+    String endpoint = String.valueOf(input.get(
+        INPUT_MAP_KEY_ENDPOINT));
+    Attachment pdf = null;
     try {
       PageReference pgReference = Page.vlocity_cmt__ObjectDocumentPdfPage;
-      pgReference.getParameters().put(PAGE_REFERENCE_ID_KEY, docId);
-      Attachment pdf = new Attachment(
+      pgReference.getParameters().put('id', docId);
+      pdf = new Attachment(
           ParentId = orderId,
-          Body = pgReference.getContentAsPdf(),
           Name = String.format(LOA_DOCUMENT_NAME,
             new List<String>{orderNumber, String.valueOf(System.now())}),
-          ContentType = 'application/pdf'
+          ContentType = 'application/pdf',
+          Body = pgReference.getContent()
       );
-      insert pdf;
-      output.put(OUTPUT_MAP_KEY_PDF_ID, pdf.Id);
+      System.debug('::::Success::::');
+      //insert pdf;
+      //output.put(OUTPUT_MAP_KEY_PDF_ID, pdf.Id);
+      uploadPdfFile(endpoint, pdf, output);
     } catch(Exception e) {
+      System.debug(':::Error::: '+ e.getStackTraceString());
       LoggingUtility.insertExceptionLog(CLASS_NAME,
           GENERATE_PDF_METHOD_NAME, e.getMessage());
+      throw e;
+    } finally {
+      if(pdf != null && pdf.Body != null) {
+        try{
+          insert pdf;
+          output.put(OUTPUT_MAP_KEY_PDF_ID, pdf.Id);
+        } catch(Exception e) {
+          LoggingUtility.insertExceptionLog(CLASS_NAME,
+              GENERATE_PDF_METHOD_NAME, e.getMessage());
+          throw e;
+        }
+      }
     }
   }
 
+  /**
+   * @description This method uploads the generated pdf to the bandwidth system.
+   * @param endpoint
+   * @param pdf
+   * @param output
+   * 
+   */
   public static void uploadPdfFile(
-      Map<String, Object> input,
-      Map<String, Object> output,
-      Map<String, Object> options
+      String endpoint, Attachment pdf, Map<String, Object> output
   ) {
-    String pdfId = String.valueOf(input.get('pdfId'));
-    String endpoint = String.valueOf(input.get(
-        INPUT_MAP_KEY_ENDPOINT));
+    Boolean isFileUploadSuccess;
     try {
-      Attachment pdf = [
-          SELECT
-            Id,
-            Body,
-            Name
-          FROM
-            Attachment
-          WHERE
-            Id = :pdfId
-          LIMIT 1
-      ];
       Http http = new Http();
       HttpRequest request = new HttpRequest();
       HttpResponse response = new HttpResponse();
       String boundary = generateRandomString();
-      System.debug(':::Boudary:::' + boundary);
       Blob bodyBlob = createRequestBlobBody(pdf, boundary);
-      endpoint = 'callout:BandwidthAPI' + endpoint;
-      System.debug(':::PDF:::'+pdf.Body);
+      endpoint = 'callout:BandwidthAPI' + endpoint+'?documentType=LOA';
       System.debug(':::Request Body:::\n' + bodyBlob);
       request.setEndpoint(endpoint);
       request.setMethod('POST');
       request.setHeader(CALLOUT_CONTENT_TYPE_KEY,
           'application/pdf;boundary=' + boundary);
+      request.setHeader('Accept', 'application/xml');
       //request.setBody(requestBody);
       request.setBodyAsBlob(bodyBlob);
-      System.debug(':::Request as Blob:::' + request.getBodyAsBlob());
       request.setHeader(CALLOUT_CONTENT_LENGTH_KEY, String.valueOf(
       request.getBodyAsBlob().size()));
       System.debug(':::Request:::' + request);
       response = http.send(request);
       System.debug(':::Response:::' + response);
+      System.debug(':::Error Response Message:::' + response.getBody());
+      if(response.getStatusCode() >= 200 && response.getStatusCode() <= 299) {
+        isFileUploadSuccess = true;
+      } else {
+        isFileUploadSuccess = false;
+        LoggingUtility.insertExceptionLog(CLASS_NAME,
+            UPLOAD_PDF_FILE_METHOD_NAME, response.getBody());
+      }
+      output.put('isFileUploadSuccess', isFileUploadSuccess);
+      output.put('response', response.getBody());
     } catch(Exception e) {
       LoggingUtility.insertExceptionLog(CLASS_NAME,
           UPLOAD_PDF_FILE_METHOD_NAME, e.getMessage());
+      throw e;
     }
   }
 
+  /**
+   * @description This method is used to create the blob body of the generated pdf.
+   * @param pdf
+   * @param boundary
+   * @return Blob
+   */
   private static Blob createRequestBlobBody(Attachment pdf, String boundary) {
     String header = '--' + boundary + 
         '\nContent-Disposition: form-data; name=""; filename="'
@@ -120,11 +159,15 @@ public without sharing class LoaPdfUtility {
     return bodyBlob;
   }
 
+  /**
+   * @description This method generates a random 10 digit string
+   * 
+   */
   private static String generateRandomString() {
     String chars =
         'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
     String randStr = '';
-    while (randStr.length() < 8) {
+    while (randStr.length() < 10) {
       Integer idx = Math.mod(Math.abs(Crypto.getRandomInteger()),
           chars.length());
       randStr += chars.substring(idx, idx+1);
