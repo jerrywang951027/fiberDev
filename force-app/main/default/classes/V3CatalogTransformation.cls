@@ -123,6 +123,7 @@ global class V3CatalogTransformation extends
               vlocity_cmt__MinMaxDefaultQty__c,
               vlocity_cmt__MinQuantity__c,
               vlocity_cmt__IsOverride__c,
+              
               vlocity_cmt__ChildProductId__r.Legacy_Product_Code__c,
               vlocity_cmt__ParentProductId__r.Legacy_Product_Code__c,
               vlocity_cmt__ParentProductId__c,
