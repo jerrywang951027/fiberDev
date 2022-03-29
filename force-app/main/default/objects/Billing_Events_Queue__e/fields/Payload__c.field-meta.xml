@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payload__c</fullName>
+    <description>This field will contain details on the billing event that was published. For example, if Payments/B3 has signaled a change in legal or billing address, the payload will contain the new address. If Payments has signaled a payment has been processed, this payload will indicate if the payment was partial or in full i.e. New Outstanding Balance, or No Outstanding Balance.</description>
+    <externalId>false</externalId>
+    <isFilteringDisabled>false</isFilteringDisabled>
+    <isNameField>false</isNameField>
+    <isSortingDisabled>false</isSortingDisabled>
+    <label>Payload</label>
+    <length>131072</length>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

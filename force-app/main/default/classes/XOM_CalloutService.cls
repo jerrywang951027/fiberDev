@@ -30,7 +30,7 @@ global class XOM_CalloutService extends vlocity_cmt.DefaultSystemInterface {
   public static final String IP_INPUT_KEY_ORCH_PLAN_ID = 'orchestrationPlanId';
 
   // Keys for ipOutput
-  public static final String IP_OUTPUT_KEY_API_RESPONSE = 'APIResponse';
+  public static final String IP_OUTPUT_K_API_RESPONSE = 'APIResponse';
   public static final String IP_OUTPUT_KEY_ERROR = 'error';
   public static final String IP_OUTPUT_KEY_REASONS = 'reasons';
   public static final String IP_OUTPUT_KEY_SUCCESS = 'success';
